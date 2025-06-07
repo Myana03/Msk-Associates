@@ -4,6 +4,7 @@ import Header from './Components/Header';
 import Hero from './Components/Hero';
 import AboutUs from './Components/AboutUs';
 import Services from './Components/Services';
+import Testimonials from './Components/Testimonials';
 import Contact from './Components/Contact';
 import Footer from './Components/Footer';
 
@@ -17,6 +18,7 @@ function App() {
             </section>
       <AboutUs />
       <Services />
+      <Testimonials />
       <Contact />
       <Footer />
     </div>
