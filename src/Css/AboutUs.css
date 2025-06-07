@@ -1,0 +1,50 @@
+html {
+  scroll-behavior: smooth;
+}
+/* About Us Layout */
+.about-us {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Ensures the items align vertically */
+  margin: 3rem auto;
+  max-width: 1200px;
+  gap: 20px; /* Adjust spacing between text and image */
+  flex-wrap: wrap; /* Make layout responsive */
+}
+
+/* About Us Text Styling */
+.about-us-text {
+  flex: 1; /* Text section should take available space */
+  text-align: left;
+  padding: 20px;
+  max-width: 50%; /* Limit text section's width */
+}
+
+.about-us-text h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #003366;
+}
+
+.about-us-text p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+/* Engineer Image Styling */
+.engineer-image {
+  flex: 0 0 50%; /* Ensure the image section takes 50% width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.engineer-image-box {
+  width: 100%;
+  height: auto; /* Allow the image to scale with the container */
+  object-fit: cover; /* Ensures the image maintains aspect ratio */
+  border: 5px solid #ccc;
+  border-radius: 10px;
+}

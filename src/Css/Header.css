@@ -1,0 +1,50 @@
+/* Header Styles */
+header {
+  position: sticky;
+  top: 0; /* Keeps the header at the top */
+  background-color: white;
+  z-index: 1000; /* Keeps the header above other content */
+  padding: 10px 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+  display: flex; /* Align items horizontally */
+  justify-content: space-between; /* Space between firm name and nav links */
+  align-items: center; /* Vertically centers content */
+}
+
+/* Logo (Firm Name) Styles */
+header .logo {
+  font-size: 1.0rem;
+  font-weight: bold;
+  color: #003366;
+}
+
+/* Navigation Links Styling */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end; /* Aligns links to the right */
+  padding: 0;
+}
+
+/* Highlight the active link */
+.active-link {
+  color: #ffcc00; /* Active link color */
+  font-weight: bold;
+}
+
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #003366;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ffcc00; /* Change color on hover */
+}

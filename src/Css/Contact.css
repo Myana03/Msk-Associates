@@ -1,0 +1,60 @@
+html {
+   scroll-behavior: smooth;
+ }
+/* Contact Section Styles */
+.contact-section {
+  padding: 4rem 2rem;
+  background-color: #f9f9f9;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.map-container {
+  flex: 1;
+  min-width: 40%; /* Ensure map takes 40% of the width */
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 40%; /* Ensure the contact info takes 40% of the width */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #003366;
+}
+
+.contact-details p {
+  font-size: 1rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.contact-details strong {
+  color: #003366;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column; /* Stack map and contact info on smaller screens */
+  }
+
+  .map-container,
+  .contact-info {
+    min-width: 100%; /* Take full width on mobile */
+  }
+}
