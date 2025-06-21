@@ -31,7 +31,7 @@
 .contact-info h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #003366;
+  color: var(--primary-color);
 }
 
 .contact-details p {
@@ -41,7 +41,7 @@
 }
 
 .contact-details strong {
-  color: #003366;
+  color: var(--primary-color);
 }
 
 /* Responsive Design for Smaller Screens */

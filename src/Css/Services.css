@@ -7,7 +7,7 @@
 .services-section h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #003366;
+  color: var(--primary-color);
 }
 
 /* Container for service cards */
@@ -57,7 +57,7 @@
 /* Service Card Title */
 .service-card h3 {
   font-size: 1.8rem;
-  color: #003366;
+  color: var(--primary-color);
   margin-bottom: 10px;
 }
 
