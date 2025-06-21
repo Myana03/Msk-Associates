@@ -6,7 +6,7 @@ function Header() {
     <header className="site-header">
       <div className="header-container">
         <div className="logo">
-          <a href="#home">MSK Associates</a>
+          <a href="#home">MSK ASSOCIATES</a>
         </div>
         <nav className="navigation">
           <a href="#home">Home</a>

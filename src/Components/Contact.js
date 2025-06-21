@@ -21,9 +21,9 @@ function Contact() {
         <div className="contact-info">
           <h2>Contact Us</h2>
           <div className="contact-details">
-            <p><strong>Name:</strong> MSK Associates</p>
-            <p><strong>Email:</strong> contact@mskassociates.com</p>
-            <p><strong>Phone:</strong> +1 (123) 456-7890</p>
+            <p><strong>Name:</strong> MSK ASSOCIATES</p>
+            <p><strong>Email:</strong> designs@mskassociates.com</p>
+            <p><strong>Phone:</strong> +91 99890 90978</p>
             <p><strong>Address:</strong> Pranay Marg, Waddepally, Phase 1, Teachers Colony, Hanamkonda</p>
           </div>
         </div>
