@@ -4,32 +4,38 @@ const AboutUs = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Top Section: About Us text + Image */}
-      <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
-        <div data-aos="fade-right">
-          <h2 className="text-base font-semibold text-yellow-400 tracking-wider uppercase">
-            About Us
-          </h2>
-          <p className="mt-2 text-4xl font-extrabold text-white sm:text-5xl font-serif">
-            Pioneering with Precision
-          </p>
-          <div className="mt-4 text-lg text-gray-300 space-y-4">
-            <p>
-              Established in August 2023, MSK ASSOCIATES is a growing team of passionate Structural Engineers, Planners, and Builders committed to delivering innovative and reliable engineering solutions. We specialize in designing safe, efficient, and sustainable structures that stand the test of time.
-            </p>
-            <p>
-              With a deep understanding of modern construction practices and regulatory standards, we partner closely with clients to turn their visions into reality—whether it's a residential development, commercial facility, or industrial project.
-            </p>
-            <p>
-              Our strength lies in our attention to detail, engineering precision, and client-focused approach. At MSK ASSOCIATES, we believe in building not just structures, but lasting relationships based on trust and technical excellence.
-            </p>
-          </div>
-        </div>
-        <div className="mt-10 lg:mt-0" data-aos="fade-left" data-aos-delay="200">
+      <div className="lg:grid lg:grid-cols-2 lg:gap-24 lg:items-center">
+        {/* Image on the left for large screens */}
+        <div className="mt-10 lg:mt-0" data-aos="fade-right" data-aos-delay="200">
           <img
             className="rounded-2xl shadow-2xl w-full h-auto object-cover"
             src="/Images/OnlineImages/jr-harris-T72ooC45UTE-unsplash.jpg"
-            alt="Engineering team at a construction site"
+            alt="Heavy machinery at a construction site"
           />
+        </div>
+
+        {/* Text on the right for large screens */}
+        <div data-aos="fade-left">
+          <h2 className="text-base font-semibold text-yellow-400 tracking-wider uppercase">
+            About Us
+          </h2>
+          <p className="mt-2 text-4xl md:text-5xl font-extrabold text-white font-serif whitespace-nowrap">
+            Pioneering with Precision
+          </p>
+          {/* Decorative line */}
+          <div className="w-full h-1 bg-yellow-400 my-6"></div>
+          <div className="text-gray-300 space-y-6">
+            {/* Lead paragraph */}
+            <p className="text-xl">
+              Established in August 2023, MSK ASSOCIATES is a growing team of passionate Structural Engineers, Planners, and Builders committed to delivering innovative and reliable engineering solutions. We specialize in designing safe, efficient, and sustainable structures that stand the test of time.
+            </p>
+            <p className="text-lg">
+              With a deep understanding of modern construction practices and regulatory standards, we partner closely with clients to turn their visions into reality—whether it's a residential development, commercial facility, or industrial project.
+            </p>
+            <p className="text-lg">
+              Our strength lies in our attention to detail, engineering precision, and client-focused approach. At MSK ASSOCIATES, we believe in building not just structures, but lasting relationships based on trust and technical excellence.
+            </p>
+          </div>
         </div>
       </div>
 
