@@ -15,7 +15,7 @@ function AboutUs() {
       </div>
       <div className="engineer-image">
         <img
-          src="/Images/ricardo-gomez-angel-jYNvXKTUYvs-unsplash.jpg"  // Replace with actual image path
+          src="/Images/OnlineImages/ricardo-gomez-angel-jYNvXKTUYvs-unsplash.jpg"  // Replace with actual image path
           alt="Engineer at Work"
           className="engineer-image-box"
         />

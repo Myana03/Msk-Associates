@@ -3,10 +3,10 @@ import '../Css/HeroBanner.css';
 
 function HeroBanner() {
   const images = [
-    '/Images/pexels-pavel-danilyuk-7937315.jpg',
-    '/Images/pexels-pavel-danilyuk-7937317.jpg',
-    '/Images/pexels-pavel-danilyuk-7937319.jpg',
-    '/Images/jason-briscoe-AQl-J19ocWE-unsplash.jpg'
+    '/Images/OnlineImages/pexels-pavel-danilyuk-7937319.jpg',
+    '/Images/OnlineImages/gabrielle-claro-5X5Q7tWjVsc-unsplash.jpg',
+    '/Images/OnlineImages/jason-briscoe-AQl-J19ocWE-unsplash.jpg',
+    '/Images/OnlineImages/michael-savin-vCp9o6WqSX8-unsplash.jpg'
   ];
 
   const [current, setCurrent] = useState(0);
