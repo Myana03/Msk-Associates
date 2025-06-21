@@ -18,22 +18,36 @@ function HeroBanner() {
   }, [images.length]);
 
   return (
-    <section id="home" className="min-h-screen flex items-center bg-gradient-to-br from-blue-50 to-blue-100 py-12 px-4">
+    <section id="home" className="min-h-screen flex items-center bg-gradient-to-br from-blue-50 to-blue-200 py-12 px-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Left Column: Text Content */}
-        <div className="text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4 leading-tight">
+        <div className="text-center md:text-left" data-aos="fade-right">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4 leading-tight font-serif">
             Reliable Structural Engineering
           </h1>
-          <p className="text-lg text-gray-700 mb-8">
-            From concept to completion, we deliver safe and innovative solutions for your projects.
+          <p
+            className="mt-4 text-lg text-gray-600"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            Your vision, engineered with precision. We are your partners in
+            building the future.
           </p>
-          <a href="#contact" className="inline-block bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-3 px-8 rounded-full shadow-lg transition-all text-lg">
-            Get in Touch
-          </a>
+          <div
+            className="mt-8"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <a
+              href="#contact"
+              className="inline-block bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-800 hover:scale-105 hover:shadow-xl transform transition-all duration-300 ease-in-out"
+            >
+              Get in Touch
+            </a>
+          </div>
         </div>
         {/* Right Column: Image Slider */}
-        <div className="relative w-full h-96 rounded-2xl shadow-xl overflow-hidden">
+        <div className="relative w-full h-96 rounded-2xl shadow-xl overflow-hidden" data-aos="fade-left" data-aos-delay="200">
           {images.map((src, idx) => (
             <img
               key={idx}

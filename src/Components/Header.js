@@ -15,13 +15,31 @@ function Header() {
             Structural Engineers, Planners & Builders
           </span>
         </div>
-        <nav className="mt-4 md:mt-0 flex flex-col md:flex-row gap-2 md:gap-6 text-base font-medium">
-          <a href="#home" className="text-blue-900 hover:text-blue-600 transition-colors">Home</a>
-          <a href="#about" className="text-blue-900 hover:text-blue-600 transition-colors">About</a>
-          <a href="#services" className="text-blue-900 hover:text-blue-600 transition-colors">Services</a>
-          <a href="#projects" className="text-blue-900 hover:text-blue-600 transition-colors">Projects</a>
-          <a href="#testimonials" className="text-blue-900 hover:text-blue-600 transition-colors">Testimonials</a>
-          <a href="#contact" className="text-blue-900 hover:text-blue-600 transition-colors">Contact</a>
+        <nav className="mt-4 md:mt-0 flex flex-wrap justify-center md:flex-row gap-x-6 gap-y-2 text-base font-medium">
+          <a href="#home" className="relative group text-blue-900 hover:text-blue-600 transition-colors">
+            <span>Home</span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
+          </a>
+          <a href="#services" className="relative group text-blue-900 hover:text-blue-600 transition-colors">
+            <span>Services</span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
+          </a>
+          <a href="#about" className="relative group text-blue-900 hover:text-blue-600 transition-colors">
+            <span>About</span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
+          </a>
+          <a href="#projects" className="relative group text-blue-900 hover:text-blue-600 transition-colors">
+            <span>Projects</span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
+          </a>
+          <a href="#testimonials" className="relative group text-blue-900 hover:text-blue-600 transition-colors">
+            <span>Testimonials</span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
+          </a>
+          <a href="#contact" className="relative group text-blue-900 hover:text-blue-600 transition-colors">
+            <span>Contact</span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
+          </a>
         </nav>
         {/* Hamburger menu placeholder for mobile */}
         <div className="md:hidden absolute right-6 top-6">
