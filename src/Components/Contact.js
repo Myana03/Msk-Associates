@@ -3,7 +3,7 @@ import '../Css/Contact.css'; // Import the contact section CSS
 
 function Contact() {
   return (
-    <section id="contact"className="contact-section">
+    <section id="contact" className="contact-section">
       <div className="contact-container">
         {/* Left side: Google Map */}
         <div className="map-container">

@@ -3,11 +3,20 @@ import '../Css/Header.css';
 
 function Header() {
   return (
-    <header className="site-header">
+    <header className="items-start">
       <div className="header-container">
-        <div className="logo">
-          <a href="#home">MSK ASSOCIATES</a>
+        <div className="logo text-left py-2 flex flex-col items-center justify-center">
+          <a
+            href="#home"
+            className="font-extrabold text-blue-700 text-5xl tracking-[0.2em]"
+          >
+            MSK ASSOCIATES
+          </a>
+          <span className="mt-1 text-gray-500 uppercase text-sm tracking-[0.3em]">
+            Structural Engineers, Planners & Builders
+          </span>
         </div>
+
         <nav className="navigation">
           <a href="#home">Home</a>
           <a href="#about">About</a>

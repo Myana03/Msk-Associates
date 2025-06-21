@@ -15,6 +15,10 @@
   justify-content: space-between;
   align-items: center;
 }
+/* When the header needs left-aligned items */
+header.items-start {
+  align-items: flex-start;
+}
 
 .logo a {
   font-size: 1.5rem;
