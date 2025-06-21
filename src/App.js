@@ -1,24 +1,23 @@
 import React, { useEffect } from 'react';
-//import './App.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Header from './Components/Header';
 import HeroBanner from './Components/HeroBanner';
 import AboutUs from './Components/AboutUs';
 import Services from './Components/Services';
 import ProjectGallery from './Components/ProjectGallery';
 import Testimonials from './Components/Testimonials';
-import Contact from './Components/Contact';
 import CallToAction from './Components/CallToAction';
+import Contact from './Components/Contact';
 import Footer from './Components/Footer';
-
 
 function App() {
   useEffect(() => {
-    if (window.AOS) {
-      window.AOS.init({
-        duration: 800,
-        once: true,
-      });
-    }
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 50,
+    });
   }, []);
 
   return (

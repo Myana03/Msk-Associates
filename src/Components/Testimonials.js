@@ -1,9 +1,4 @@
 import React from 'react';
-import { FaQuoteLeft } from 'react-icons/fa';
-
-const testimonials = [
-  // ... existing code ...
-];
 
 const Testimonials = () => {
   return (
@@ -15,31 +10,13 @@ const Testimonials = () => {
         <p className="mt-2 text-4xl font-extrabold text-white sm:text-5xl font-serif">
           What Our Clients Say
         </p>
-        <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-400">
-          We are proud to have built lasting relationships with our clients.
-          Here's what they have to say about their experience with us.
-        </p>
-      </div>
-      <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {testimonials.map((testimonial, index) => (
-          <div
-            key={index}
-            className="bg-gray-900 bg-opacity-60 rounded-xl p-8 shadow-lg flex flex-col"
-            data-aos="fade-up"
-            data-aos-delay={testimonial.delay}
-          >
-            <FaQuoteLeft className="text-yellow-400 text-3xl mb-4" />
-            <blockquote className="text-gray-300 italic flex-grow">
-              "{testimonial.quote}"
-            </blockquote>
-            <footer className="mt-4">
-              <p className="text-base font-semibold text-white">
-                {testimonial.name}
-              </p>
-              <p className="text-sm text-gray-400">{testimonial.company}</p>
-            </footer>
-          </div>
-        ))}
+        <div className="mt-8 max-w-3xl mx-auto bg-gray-800 bg-opacity-60 rounded-2xl shadow-lg p-8" data-aos="zoom-in">
+          <p className="italic text-lg text-gray-300">
+            Client feedback will be showcased here soon. We are proud of the
+            strong relationships we build and look forward to sharing their
+            stories.
+          </p>
+        </div>
       </div>
     </div>
   );

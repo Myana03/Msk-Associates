@@ -3,8 +3,8 @@ import React from 'react';
 const AboutUs = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Top Section: About Us text + Image */}
       <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
-        {/* Left Column: Text Content */}
         <div data-aos="fade-right">
           <h2 className="text-base font-semibold text-yellow-400 tracking-wider uppercase">
             About Us
@@ -12,39 +12,46 @@ const AboutUs = () => {
           <p className="mt-2 text-4xl font-extrabold text-white sm:text-5xl font-serif">
             Pioneering with Precision
           </p>
-          <p className="mt-4 text-xl text-gray-300">
-            MSK Associates has been a cornerstone in the structural engineering
-            and construction industry for over a decade. We are dedicated to
-            delivering excellence and innovation in every project we undertake.
-          </p>
-          
-          {/* Founder's Vision Subsection */}
-          <div className="mt-10 p-6 bg-gray-900 bg-opacity-50 rounded-xl" data-aos="fade-up">
-              <h3 className="text-2xl font-bold text-yellow-400 font-serif">
-                A Note from Our Founder
-              </h3>
-              <blockquote className="mt-4 border-l-4 border-yellow-500 pl-4 italic text-gray-300">
-                <p>
-                  "We built this firm on a simple promise: to transform ambitious
-                  visions into tangible, enduring structures. Our commitment is to
-                  precision, integrity, and the pioneering spirit that drives our
-                  industry forward. We don't just build buildings; we build
-                  legacies."
-                </p>
-              </blockquote>
-              <p className="mt-4 font-semibold text-white">
-                - M. S. Khan, Founder of MSK Associates
-              </p>
+          <div className="mt-4 text-lg text-gray-300 space-y-4">
+            <p>
+              Established in August 2023, MSK ASSOCIATES is a growing team of passionate Structural Engineers, Planners, and Builders committed to delivering innovative and reliable engineering solutions. We specialize in designing safe, efficient, and sustainable structures that stand the test of time.
+            </p>
+            <p>
+              With a deep understanding of modern construction practices and regulatory standards, we partner closely with clients to turn their visions into reality—whether it's a residential development, commercial facility, or industrial project.
+            </p>
+            <p>
+              Our strength lies in our attention to detail, engineering precision, and client-focused approach. At MSK ASSOCIATES, we believe in building not just structures, but lasting relationships based on trust and technical excellence.
+            </p>
           </div>
         </div>
-
-        {/* Right Column: Image */}
         <div className="mt-10 lg:mt-0" data-aos="fade-left" data-aos-delay="200">
           <img
             className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-            src="/Images/OnlineImages/anita-rahalzadeh-fDPgiTlceKc-unsplash.jpg"
-            alt="Our team working"
+            src="/Images/OnlineImages/jr-harris-T72ooC45UTE-unsplash.jpg"
+            alt="Engineering team at a construction site"
           />
+        </div>
+      </div>
+
+      {/* Bottom Section: Founder's Note */}
+      <div className="mt-16 lg:mt-24" data-aos="fade-up">
+        <div className="p-10 bg-gray-900 bg-opacity-70 rounded-2xl shadow-2xl max-w-4xl mx-auto">
+          <h3 className="text-3xl font-bold text-yellow-400 font-serif text-center">
+            A Note from Our Founder
+          </h3>
+          <div className="mt-6 border-l-4 border-yellow-500 pl-6 text-gray-300 space-y-4 italic text-lg">
+            <p>
+              "I'm Sai Krishna Myana, a Structural Engineer with over 7 years of industry experience in designing and delivering safe, efficient, and code-compliant structures. In August 2023, I founded MSK ASSOCIATES as a sole proprietorship with a vision to offer reliable, high-quality structural engineering and planning services tailored to the unique needs of each project."
+            </p>
+            <p>
+              "Throughout my career, I've worked on a wide range of residential, commercial, and industrial projects—ensuring every design meets the highest standards of safety, functionality, and sustainability. With MSK ASSOCIATES, my mission is to bring that same level of precision and care to every client, from concept to completion."
+            </p>
+          </div>
+          <p className="mt-8 font-semibold text-white text-right text-lg">
+            &mdash; Er MYANA SAI KRISHNA
+            <br />
+            <span className="font-normal text-sm text-gray-400">ME (Structures),AMIE.</span>
+          </p>
         </div>
       </div>
     </div>

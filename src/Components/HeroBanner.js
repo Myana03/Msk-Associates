@@ -15,7 +15,7 @@ const HeroBanner = () => {
       <div className="absolute inset-0 flex items-center bg-black bg-opacity-40">
         <div className="max-w-7xl mx-auto px-6 text-center text-white">
           <h1
-            className="text-4xl md:text-6xl font-bold font-serif leading-tight"
+            className="text-4xl md:text-6xl font-bold font-serif leading-tight text-white"
             data-aos="fade-down"
           >
             Engineering the Future, <br /> Building with Vision.

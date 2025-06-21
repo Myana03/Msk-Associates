@@ -1,6 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Header() {
+  const [activeLink, setActiveLink] = useState('home');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'services', 'about', 'projects', 'testimonials', 'contact'];
+      let current = 'home'; // Default to home
+
+      // Find the current section in view
+      for (const id of sections) {
+        const section = document.getElementById(id);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          // The offset (150) should be roughly the header height + some buffer
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            current = id;
+            break;
+          }
+        }
+      }
+      setActiveLink(current);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Cleanup listener on component unmount
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { id: 'home', label: 'Home' },
+    { id: 'services', label: 'Services' },
+    { id: 'about', label: 'About' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'testimonials', label: 'Testimonials' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
   return (
     <header className="sticky top-0 z-50 bg-gray-900 bg-opacity-70 backdrop-filter backdrop-blur-lg shadow-lg">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-6">
@@ -15,31 +51,20 @@ function Header() {
             Structural Engineers, Planners & Builders
           </span>
         </div>
-        <nav className="mt-4 md:mt-0 flex flex-wrap justify-center md:flex-row gap-x-6 gap-y-2 text-base font-medium">
-          <a href="#home" className="relative group text-gray-300 hover:text-white transition-colors">
-            <span>Home</span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
-          </a>
-          <a href="#services" className="relative group text-gray-300 hover:text-white transition-colors">
-            <span>Services</span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
-          </a>
-          <a href="#about" className="relative group text-gray-300 hover:text-white transition-colors">
-            <span>About</span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
-          </a>
-          <a href="#projects" className="relative group text-gray-300 hover:text-white transition-colors">
-            <span>Projects</span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
-          </a>
-          <a href="#testimonials" className="relative group text-gray-300 hover:text-white transition-colors">
-            <span>Testimonials</span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
-          </a>
-          <a href="#contact" className="relative group text-gray-300 hover:text-white transition-colors">
-            <span>Contact</span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
-          </a>
+        <nav className="mt-4 md:mt-0 flex flex-wrap justify-center md:flex-row items-center gap-x-2 gap-y-2 text-base font-medium">
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              className={`px-3 py-2 rounded-md transition-colors duration-300 ${
+                activeLink === link.id
+                  ? 'bg-yellow-400 text-gray-900' // Active link style
+                  : 'text-gray-300 hover:bg-gray-700 hover:text-white' // Inactive link style
+              }`}
+            >
+              {link.label}
+            </a>
+          ))}
         </nav>
         {/* Hamburger menu placeholder for mobile */}
         <div className="md:hidden absolute right-6 top-6">
