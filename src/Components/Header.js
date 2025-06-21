@@ -1,30 +1,36 @@
 import React from 'react';
-import '../Css/Header.css';
 
 function Header() {
   return (
-    <header className="items-start">
-      <div className="header-container">
-        <div className="logo text-center py-4 flex flex-col items-center justify-center">
+    <header className="sticky top-0 z-50 bg-white shadow-md">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-6">
+        <div className="flex flex-col items-center md:items-start">
           <a
             href="#home"
-            className="font-extrabold text-blue-700 text-6xl tracking-[0.25em]"
+            className="font-extrabold text-blue-700 text-3xl md:text-4xl tracking-widest"
           >
             MSK ASSOCIATES
           </a>
-          <span className="mt-2 text-gray-500 uppercase text-xs tracking-[0.45em]">
+          <span className="mt-1 text-gray-500 uppercase text-xs tracking-widest text-center md:text-left">
             Structural Engineers, Planners & Builders
           </span>
         </div>
-
-        <nav className="navigation">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#projects">Projects</a>
-          <a href="#testimonials">Testimonials</a>
-          <a href="#contact">Contact</a>
+        <nav className="mt-4 md:mt-0 flex flex-col md:flex-row gap-2 md:gap-6 text-base font-medium">
+          <a href="#home" className="text-blue-900 hover:text-blue-600 transition-colors">Home</a>
+          <a href="#about" className="text-blue-900 hover:text-blue-600 transition-colors">About</a>
+          <a href="#services" className="text-blue-900 hover:text-blue-600 transition-colors">Services</a>
+          <a href="#projects" className="text-blue-900 hover:text-blue-600 transition-colors">Projects</a>
+          <a href="#testimonials" className="text-blue-900 hover:text-blue-600 transition-colors">Testimonials</a>
+          <a href="#contact" className="text-blue-900 hover:text-blue-600 transition-colors">Contact</a>
         </nav>
+        {/* Hamburger menu placeholder for mobile */}
+        <div className="md:hidden absolute right-6 top-6">
+          {/* <button className="w-8 h-8 flex flex-col justify-between items-center">
+            <span className="block w-full h-1 bg-blue-700 rounded"></span>
+            <span className="block w-full h-1 bg-blue-700 rounded"></span>
+            <span className="block w-full h-1 bg-blue-700 rounded"></span>
+          </button> */}
+        </div>
       </div>
     </header>
   );

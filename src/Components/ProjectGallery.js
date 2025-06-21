@@ -1,125 +1,20 @@
-import React, { useState, useEffect } from 'react';
-
-const images = [
-  '/Images/realimages/IMG_20220426_094639.jpg',
-  '/Images/realimages/IMG_20220506_103613.jpg',
-  '/Images/realimages/IMG_20220515_121455.jpg',
-  '/Images/realimages/IMG_20220525_114232.jpg',
-  '/Images/realimages/IMG_20220602_111741.jpg',
-  '/Images/realimages/IMG_20220615_110540.jpg',
-  '/Images/realimages/IMG_20220615_110605.jpg',
-  '/Images/realimages/IMG_20220705_114831.jpg',
-  '/Images/realimages/IMG_20220826_104534.jpg',
-  '/Images/realimages/IMG_20221012_111414.jpg',
-  '/Images/realimages/IMG_20221018_112006.jpg',
-  '/Images/realimages/IMG_20221018_112021.jpg',
-  '/Images/realimages/IMG_20230127_123912.jpg',
-  '/Images/realimages/IMG_20230303_131528.jpg',
-  '/Images/realimages/IMG_20230411_164404.jpg',
-  '/Images/realimages/IMG_20230411_164422.jpg',
-  '/Images/realimages/IMG_20231022_165056.jpg',
-  '/Images/realimages/IMG_20231022_165058.jpg',
-  '/Images/realimages/IMG_20231122_142531.jpg',
-  '/Images/realimages/IMG_20240113_134900.jpg',
-  '/Images/realimages/IMG_20240113_134909.jpg',
-  '/Images/realimages/IMG_20240113_134912.jpg',
-  '/Images/realimages/IMG_20240113_134914.jpg',
-  '/Images/realimages/IMG_20240212_131644.jpg',
-  '/Images/realimages/IMG_20240221_122408.jpg',
-  '/Images/realimages/IMG_20240221_122412.jpg',
-  '/Images/realimages/IMG_20240221_122419.jpg',
-  '/Images/realimages/IMG_20240221_122503.jpg',
-  '/Images/realimages/IMG_20240507_094011.jpg',
-  '/Images/realimages/IMG_20240507_094108.jpg',
-  '/Images/realimages/IMG_20240517_115803.jpg',
-  '/Images/realimages/IMG_20240824_093940.jpg',
-  '/Images/realimages/IMG_20240824_093941.jpg',
-  '/Images/realimages/IMG_20240824_093949.jpg',
-  '/Images/realimages/IMG_20241109_101025.jpg',
-  '/Images/realimages/IMG_20241126_080548.jpg',
-  '/Images/realimages/IMG_20241126_080553.jpg',
-  '/Images/realimages/IMG_20250225_103256.jpg',
-  '/Images/realimages/IMG_20250410_102606.jpg',
-  '/Images/realimages/IMG_20250412_123736.jpg',
-  '/Images/realimages/IMG_20250418_165924.jpg',
-  '/Images/realimages/IMG_20250613_114004.jpg',
-  '/Images/realimages/IMG_20250613_114121.jpg',
-  '/Images/realimages/IMG_20250613_115556.jpg',
-  '/Images/realimages/IMG_20250613_115557.jpg',
-  '/Images/realimages/IMG_20250615_090008.jpg',
-  '/Images/realimages/IMG_20250615_090234.jpg',
-  '/Images/realimages/IMG_20250615_090253.jpg',
-  '/Images/realimages/Snapchat-1993090342.jpg',
-  '/Images/realimages/Snapchat-2098051749.jpg',
-];
+import React from 'react';
+import PhotoGallery from './PhotoGallery';
 
 function ProjectGallery() {
-  const [current, setCurrent] = useState(0);
-  const [hover, setHover] = useState(false);
-
-  useEffect(() => {
-    if (hover) return;
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
-    }, 2000);
-    return () => clearInterval(timer);
-  }, [hover]);
-
-  const prev = () => {
-    setCurrent((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  const next = () => {
-    setCurrent((prev) => (prev + 1) % images.length);
-  };
-
   return (
-    <section id="projects" className="py-12 px-4">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-8">
-        <div
-          className="relative w-full lg:w-1/2 h-[400px] overflow-hidden"
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
-          {images.map((src, index) => (
-            <img
-              key={index}
-              src={src}
-              alt={`Project ${index + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover rounded-lg transition-opacity duration-700 ${
-                index === current ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          ))}
-          <button
-            onClick={prev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-60 rounded-full p-2 text-xl"
-          >
-            &lt;
-          </button>
-          <button
-            onClick={next}
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-60 rounded-full p-2 text-xl"
-          >
-            &gt;
-          </button>
+    <section id="projects" className="py-16 px-4 bg-gradient-to-b from-white to-blue-50">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-blue-900 tracking-tight">
+          Projects Photo Gallery
+        </h2>
+        <div className="w-full mx-auto">
+          <PhotoGallery />
         </div>
-        <div className="lg:w-1/2 text-center lg:text-left" style={{ fontFamily: '"Playfair Display", serif' }}>
-          <p className="italic mb-4 text-lg lg:text-xl">
-            &ldquo;I’m Sai Krishna Myana, a Structural Engineer with over 7 years of industry experience in designing and delivering safe, efficient, and code-compliant structures. In August 2023, I founded MSK ASSOCIATES as a sole proprietorship with a vision to offer reliable, high-quality structural engineering and planning services tailored to the unique needs of each project.&rdquo;
-          </p>
-          <p className="italic mb-4 text-lg lg:text-xl">
-            &ldquo;Throughout my career, I’ve worked on a wide range of residential, commercial, and industrial projects—ensuring every design meets the highest standards of safety, functionality, and sustainability. With MSK ASSOCIATES, my mission is to bring that same level of precision and care to every client, from concept to completion.&rdquo;
-          </p>
-          <p className="font-semibold mt-2">
-            &mdash; Er. Myana Sai Krishna
-            <br />ME (Structures), AMIE
-          </p>
-        </div>
+        <p className="mt-10 text-center text-blue-700 uppercase tracking-widest text-sm md:text-base font-medium">
+          Constructing smiles everywhere
+        </p>
       </div>
-      <p className="mt-8 text-center text-blue-600 uppercase tracking-widest">
-        Constructing smiles everywhere
-      </p>
     </section>
   );
 }

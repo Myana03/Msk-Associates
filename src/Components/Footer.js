@@ -1,10 +1,9 @@
 import React from 'react';
-import '../Css/Footer.css';
 
 function Footer() {
   return (
-    <footer id="footer" className="footer placeholder-section">
-      <p>&copy; 2025 MSK Associates. All Rights Reserved.</p>
+    <footer id="footer" className="bg-blue-900 text-white py-6 text-center mt-12">
+      <p className="text-sm">&copy; 2025 MSK Associates. All Rights Reserved.</p>
     </footer>
   );
 }

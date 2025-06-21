@@ -1,11 +1,12 @@
 import React from 'react';
-import '../Css/Testimonials.css';
 
 function Testimonials() {
   return (
-    <section id="testimonials" className="placeholder-section">
-      <h2>Testimonials</h2>
-      <p>Client feedback will be showcased here.</p>
+    <section id="testimonials" className="py-16 px-4 bg-white">
+      <div className="max-w-3xl mx-auto bg-blue-50 rounded-2xl shadow-lg p-8 text-center">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-6">Testimonials</h2>
+        <p className="italic text-lg text-gray-700 mb-2">Client feedback will be showcased here.</p>
+      </div>
     </section>
   );
 }

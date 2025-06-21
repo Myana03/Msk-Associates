@@ -1,24 +1,32 @@
 import React from 'react';
-import '../Css/AboutUs.css';  // Create a new CSS file for About Us styles
 
 function AboutUs() {
   return (
-    <section id="about" className="about-us">
-      <div className="about-us-text">
-        <h2>About Us</h2>
-        <p>
-          We are <strong>MSK Associates</strong>, a structural engineering firm with over a decade of expertise in delivering innovative and reliable solutions. Our commitment to quality and safety is evident in every project we take on. Whether it’s a residential, commercial, or industrial project, we ensure that our designs are built to last, backed by careful planning and thorough execution.
-        </p>
-        <p>
-          Our team of dedicated engineers, planners, and builders works together to create sustainable and cost-effective designs, contributing to a safer, stronger built environment.
-        </p>
-      </div>
-      <div className="engineer-image">
-        <img
-          src="/Images/OnlineImages/ricardo-gomez-angel-jYNvXKTUYvs-unsplash.jpg"  // Replace with actual image path
-          alt="Engineer at Work"
-          className="engineer-image-box"
-        />
+    <section id="about" className="py-16 px-4 bg-white">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-12 bg-blue-50 rounded-2xl shadow-lg p-8 md:p-16">
+        {/* Text content on the left */}
+        <div className="text-left">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-6">About Us</h2>
+          <div className="space-y-4 text-lg text-gray-700">
+            <p>
+              Established in August 2023, MSK ASSOCIATES is a growing team of passionate Structural Engineers, Planners, and Builders committed to delivering <strong>innovative and reliable engineering solutions</strong>. We specialize in designing safe, efficient, and sustainable structures that stand the test of time.
+            </p>
+            <p>
+              With a deep understanding of modern construction practices and regulatory standards, we <strong>partner closely with clients to turn their visions into reality</strong>—whether it's a residential development, commercial facility, or industrial project.
+            </p>
+            <p>
+              Our strength lies in our <strong>attention to detail, engineering precision, and client-focused approach</strong>. At MSK ASSOCIATES, we believe in building not just structures, but <strong>lasting relationships based on trust and technical excellence</strong>.
+            </p>
+          </div>
+        </div>
+        {/* Image on the right */}
+        <div className="w-full h-full flex items-center">
+          <img
+            src="/Images/OnlineImages/jr-harris-T72ooC45UTE-unsplash.jpg"
+            alt="Engineer working on rebar for a building foundation"
+            className="w-full h-auto object-cover rounded-xl shadow-xl"
+          />
+        </div>
       </div>
     </section>
   );

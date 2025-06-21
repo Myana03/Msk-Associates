@@ -7,6 +7,7 @@ import Services from './Components/Services';
 import ProjectGallery from './Components/ProjectGallery';
 import Testimonials from './Components/Testimonials';
 import Contact from './Components/Contact';
+import FoundersNote from './Components/FoundersNote';
 import Footer from './Components/Footer';
 
 
@@ -20,6 +21,7 @@ function App() {
       <ProjectGallery />
       <Testimonials />
       <Contact />
+      <FoundersNote />
       <Footer />
     </div>
   );
