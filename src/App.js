@@ -22,30 +22,33 @@ function App() {
   }, []);
 
   return (
-    <div className="App bg-white">
+    <div className="App text-gray-200">
       <Header />
       <main>
         <section id="home">
           <HeroBanner />
         </section>
-        <section id="services" className="bg-gray-50">
-          <Services />
-        </section>
-        <section id="about">
-          <AboutUs />
-        </section>
-        <section id="projects" className="bg-gray-50">
-          <ProjectGallery />
-        </section>
-        <section id="testimonials">
-          <Testimonials />
-        </section>
-        <section id="cta" className="bg-blue-800">
-          <CallToAction />
-        </section>
-        <section id="contact" className="bg-gray-50">
-          <Contact />
-        </section>
+
+        <div className="relative z-10">
+          <section id="services" className="py-20 bg-gray-900 bg-opacity-80 backdrop-blur-sm">
+            <Services />
+          </section>
+          <section id="about" className="py-20 bg-gray-800 bg-opacity-80 backdrop-blur-sm">
+            <AboutUs />
+          </section>
+          <section id="projects" className="py-20 bg-gray-900 bg-opacity-80 backdrop-blur-sm">
+            <ProjectGallery />
+          </section>
+          <section id="testimonials" className="py-20 bg-gray-800 bg-opacity-80 backdrop-blur-sm">
+            <Testimonials />
+          </section>
+          <section id="cta" className="bg-yellow-400">
+            <CallToAction />
+          </section>
+          <section id="contact" className="py-20 bg-gray-900 bg-opacity-80 backdrop-blur-sm">
+            <Contact />
+          </section>
+        </div>
       </main>
       <Footer />
     </div>

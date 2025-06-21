@@ -1,11 +1,18 @@
 import React from 'react';
 
-function Footer() {
+const Footer = () => {
   return (
-    <footer id="footer" className="bg-blue-900 text-blue-100 py-8 text-center">
-      <p className="text-sm">&copy; 2025 MSK Associates. All Rights Reserved.</p>
+    <footer className="bg-gray-900 bg-opacity-80 backdrop-blur-sm mt-10">
+      <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center">
+        <p className="text-gray-400">
+          &copy; {new Date().getFullYear()} MSK Associates. All Rights Reserved.
+        </p>
+        <p className="text-sm text-gray-500 mt-2">
+          Designed with Precision, Built with Passion.
+        </p>
+      </div>
     </footer>
   );
-}
+};
 
 export default Footer;

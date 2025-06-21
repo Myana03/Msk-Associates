@@ -1,48 +1,54 @@
 import React from 'react';
 
-function AboutUs() {
+const AboutUs = () => {
   return (
-    <section id="about" className="py-16 px-4 bg-white">
-      <div className="max-w-7xl mx-auto space-y-16">
-        {/* Core About Us Section */}
-        <div className="grid md:grid-cols-2 items-center gap-12">
-          <div className="text-left" data-aos="fade-right">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-6 font-serif">About Us</h2>
-            <div className="space-y-4 text-lg text-gray-700">
-              <p>
-                Established in August 2023, MSK ASSOCIATES is a growing team of passionate Structural Engineers, Planners, and Builders committed to delivering <strong>innovative and reliable engineering solutions</strong>. We specialize in designing safe, efficient, and sustainable structures that stand the test of time.
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+        {/* Left Column: Text Content */}
+        <div data-aos="fade-right">
+          <h2 className="text-base font-semibold text-yellow-400 tracking-wider uppercase">
+            About Us
+          </h2>
+          <p className="mt-2 text-4xl font-extrabold text-white sm:text-5xl font-serif">
+            Pioneering with Precision
+          </p>
+          <p className="mt-4 text-xl text-gray-300">
+            MSK Associates has been a cornerstone in the structural engineering
+            and construction industry for over a decade. We are dedicated to
+            delivering excellence and innovation in every project we undertake.
+          </p>
+          
+          {/* Founder's Vision Subsection */}
+          <div className="mt-10 p-6 bg-gray-900 bg-opacity-50 rounded-xl" data-aos="fade-up">
+              <h3 className="text-2xl font-bold text-yellow-400 font-serif">
+                A Note from Our Founder
+              </h3>
+              <blockquote className="mt-4 border-l-4 border-yellow-500 pl-4 italic text-gray-300">
+                <p>
+                  "We built this firm on a simple promise: to transform ambitious
+                  visions into tangible, enduring structures. Our commitment is to
+                  precision, integrity, and the pioneering spirit that drives our
+                  industry forward. We don't just build buildings; we build
+                  legacies."
+                </p>
+              </blockquote>
+              <p className="mt-4 font-semibold text-white">
+                - M. S. Khan, Founder of MSK Associates
               </p>
-              <p>
-                With a deep understanding of modern construction practices and regulatory standards, we <strong>partner closely with clients to turn their visions into reality</strong>—whether it's a residential development, commercial facility, or industrial project.
-              </p>
-            </div>
-          </div>
-          <div className="w-full h-full flex items-center" data-aos="fade-left" data-aos-delay="200">
-            <img
-              src="/Images/OnlineImages/jr-harris-T72ooC45UTE-unsplash.jpg"
-              alt="Engineer working on rebar for a building foundation"
-              className="w-full h-auto object-cover rounded-xl shadow-xl"
-            />
           </div>
         </div>
 
-        {/* Founder's Vision Section */}
-        <div className="bg-blue-50 rounded-2xl shadow-lg p-8 md:p-12 text-center" data-aos="fade-up">
-          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-blue-800 font-serif">Founder's Note</h3>
-          <div className="max-w-4xl mx-auto font-serif space-y-4">
-            <p className="italic text-lg md:text-xl text-gray-700">
-              "Our strength lies in our <strong>attention to detail, engineering precision, and client-focused approach</strong>. At MSK ASSOCIATES, we believe in building not just structures, but <strong>lasting relationships based on trust and technical excellence</strong>."
-            </p>
-            <p className="font-semibold mt-6 text-blue-900">
-              &mdash; Er. Myana Sai Krishna
-              <br />
-              <span className="text-sm font-normal text-gray-600">ME (Structures), AMIE</span>
-            </p>
-          </div>
+        {/* Right Column: Image */}
+        <div className="mt-10 lg:mt-0" data-aos="fade-left" data-aos-delay="200">
+          <img
+            className="rounded-2xl shadow-2xl w-full h-auto object-cover"
+            src="/Images/OnlineImages/anita-rahalzadeh-fDPgiTlceKc-unsplash.jpg"
+            alt="Our team working"
+          />
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
 
 export default AboutUs;

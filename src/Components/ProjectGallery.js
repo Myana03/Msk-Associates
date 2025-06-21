@@ -1,22 +1,26 @@
 import React from 'react';
 import PhotoGallery from './PhotoGallery';
 
-function ProjectGallery() {
+const ProjectGallery = () => {
   return (
-    <section id="projects" className="py-16 px-4 bg-gradient-to-b from-white to-blue-50">
-      <div className="max-w-4xl mx-auto text-center" data-aos="zoom-in">
-        <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-blue-900 tracking-tight font-serif">
-          Project Photo Gallery
+    <div className="container mx-auto px-4 py-8">
+      <div className="text-center mb-12" data-aos="fade-up">
+        <h2 className="text-base font-semibold text-yellow-400 tracking-wider uppercase">
+          Our Work
         </h2>
-        <div className="w-full mx-auto">
-          <PhotoGallery />
-        </div>
-        <p className="mt-10 text-center text-blue-700 uppercase tracking-widest text-sm md:text-base font-medium">
-          Constructing smiles everywhere
+        <p className="mt-2 text-4xl font-extrabold text-white sm:text-5xl font-serif">
+          A Portfolio of Precision
+        </p>
+        <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-400">
+          Explore a selection of our projects that showcase our commitment to
+          quality, safety, and innovation.
         </p>
       </div>
-    </section>
+      <div className="w-full mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <PhotoGallery />
+      </div>
+    </div>
   );
-}
+};
 
 export default ProjectGallery;
