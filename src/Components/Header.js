@@ -5,14 +5,14 @@ function Header() {
   return (
     <header className="items-start">
       <div className="header-container">
-        <div className="logo text-left py-2 flex flex-col items-center justify-center">
+        <div className="logo text-center py-4 flex flex-col items-center justify-center">
           <a
             href="#home"
-            className="font-extrabold text-blue-700 text-5xl tracking-[0.2em]"
+            className="font-extrabold text-blue-700 text-6xl tracking-[0.25em]"
           >
             MSK ASSOCIATES
           </a>
-          <span className="mt-1 text-gray-500 uppercase text-sm tracking-[0.3em]">
+          <span className="mt-2 text-gray-500 uppercase text-xs tracking-[0.45em]">
             Structural Engineers, Planners & Builders
           </span>
         </div>
