@@ -3,29 +3,20 @@ import '../Css/Header.css';
 
 function Header() {
   return (
-    <header>
-      <div className="logo">
-        <h1>MSK ASSOCIATES</h1>
+    <header className="site-header">
+      <div className="header-container">
+        <div className="logo">
+          <a href="#home">MSK Associates</a>
+        </div>
+        <nav className="navigation">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#projects">Projects</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
-      <nav>
-        <ul>
-          <li>
-            <a href="#home">Home</a>
-          </li>
-          <li>
-            <a href="#about">About Us</a>
-          </li>
-          <li>
-            <a href="#services">Services</a>
-          </li>
-          <li>
-            <a href="#testimonials">Testimonials</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
-        </ul>
-      </nav>
     </header>
   );
 }
