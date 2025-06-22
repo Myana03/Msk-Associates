@@ -16,10 +16,9 @@ html {
 }
 
 body {
+  @apply bg-white text-gray-800;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: linear-gradient(rgba(26, 32, 44, 0.85), rgba(26, 32, 44, 0.85)), url('https://images.unsplash.com/photo-1574945113098-1297f0a99684?q=80&w=2070&auto=format&fit=crop');
@@ -27,6 +26,8 @@ body {
   background-size: cover;
   background-position: center;
   color: #212529; /* Dark charcoal for high readability */
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Adjust this value to match your sticky header's height */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -100,4 +101,8 @@ code {
 
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in-out;
+}
+
+@layer base {
+  /* ... existing code ... */
 }
