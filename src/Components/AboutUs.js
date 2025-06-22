@@ -19,7 +19,7 @@ const AboutUs = () => {
           <h2 className="text-base font-semibold text-yellow-400 tracking-wider uppercase">
             About Us
           </h2>
-          <p className="mt-2 text-4xl md:text-5xl font-extrabold text-white font-serif whitespace-nowrap">
+          <p className="mt-2 text-2xl sm:text-3xl md:text-5xl font-extrabold text-white font-serif break-words">
             Pioneering with Precision
           </p>
           {/* Decorative line */}
