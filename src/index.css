@@ -62,3 +62,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #4a5568 #2d3748;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: #2d3748;
+    border-radius: 20px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #4a5568;
+    border-radius: 20px;
+    border: 3px solid #2d3748;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.4;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}

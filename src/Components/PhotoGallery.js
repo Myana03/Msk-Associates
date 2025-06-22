@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { FiArrowLeft, FiArrowRight, FiLoader } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const images = [
-  '/Images/realimages/IMG_20220426_094639.jpg',
+const allImages = [
+  // User's current image list
   '/Images/realimages/IMG_20220506_103613.jpg',
   '/Images/realimages/IMG_20220515_121455.jpg',
   '/Images/realimages/IMG_20220525_114232.jpg',
@@ -52,54 +54,196 @@ const images = [
   '/Images/realimages/Snapchat-1993090342.jpg',
   '/Images/realimages/Snapchat-2098051749.jpg',
 ];
+
 function PhotoGallery() {
+  const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [current, setCurrent] = useState(0);
-  const [hover, setHover] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [aspectRatio, setAspectRatio] = useState(16 / 9); // Default
+  const [autoPlay, setAutoPlay] = useState(true);
 
+  // Sort images by aspect ratio on mount
   useEffect(() => {
-    if (hover) return;
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
-    }, 2000);
-    return () => clearInterval(timer);
-  }, [hover]);
+    const sortImages = async () => {
+      const promises = allImages.map(src => {
+        return new Promise(resolve => {
+          const img = new Image();
+          img.src = src;
+          img.onload = () => resolve({ src, ratio: img.naturalWidth / img.naturalHeight });
+          img.onerror = () => resolve({ src, ratio: 0 }); // Treat errors as un-sortable
+        });
+      });
+      
+      const results = await Promise.all(promises);
 
-  const prev = () => {
-    setCurrent((prev) => (prev - 1 + images.length) % images.length);
-  };
+      const landscapes = results.filter(res => res.ratio > 1.05);
+      const portraits = results.filter(res => res.ratio < 0.95);
+      const squares = results.filter(res => res.ratio >= 0.95 && res.ratio <= 1.05);
 
-  const next = () => {
-    setCurrent((prev) => (prev + 1) % images.length);
-  };
+      const sorted = [...landscapes, ...squares, ...portraits].map(res => res.src);
+      
+      setImages(sorted);
+      setIsLoading(false);
+    };
+
+    sortImages();
+  }, []);
+
+  // Update aspect ratio when image changes
+  useEffect(() => {
+    if (images.length === 0) return;
+    const img = new Image();
+    img.src = images[current];
+    img.onload = () => {
+      setAspectRatio(img.naturalWidth / img.naturalHeight);
+    };
+  }, [current, images]);
+  
+  const prev = useCallback(() => {
+    setCurrent(current === 0 ? images.length - 1 : current - 1);
+  }, [current, images.length]);
+
+  const next = useCallback(() => {
+    setCurrent(current === images.length - 1 ? 0 : current + 1);
+  }, [current, images.length]);
+  
+  // Auto-play slideshow
+  useEffect(() => {
+    let interval;
+    if (autoPlay && !lightboxOpen && images.length > 0) {
+      interval = setInterval(next, 1000);
+    }
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [autoPlay, lightboxOpen, images.length, next]);
+
+  const openLightbox = () => setLightboxOpen(true);
+  const closeLightbox = () => setLightboxOpen(false);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (images.length === 0) return;
+      if (lightboxOpen) {
+        if (e.key === 'ArrowLeft') prev();
+        if (e.key === 'ArrowRight') next();
+        if (e.key === 'Escape') closeLightbox();
+      } else {
+        if (e.key === 'ArrowLeft') prev();
+        if (e.key === 'ArrowRight') next();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, current, images, prev, next]);
+
+  if (isLoading) {
+    return (
+      <div className="my-8 text-center text-gray-400 py-24 flex flex-col items-center justify-center min-h-[400px]">
+        <FiLoader className="animate-spin text-4xl text-yellow-400 mb-4" />
+        <p className="font-semibold text-lg text-white">Organizing Gallery...</p>
+        <p>Sorting images for the best viewing experience.</p>
+      </div>
+    );
+  }
 
   return (
-    <div
-      className="relative w-full h-96 overflow-hidden rounded-2xl shadow-lg bg-white flex items-center justify-center"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-    >
-      {images.map((src, index) => (
-        <img
-          key={index}
-          src={src}
-          alt={`Project ${index + 1}`}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${index === current ? 'opacity-100' : 'opacity-0'}`}
-        />
-      ))}
-      <button
-        onClick={prev}
-        aria-label="Previous image"
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-blue-100 text-blue-900 rounded-full p-2 shadow-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 z-10"
-      >
-        &lt;
-      </button>
-      <button
-        onClick={next}
-        aria-label="Next image"
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-blue-100 text-blue-900 rounded-full p-2 shadow-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 z-10"
-      >
-        &gt;
-      </button>
+    <div className="my-8 flex justify-center items-center">
+      <div className="max-w-4xl w-full mx-auto px-4">
+        {/* Adaptive Card Container */}
+        <div 
+          className="relative bg-gray-900/50 rounded-2xl overflow-hidden shadow-2xl group transition-all duration-300 hover:shadow-yellow-400/20"
+          onMouseEnter={() => setAutoPlay(false)}
+          onMouseLeave={() => setAutoPlay(true)}
+        >
+          
+          {/* Aspect Ratio Box */}
+          <div
+            className="relative w-full transition-[padding-bottom] duration-500 ease-in-out"
+            style={{ paddingBottom: `${(1 / aspectRatio) * 100}%` }}
+          >
+            {images.length > 0 && (
+              <>
+                <AnimatePresence initial={false}>
+                  <motion.img
+                    key={images[current]}
+                    src={images[current]}
+                    alt={`Project ${current + 1}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, position: 'absolute' }}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    onClick={openLightbox}
+                  />
+                </AnimatePresence>
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none"></div>
+
+                <button
+                  onClick={(e) => { e.stopPropagation(); prev(); }}
+                  aria-label="Previous image"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-3 shadow-lg transition-all z-20 opacity-0 group-hover:opacity-100 focus:opacity-100"
+                >
+                  <FiArrowLeft size={24} />
+                </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); next(); }}
+                  aria-label="Next image"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-3 shadow-lg transition-all z-20 opacity-0 group-hover:opacity-100 focus:opacity-100"
+                >
+                  <FiArrowRight size={24} />
+                </button>
+                
+                <div className="absolute bottom-4 left-4 text-white font-semibold bg-black/50 px-3 py-1 rounded-full text-sm pointer-events-none">
+                  {current + 1} / {images.length}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && images.length > 0 && (
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4" onClick={closeLightbox}>
+          <button onClick={(e) => { e.stopPropagation(); closeLightbox(); }} className="absolute top-5 right-5 text-white text-4xl hover:text-yellow-400 transition-colors z-50" aria-label="Close">
+            &times;
+          </button>
+          <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+            <button 
+              onClick={(e) => { e.stopPropagation(); prev(); }} 
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-3 shadow-lg transition-all z-50"
+              aria-label="Previous image"
+            >
+              <FiArrowLeft size={24} />
+            </button>
+            <AnimatePresence initial={false}>
+              <motion.img
+                key={`lightbox-${images[current]}`}
+                src={images[current]}
+                alt={`Project ${current + 1}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, position: 'absolute' }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl"
+              />
+            </AnimatePresence>
+            <button 
+              onClick={(e) => { e.stopPropagation(); next(); }} 
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-3 shadow-lg transition-all z-50"
+              aria-label="Next image"
+            >
+              <FiArrowRight size={24} />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
