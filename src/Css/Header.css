@@ -1,50 +1,67 @@
 /* Header Styles */
-header {
+.site-header {
   position: sticky;
-  top: 0; /* Keeps the header at the top */
-  background-color: white;
-  z-index: 1000; /* Keeps the header above other content */
-  padding: 10px 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
-  display: flex; /* Align items horizontally */
-  justify-content: space-between; /* Space between firm name and nav links */
-  align-items: center; /* Vertically centers content */
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(to right, #ffffff, #f5f7fa);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 }
 
-/* Logo (Firm Name) Styles */
-header .logo {
-  font-size: 1.0rem;
-  font-weight: bold;
-  color: #003366;
-}
-
-/* Navigation Links Styling */
-nav ul {
-  list-style: none;
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
   display: flex;
-  justify-content: flex-end; /* Aligns links to the right */
-  padding: 0;
+  justify-content: space-between;
+  align-items: center;
+}
+/* When the header needs left-aligned items */
+header.items-start {
+  align-items: flex-start;
 }
 
-/* Highlight the active link */
-.active-link {
-  color: #ffcc00; /* Active link color */
-  font-weight: bold;
-}
-
-
-nav ul li {
-  margin: 0 15px;
-}
-
-nav ul li a {
+.logo a {
+  font-size: 2.0rem;
+  font-weight: 600;
   text-decoration: none;
-  color: #003366;
-  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.navigation a {
+  margin-left: 1.25rem;
+  text-decoration: none;
+  color: var(--primary-color);
+  position: relative;
   font-weight: 500;
   transition: color 0.3s;
 }
 
-nav ul li a:hover {
-  color: #ffcc00; /* Change color on hover */
+.navigation a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.navigation a:hover::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .navigation a {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
 }
