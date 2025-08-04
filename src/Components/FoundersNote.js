@@ -7,7 +7,7 @@ function FoundersNote() {
         <h3 className="text-2xl md:text-3xl font-bold mb-6 text-blue-800">Founder's Note</h3>
         <div className="font-serif space-y-4">
           <p className="italic text-lg md:text-xl text-gray-700">
-            &ldquo;I'm Sai Krishna Myana, a Structural Engineer with over 7 years of industry experience in designing and delivering safe, efficient, and code-compliant structures. In August 2023, I founded MSK ASSOCIATES as a sole proprietorship with a vision to offer reliable, high-quality structural engineering and planning services tailored to the unique needs of each project.&rdquo;
+            &ldquo;I'm Sai Krishna Myana, a Structural Engineer with over 7 years of industry experience in designing and delivering safe, efficient, and code-compliant structures. In August 2021, I founded MSK ASSOCIATES as a sole proprietorship with a vision to offer reliable, high-quality structural engineering and planning services tailored to the unique needs of each project.&rdquo;
           </p>
           <p className="italic text-lg md:text-xl text-gray-700">
             &ldquo;Throughout my career, I've worked on a wide range of residential, commercial, and industrial projects—ensuring every design meets the highest standards of safety, functionality, and sustainability. With MSK ASSOCIATES, my mission is to bring that same level of precision and care to every client, from concept to completion.&rdquo;
