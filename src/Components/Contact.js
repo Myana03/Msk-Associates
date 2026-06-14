@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker } from 'react-icons/hi';
+import { FaWhatsapp } from 'react-icons/fa';
 import { getContactPhone } from '../config/contact';
+
+const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
 const Contact = () => {
   const contactPhone = getContactPhone();
+  const formRef = useRef();
+  const [emailStatus, setEmailStatus] = useState(null); // 'sending' | 'success' | 'error'
 
-  const handleFormSubmit = (e) => {
+  const getFormData = () => {
+    const formData = new FormData(formRef.current);
+    return {
+      name: formData.get('name').trim(),
+      email: formData.get('email').trim(),
+      phone: formData.get('phone').trim(),
+      message: formData.get('message').trim(),
+    };
+  };
+
+  const handleWhatsApp = (e) => {
     e.preventDefault();
+    if (!formRef.current.reportValidity()) return;
+    if (!contactPhone.raw) return;
 
-    if (!contactPhone.raw) {
-      return;
-    }
-
-    const formData = new FormData(e.target);
-    const name = formData.get('name').trim();
-    const email = formData.get('email').trim();
-    const phone = formData.get('phone').trim();
-    const message = formData.get('message').trim();
-
+    const { name, email, phone, message } = getFormData();
     const text = `Hello MSK Associates,\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`;
     const whatsappUrl = `https://wa.me/${contactPhone.raw}?text=${encodeURIComponent(text)}`;
 
@@ -26,6 +37,35 @@ const Contact = () => {
       window.location.href = whatsappUrl;
     } else {
       window.open(whatsappUrl, '_blank');
+    }
+  };
+
+  const handleEmail = async (e) => {
+    e.preventDefault();
+    if (!formRef.current.reportValidity()) return;
+
+    const { name, email, phone, message } = getFormData();
+
+    setEmailStatus('sending');
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name,
+          email,
+          phone,
+          message,
+          time: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+      setEmailStatus('success');
+      formRef.current.reset();
+      setTimeout(() => setEmailStatus(null), 5000);
+    } catch {
+      setEmailStatus('error');
+      setTimeout(() => setEmailStatus(null), 5000);
     }
   };
 
@@ -58,7 +98,19 @@ const Contact = () => {
           {/* Column 2: Contact Form */}
           <div className="bg-gray-800 bg-opacity-60 rounded-2xl shadow-2xl p-8 flex flex-col justify-center" data-aos="fade-up" data-aos-delay="200">
             <h3 className="text-3xl font-bold text-white mb-6 font-serif">Send Us a Message</h3>
-            <form onSubmit={handleFormSubmit} className="space-y-6">
+
+            {emailStatus === 'success' && (
+              <div className="mb-4 p-4 bg-green-500 bg-opacity-20 border border-green-500 rounded-lg text-green-400 text-sm">
+                ✅ Message sent successfully! We'll get back to you soon.
+              </div>
+            )}
+            {emailStatus === 'error' && (
+              <div className="mb-4 p-4 bg-red-500 bg-opacity-20 border border-red-500 rounded-lg text-red-400 text-sm">
+                ❌ Failed to send email. Please try WhatsApp or call us directly.
+              </div>
+            )}
+
+            <form ref={formRef} className="space-y-5">
               <div>
                 <label htmlFor="name" className="sr-only">Full name</label>
                 <input type="text" name="name" id="name" autoComplete="name" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Full Name" />
@@ -75,15 +127,29 @@ const Contact = () => {
                 <label htmlFor="message" className="sr-only">Message</label>
                 <textarea id="message" name="message" rows="4" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Your Message"></textarea>
               </div>
-              <div>
-                <button type="submit" className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-yellow-400 transition-colors">
-                  Send Message
+
+              {/* Two Buttons */}
+              <div className="grid grid-cols-2 gap-3 pt-1">
+                <button
+                  onClick={handleWhatsApp}
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-md shadow-sm text-base font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-green-500 transition-colors"
+                >
+                  <FaWhatsapp className="w-5 h-5" />
+                  WhatsApp
+                </button>
+                <button
+                  onClick={handleEmail}
+                  disabled={emailStatus === 'sending'}
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-md shadow-sm text-base font-medium text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-yellow-400 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  <HiOutlineMail className="w-5 h-5" />
+                  {emailStatus === 'sending' ? 'Sending...' : 'Send Email'}
                 </button>
               </div>
             </form>
           </div>
-          
-          {/* Column 3: Contact Details Section */}
+
+          {/* Column 3: Contact Details */}
           <div className="bg-gray-800 bg-opacity-60 rounded-2xl shadow-2xl p-8 flex flex-col justify-center" data-aos="fade-left" data-aos-delay="300">
             <h3 className="text-3xl font-bold text-white mb-6 font-serif">Contact Info</h3>
             <div className="space-y-6 text-lg text-gray-300">
@@ -109,16 +175,13 @@ const Contact = () => {
                 <HiOutlineLocationMarker className="w-7 h-7 mr-4 text-yellow-400 flex-shrink-0" />
                 <div>
                   <strong className="text-gray-100">Address</strong>
-                  <p>
-                    Pranay Marg, Waddepally, Phase 1, Teachers Colony, Hanamkonda
-                  </p>
+                  <p>Pranay Marg, Waddepally, Phase 1, Teachers Colony, Hanamkonda</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </>
   );
 };
