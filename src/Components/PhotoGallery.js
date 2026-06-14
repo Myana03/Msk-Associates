@@ -144,7 +144,7 @@ function PhotoGallery() {
   if (isLoading) {
     return (
       <div className="my-8 text-center text-gray-400 py-24 flex flex-col items-center justify-center min-h-[400px]">
-        <FiLoader className="animate-spin text-4xl text-yellow-400 mb-4" />
+        <FiLoader className="animate-spin text-4xl text-orange-500 mb-4" />
         <p className="font-semibold text-lg text-white">Organizing Gallery...</p>
         <p>Sorting images for the best viewing experience.</p>
       </div>
@@ -156,7 +156,7 @@ function PhotoGallery() {
       <div className="max-w-4xl w-full mx-auto px-4">
         {/* Adaptive Card Container */}
         <div 
-          className="relative bg-gray-900/50 rounded-2xl overflow-hidden shadow-2xl group transition-all duration-300 hover:shadow-yellow-400/20"
+          className="relative bg-gray-900/50 rounded-2xl overflow-hidden shadow-2xl group transition-all duration-300 hover:shadow-orange-500/20"
           onMouseEnter={() => setAutoPlay(false)}
           onMouseLeave={() => setAutoPlay(true)}
         >
@@ -211,7 +211,7 @@ function PhotoGallery() {
       {/* Lightbox Modal */}
       {lightboxOpen && images.length > 0 && (
         <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4" onClick={closeLightbox}>
-          <button onClick={(e) => { e.stopPropagation(); closeLightbox(); }} className="absolute top-5 right-5 text-white text-4xl hover:text-yellow-400 transition-colors z-50" aria-label="Close">
+          <button onClick={(e) => { e.stopPropagation(); closeLightbox(); }} className="absolute top-5 right-5 text-white text-4xl hover:text-orange-500 transition-colors z-50" aria-label="Close">
             &times;
           </button>
           <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>

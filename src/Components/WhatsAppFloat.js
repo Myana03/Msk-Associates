@@ -32,10 +32,12 @@ const WhatsAppFloat = () => {
     <div
       className={`fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2 transition-all duration-500 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
     >
-      {/* Tooltip */}
-      <div className="bg-white text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
-        Chat with us on WhatsApp
-      </div>
+      {/* Tooltip — fades after initial pulse */}
+      {pulse && (
+        <div className="bg-white text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+          Chat with us on WhatsApp
+        </div>
+      )}
 
       {/* Button */}
       <button

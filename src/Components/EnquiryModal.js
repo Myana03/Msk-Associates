@@ -12,7 +12,7 @@ const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 const inputClass = `
   block w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400
   bg-gray-100 border border-gray-200 rounded-lg
-  focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors duration-200
+  focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors duration-200
 `.trim();
 
 const EnquiryModal = ({ isOpen, onClose }) => {
@@ -110,12 +110,12 @@ const EnquiryModal = ({ isOpen, onClose }) => {
       <div className="relative w-full max-w-md bg-white z-10 shadow-2xl rounded-2xl overflow-hidden">
 
         {/* Yellow top accent bar */}
-        <div className="h-1 w-full bg-yellow-400" />
+        <div className="h-1 w-full bg-orange-700" />
 
         {/* Header */}
         <div className="flex items-start justify-between px-8 pt-7 pb-2">
           <div>
-            <p className="text-xs tracking-widest text-yellow-500 uppercase font-semibold mb-1">MSKAssociates</p>
+            <p className="text-xs tracking-widest text-orange-600 uppercase font-semibold mb-1">MSKAssociates</p>
             <h2 className="text-2xl font-bold text-gray-900 font-serif">Start Your Project</h2>
             <p className="text-gray-400 text-sm mt-1">We'll get back to you within 24 hours.</p>
           </div>
@@ -183,7 +183,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
               <button
                 onClick={handleEmail}
                 disabled={emailStatus === 'sending'}
-                className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-semibold transition-colors duration-200 disabled:cursor-not-allowed ${emailEnabled ? 'bg-yellow-400 hover:bg-yellow-500 text-gray-900' : 'bg-yellow-200 text-gray-400 cursor-not-allowed'}`}
+                className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-semibold transition-colors duration-200 disabled:cursor-not-allowed ${emailEnabled ? 'bg-orange-700 hover:bg-orange-800 text-white' : 'bg-orange-200 text-gray-400 cursor-not-allowed'}`}
               >
                 <HiOutlineMail className="w-4 h-4" />
                 {emailStatus === 'sending' ? 'Sending...' : 'Send Email'}
@@ -192,7 +192,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          <p className="text-center text-xs text-gray-400 pt-1">Hanamkonda, Telangana · mskassociates.com</p>
+          <p className="text-center text-xs text-gray-400 pt-1">Hanamakonda, Telangana · mskassociates.com</p>
         </form>
       </div>
     </div>,

@@ -4,56 +4,74 @@ import { HiOutlineMail } from 'react-icons/hi';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 bg-opacity-80 backdrop-blur-sm mt-16 border-t border-gray-700">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <footer style={{ backgroundColor: '#0F2040', borderTop: '3px solid #C1440E' }}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-14">
 
-        {/* Nav Links */}
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8">
-          <a href="#home" className="text-base text-gray-400 hover:text-white transition-colors">Home</a>
-          <a href="#services" className="text-base text-gray-400 hover:text-white transition-colors">Services</a>
-          <a href="#projects" className="text-base text-gray-400 hover:text-white transition-colors">Projects</a>
-          <a href="#about" className="text-base text-gray-400 hover:text-white transition-colors">About</a>
-          <a href="#contact" className="text-base text-gray-400 hover:text-white transition-colors">Contact</a>
+        <div className="grid md:grid-cols-3 gap-10">
+
+          {/* Brand + address */}
+          <div>
+            <a href="#home" className="block mb-4">
+              <img src="/Images/logos/logo-dark.png" alt="MSK Associates" style={{ height: '64px', width: 'auto' }} />
+            </a>
+            <p style={{ color: '#6b7280', fontSize: '0.8rem', lineHeight: 1.9 }}>
+              Pranay Marg, Waddepally,<br />
+              Phase 1, Teachers Colony,<br />
+              Hanamakonda, Telangana 506370
+            </p>
+            <a href="tel:+919989090978" className="block mt-3 transition-colors hover:text-white" style={{ color: '#9ca3af', fontSize: '0.82rem' }}>
+              +91 99890 90978
+            </a>
+          </div>
+
+          {/* Nav */}
+          <div>
+            <p className="uppercase tracking-widest mb-4" style={{ fontSize: '0.65rem', color: '#C1440E', letterSpacing: '0.15em' }}>Navigation</p>
+            <div className="flex flex-col gap-3">
+              {['Home', 'Services', 'Projects', 'About', 'Contact'].map(item => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="transition-colors duration-200 hover:text-white"
+                  style={{ color: '#6b7280', fontSize: '0.8rem' }}
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Socials + email */}
+          <div>
+            <p className="uppercase tracking-widest mb-4" style={{ fontSize: '0.65rem', color: '#C1440E', letterSpacing: '0.15em' }}>Connect</p>
+            <div className="flex gap-5 mb-5">
+              <a href="https://www.instagram.com/mskassociates_" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+                 className="transition-colors hover:text-white" style={{ color: '#6b7280' }}>
+                <FaInstagram size={20} />
+              </a>
+              <a href="https://wa.me/919989090978" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+                 className="transition-colors hover:text-white" style={{ color: '#6b7280' }}>
+                <FaWhatsapp size={20} />
+              </a>
+              <a href="mailto:designs@mskassociates.com" aria-label="Email"
+                 className="transition-colors hover:text-white" style={{ color: '#6b7280' }}>
+                <HiOutlineMail size={20} />
+              </a>
+            </div>
+            <a href="mailto:designs@mskassociates.com" className="transition-colors hover:text-white" style={{ color: '#6b7280', fontSize: '0.8rem' }}>
+              designs@mskassociates.com
+            </a>
+          </div>
+
         </div>
 
-        {/* Social + Contact Icons */}
-        <div className="flex justify-center gap-6 mb-8">
-          <a
-            href="https://www.instagram.com/mskassociates_"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-pink-500 transition-colors"
-            aria-label="Instagram"
-          >
-            <FaInstagram className="w-6 h-6" />
-          </a>
-          <a
-            href="https://wa.me/919989090978"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-green-500 transition-colors"
-            aria-label="WhatsApp"
-          >
-            <FaWhatsapp className="w-6 h-6" />
-          </a>
-          <a
-            href="mailto:designs@mskassociates.com"
-            className="text-gray-400 hover:text-yellow-400 transition-colors"
-            aria-label="Email"
-          >
-            <HiOutlineMail className="w-6 h-6" />
-          </a>
-        </div>
-
-        {/* Copyright */}
-        <div className="text-center">
-          <p className="text-gray-300">
-            &copy; {new Date().getFullYear()} MSKAssociates. All Rights Reserved.
+        {/* Bottom line */}
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: '2.5rem', paddingTop: '1.5rem' }}>
+          <p className="text-center uppercase tracking-widest" style={{ color: '#374151', fontSize: '0.65rem', letterSpacing: '0.12em' }}>
+            &copy; {new Date().getFullYear()} MSK Associates &mdash; Structural Engineers, Planners &amp; Builders
           </p>
-          <p className="text-sm text-gray-400 mt-2">
-            Designed with Precision, Built with Passion.
-          </p>
         </div>
+
       </div>
     </footer>
   );

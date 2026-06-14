@@ -1,86 +1,75 @@
 import React from 'react';
-import { ParallaxBanner } from 'react-scroll-parallax';
-
-const HERO_IMAGE = '/Images/OnlineImages/tr-n-h-u-tung-_-V8Ar9fXWE-unsplash.jpg';
 
 const HeroBanner = () => {
   return (
-    <>
-      {/* Mobile fallback background image with overlay for readability */}
-      <div
-        className="block md:hidden relative min-h-[600px] h-[600px] w-full bg-cover bg-center"
-        style={{
-          backgroundImage: `url('${HERO_IMAGE}')`,
-        }}
-      >
-        {/* Overlay for text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        {/* Content */}
-        <div className="relative flex items-center justify-center h-full">
-          <div className="max-w-7xl mx-auto px-6 text-center text-white">
-            <h1
-              className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif leading-tight text-white break-words"
-              data-aos="fade-down"
-            >
-              Engineering the Future, <br /> Building with Vision.
-            </h1>
-            <p
-              className="mt-4 text-base sm:text-lg text-gray-200 break-words"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              Your vision, engineered with precision. We are your partners in
-              building the future.
-            </p>
-            <div className="mt-8" data-aos="fade-up" data-aos-delay="300">
-              <a
-                href="#contact"
-                className="inline-block bg-yellow-400 text-gray-900 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-yellow-300 hover:scale-105 hover:shadow-xl transform transition-all duration-300 ease-in-out"
-              >
-                Get in Touch
-              </a>
-            </div>
-          </div>
+    <div
+      className="relative min-h-screen flex flex-col justify-center"
+      style={{
+        backgroundColor: '#0F2040',
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)
+        `,
+        backgroundSize: '60px 60px',
+      }}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-32">
+        <p className="text-xs uppercase tracking-widest text-gray-400 mb-8 flex items-center gap-3">
+          <span style={{width:'32px', height:'1px', backgroundColor:'#C1440E', display:'inline-block'}}></span>
+          Hanamakonda · Telangana
+        </p>
+        <h1
+          className="font-extrabold leading-none text-white"
+          style={{fontSize:'clamp(2.8rem, 8vw, 6rem)', lineHeight:'1.05', letterSpacing:'-0.02em'}}
+          data-aos="fade-up"
+        >
+          Engineering<br />
+          the <span style={{color:'#5B8DB8'}}>Future</span>,<br />
+          Building with<br />Vision.
+        </h1>
+        <p
+          className="mt-8 text-gray-400 max-w-lg"
+          style={{fontSize:'1.1rem', lineHeight:'1.7'}}
+          data-aos="fade-up"
+          data-aos-delay="150"
+        >
+          Your vision, engineered with precision. We are your partners in
+          building the future — designed safe, built to last.
+        </p>
+        <div className="mt-10 flex flex-wrap gap-4" data-aos="fade-up" data-aos-delay="250">
+          <a
+            href="#contact"
+            className="btn-primary inline-block font-bold py-3 px-8 text-white"
+            style={{backgroundColor:'#C1440E', borderRadius:'4px'}}
+          >
+            Start a Project
+          </a>
+          <a
+            href="#projects"
+            className="btn-outline inline-block font-bold py-3 px-8 text-white border border-white hover:bg-white hover:text-gray-900"
+            style={{borderRadius:'4px'}}
+          >
+            View Our Work
+          </a>
         </div>
       </div>
-      {/* ParallaxBanner for md and up */}
-      <ParallaxBanner
-        layers={[
-          {
-            image: HERO_IMAGE,
-            speed: -20,
-          },
-        ]}
-        className="hidden md:block h-screen"
+
+      {/* Scroll indicator */}
+      <div
+        className="absolute bottom-8 left-1/2"
+        style={{ transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}
       >
-        <div className="absolute inset-0 flex items-center bg-black bg-opacity-40">
-          <div className="max-w-7xl mx-auto px-6 text-center text-white">
-            <h1
-              className="text-6xl font-bold font-serif leading-tight text-white"
-              data-aos="fade-down"
-            >
-              Engineering the Future, <br /> Building with Vision.
-            </h1>
-            <p
-              className="mt-4 text-xl text-gray-200"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              Your vision, engineered with precision. We are your partners in
-              building the future.
-            </p>
-            <div className="mt-8" data-aos="fade-up" data-aos-delay="300">
-              <a
-                href="#contact"
-                className="inline-block bg-yellow-400 text-gray-900 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-yellow-300 hover:scale-105 hover:shadow-xl transform transition-all duration-300 ease-in-out"
-              >
-                Get in Touch
-              </a>
-            </div>
-          </div>
-        </div>
-      </ParallaxBanner>
-    </>
+        <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Scroll</span>
+        <div style={{ width: '1px', height: '40px', background: 'linear-gradient(to bottom, rgba(255,255,255,0.4), transparent)', animation: 'scrollPulse 1.8s ease-in-out infinite' }} />
+      </div>
+
+      <style>{`
+        @keyframes scrollPulse {
+          0%, 100% { opacity: 0.3; transform: scaleY(1); }
+          50% { opacity: 1; transform: scaleY(1.15); }
+        }
+      `}</style>
+    </div>
   );
 };
 

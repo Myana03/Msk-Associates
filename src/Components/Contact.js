@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker } from 'react-icons/hi';
+import { HiOutlineMail } from 'react-icons/hi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { getContactPhone } from '../config/contact';
 
@@ -91,122 +91,136 @@ const Contact = () => {
   return (
     <>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12" data-aos="fade-up">
-          <p className="mt-2 text-3xl font-extrabold text-white sm:text-5xl font-serif">
-            Get in Touch
+        <div className="mb-12" data-aos="fade-up">
+          <p className="uppercase tracking-widest font-semibold mb-4" style={{ fontSize: '0.7rem', color: '#C1440E', letterSpacing: '0.15em' }}>
+            Contact
           </p>
-          <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-400">
-            Have a project in mind? We'd love to hear from you.
-          </p>
+          <h2 className="font-extrabold" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#0F2040', lineHeight: 1.1 }}>
+            Send Us a Message
+          </h2>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {/* Column 1: Google Map */}
-          <div className="rounded-2xl overflow-hidden shadow-2xl h-full" data-aos="fade-right" data-aos-delay="100">
+          <div style={{ borderRadius: '4px', overflow: 'hidden', minHeight: '420px' }} data-aos="fade-right" data-aos-delay="100">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3794.6323747528895!2d79.53462937555837!3d17.995832784991617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a334f0c04600ca3%3A0xf1e2e7e4204fd514!2sMSK%20ASSOCIATES!5e0!3m2!1sen!2sus!4v1746580010533!5m2!1sen!2sus"
-              width="100%"
-              height="100%"
-              style={{ border: 0, minHeight: '250px' }}
-              allowFullScreen=""
-              loading="lazy"
-              title="MSKAssociates Location"
-              className="filter grayscale-100 contrast-120"
-            ></iframe>
+              width="100%" height="100%"
+              style={{ border: 0, minHeight: '420px', display: 'block' }}
+              allowFullScreen="" loading="lazy" title="MSKAssociates Location"
+            />
           </div>
 
-          {/* Column 2: Contact Form */}
-          <div className="bg-gray-800 bg-opacity-60 rounded-2xl shadow-2xl p-8 flex flex-col justify-center" data-aos="fade-up" data-aos-delay="200">
-            <h3 className="text-3xl font-bold text-white mb-6 font-serif">Send Us a Message</h3>
+          {/* Column 2: Contact Form — open, no card wrapper */}
+          <div data-aos="fade-up" data-aos-delay="200" style={{ paddingTop: '0.5rem' }}>
+
+            {/* Terracotta top rule */}
+            <div style={{ width: '48px', height: '3px', backgroundColor: '#C1440E', marginBottom: '2.5rem' }} />
 
             {emailStatus === 'success' && (
-              <div className="mb-4 p-4 bg-green-500 bg-opacity-20 border border-green-500 rounded-lg text-green-400 text-sm">
-                ✅ Message sent successfully! We'll get back to you soon.
+              <div style={{ marginBottom: '2rem', paddingLeft: '1rem', borderLeft: '3px solid #16a34a' }}>
+                <p style={{ color: '#15803d', fontSize: '0.875rem', fontFamily: 'Inter, sans-serif' }}>
+                  Message sent — we'll be in touch within 1 business day.
+                </p>
               </div>
             )}
             {emailStatus === 'error' && (
-              <div className="mb-4 p-4 bg-red-500 bg-opacity-20 border border-red-500 rounded-lg text-red-400 text-sm">
-                ❌ Failed to send email. Please try WhatsApp or call us directly.
+              <div style={{ marginBottom: '2rem', paddingLeft: '1rem', borderLeft: '3px solid #C1440E' }}>
+                <p style={{ color: '#C1440E', fontSize: '0.875rem', fontFamily: 'Inter, sans-serif' }}>
+                  Failed to send — please WhatsApp or call us directly.
+                </p>
               </div>
             )}
 
-            <form ref={formRef} className="space-y-4">
+            <form ref={formRef} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              {[
+                { id: 'name', label: 'Full Name', type: 'text', hint: null, required: true, autoComplete: 'name', placeholder: 'Your full name' },
+                { id: 'phone', label: 'Phone Number', type: 'tel', hint: 'for WhatsApp', required: true, autoComplete: 'tel', placeholder: '+91 98765 43210' },
+                { id: 'email', label: 'Email Address', type: 'email', hint: 'for Send Email', required: false, autoComplete: 'email', placeholder: 'you@example.com' },
+              ].map(field => (
+                <div key={field.id} style={{ position: 'relative' }}>
+                  <label htmlFor={field.id} style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                    <span style={{ fontSize: '0.62rem', fontFamily: 'Inter, sans-serif', fontWeight: 700, color: '#0F2040', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+                      {field.label}
+                    </span>
+                    {field.required && <span style={{ color: '#C1440E', fontSize: '0.75rem' }}>*</span>}
+                    {field.hint && <span style={{ fontSize: '0.6rem', color: '#aaa', fontFamily: 'Inter, sans-serif' }}>— {field.hint}</span>}
+                  </label>
+                  <input
+                    type={field.type} name={field.id} id={field.id}
+                    autoComplete={field.autoComplete} required={field.required}
+                    placeholder={field.placeholder}
+                    onChange={field.id === 'phone' ? e => setPhone(e.target.value) : field.id === 'email' ? e => setEmail(e.target.value) : undefined}
+                    value={field.id === 'phone' ? phone : field.id === 'email' ? email : undefined}
+                    style={{
+                      display: 'block', width: '100%', padding: '0.6rem 0',
+                      background: 'transparent', border: 'none',
+                      borderBottom: '1px solid #c8c4bc',
+                      fontSize: '1rem', color: '#0F2040',
+                      fontFamily: 'Inter, sans-serif', outline: 'none',
+                      boxSizing: 'border-box', transition: 'border-color 0.2s',
+                    }}
+                    onFocus={e => e.target.style.borderBottomColor = '#C1440E'}
+                    onBlur={e => e.target.style.borderBottomColor = '#c8c4bc'}
+                  />
+                </div>
+              ))}
+
               <div>
-                <label htmlFor="name" className="text-xs text-gray-400 font-medium mb-1 block">Full Name <span className="text-red-400">*</span></label>
-                <input type="text" name="name" id="name" autoComplete="name" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Full Name" />
-              </div>
-              <div>
-                <label htmlFor="phone" className="text-xs text-gray-400 font-medium mb-1 block">Phone Number <span className="text-red-400">*</span> <span className="text-gray-500 font-normal">(required for WhatsApp)</span></label>
-                <input type="tel" name="phone" id="phone" autoComplete="tel" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Phone Number"
-                  value={phone} onChange={(e) => setPhone(e.target.value)} />
-              </div>
-              <div>
-                <label htmlFor="email" className="text-xs text-gray-400 font-medium mb-1 block">Email Address <span className="text-gray-500 font-normal">(required for Send Email)</span></label>
-                <input type="email" name="email" id="email" autoComplete="email" className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Email Address"
-                  value={email} onChange={(e) => setEmail(e.target.value)} />
-              </div>
-              <div>
-                <label htmlFor="message" className="text-xs text-gray-400 font-medium mb-1 block">Message <span className="text-red-400">*</span></label>
-                <textarea id="message" name="message" rows="4" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Your Message" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+                <label htmlFor="message" style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                  <span style={{ fontSize: '0.62rem', fontFamily: 'Inter, sans-serif', fontWeight: 700, color: '#0F2040', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Message</span>
+                  <span style={{ color: '#C1440E', fontSize: '0.75rem' }}>*</span>
+                </label>
+                <textarea
+                  id="message" name="message" rows="4" required
+                  placeholder="Describe your project or query…"
+                  value={message} onChange={e => setMessage(e.target.value)}
+                  style={{
+                    display: 'block', width: '100%', padding: '0.6rem 0',
+                    background: 'transparent', border: 'none',
+                    borderBottom: '1px solid #c8c4bc',
+                    fontSize: '1rem', color: '#0F2040',
+                    fontFamily: 'Inter, sans-serif', outline: 'none',
+                    resize: 'none', boxSizing: 'border-box', transition: 'border-color 0.2s',
+                  }}
+                  onFocus={e => e.target.style.borderBottomColor = '#C1440E'}
+                  onBlur={e => e.target.style.borderBottomColor = '#c8c4bc'}
+                />
               </div>
 
-              {/* Two Buttons */}
-              <div className="grid grid-cols-2 gap-3 pt-1">
-                <div>
-                  <button
-                    onClick={handleWhatsApp}
-                    className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-md text-base font-medium text-white transition-colors ${whatsappEnabled ? 'bg-green-500 hover:bg-green-600' : 'bg-green-300 cursor-not-allowed'}`}
-                  >
-                    <FaWhatsapp className="w-5 h-5" />
-                    WhatsApp
+              <div style={{ display: 'flex', gap: '1rem', paddingTop: '0.5rem' }}>
+                <div style={{ flex: 1 }}>
+                  <button onClick={handleWhatsApp} style={{
+                    width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    gap: '8px', padding: '0.8rem 1rem', borderRadius: '4px', border: 'none',
+                    fontSize: '0.88rem', fontWeight: 600, fontFamily: 'Inter, sans-serif',
+                    cursor: whatsappEnabled ? 'pointer' : 'not-allowed',
+                    backgroundColor: whatsappEnabled ? '#25D366' : '#e8e5df',
+                    color: whatsappEnabled ? '#fff' : '#aaa',
+                    transition: 'transform 0.15s, box-shadow 0.15s',
+                  }}>
+                    <FaWhatsapp size={15} /> WhatsApp
                   </button>
-                  {whatsappHint && <p className="text-xs text-red-400 mt-1 text-center">{whatsappHint}</p>}
+                  {whatsappHint && <p style={{ fontSize: '0.68rem', color: '#C1440E', marginTop: '5px' }}>{whatsappHint}</p>}
                 </div>
-                <div>
-                  <button
-                    onClick={handleEmail}
-                    disabled={emailStatus === 'sending'}
-                    className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-md text-base font-medium transition-colors disabled:cursor-not-allowed ${emailEnabled ? 'bg-yellow-400 hover:bg-yellow-500 text-gray-900' : 'bg-yellow-200 text-gray-400 cursor-not-allowed'}`}
-                  >
-                    <HiOutlineMail className="w-5 h-5" />
-                    {emailStatus === 'sending' ? 'Sending...' : 'Send Email'}
+                <div style={{ flex: 1 }}>
+                  <button onClick={handleEmail} disabled={emailStatus === 'sending'} style={{
+                    width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    gap: '8px', padding: '0.8rem 1rem', borderRadius: '4px', border: 'none',
+                    fontSize: '0.88rem', fontWeight: 600, fontFamily: 'Inter, sans-serif',
+                    cursor: emailEnabled ? 'pointer' : 'not-allowed',
+                    backgroundColor: emailEnabled ? '#C1440E' : '#e8e5df',
+                    color: emailEnabled ? '#fff' : '#aaa',
+                    transition: 'transform 0.15s, box-shadow 0.15s',
+                  }}>
+                    <HiOutlineMail size={15} />
+                    {emailStatus === 'sending' ? 'Sending…' : 'Send Email'}
                   </button>
-                  {emailHint && <p className="text-xs text-red-400 mt-1 text-center">{emailHint}</p>}
+                  {emailHint && <p style={{ fontSize: '0.68rem', color: '#C1440E', marginTop: '5px' }}>{emailHint}</p>}
                 </div>
               </div>
             </form>
           </div>
 
-          {/* Column 3: Contact Details */}
-          <div className="bg-gray-800 bg-opacity-60 rounded-2xl shadow-2xl p-8 flex flex-col justify-center" data-aos="fade-left" data-aos-delay="300">
-            <h3 className="text-3xl font-bold text-white mb-6 font-serif">Contact Info</h3>
-            <div className="space-y-6 text-lg text-gray-300">
-              <div className="flex items-center">
-                <HiOutlineMail className="w-7 h-7 mr-4 text-yellow-400 flex-shrink-0" />
-                <div>
-                  <strong className="text-gray-100">Email</strong>
-                  <a href="mailto:designs@mskassociates.com" className="block text-yellow-400 hover:underline">
-                    designs@mskassociates.com
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center">
-                <HiOutlinePhone className="w-7 h-7 mr-4 text-yellow-400 flex-shrink-0" />
-                <div>
-                  <strong className="text-gray-100">Phone</strong>
-                  <a href={contactPhone.tel} className="block text-yellow-400 hover:underline">
-                    {contactPhone.display}
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center">
-                <HiOutlineLocationMarker className="w-7 h-7 mr-4 text-yellow-400 flex-shrink-0" />
-                <div>
-                  <strong className="text-gray-100">Address</strong>
-                  <p>Pranay Marg, Waddepally, Phase 1, Teachers Colony, Hanamkonda</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>
