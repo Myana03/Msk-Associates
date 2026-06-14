@@ -11,7 +11,16 @@ const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 const Contact = () => {
   const contactPhone = getContactPhone();
   const formRef = useRef();
-  const [emailStatus, setEmailStatus] = useState(null); // 'sending' | 'success' | 'error'
+  const [emailStatus, setEmailStatus] = useState(null);
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [whatsappHint, setWhatsappHint] = useState('');
+  const [emailHint, setEmailHint] = useState('');
+
+  const hasMessage = message.trim().length > 0;
+  const whatsappEnabled = phone.trim().length >= 10 && hasMessage;
+  const emailEnabled = email.trim().includes('@') && hasMessage;
 
   const getFormData = () => {
     const formData = new FormData(formRef.current);
@@ -25,6 +34,11 @@ const Contact = () => {
 
   const handleWhatsApp = (e) => {
     e.preventDefault();
+    if (!whatsappEnabled) {
+      setWhatsappHint('Please enter your phone number to use WhatsApp.');
+      setTimeout(() => setWhatsappHint(''), 3000);
+      return;
+    }
     if (!formRef.current.reportValidity()) return;
     if (!contactPhone.raw) return;
 
@@ -42,6 +56,11 @@ const Contact = () => {
 
   const handleEmail = async (e) => {
     e.preventDefault();
+    if (!emailEnabled) {
+      setEmailHint('Please enter your email address to send an email.');
+      setTimeout(() => setEmailHint(''), 3000);
+      return;
+    }
     if (!formRef.current.reportValidity()) return;
 
     const { name, email, phone, message } = getFormData();
@@ -110,41 +129,49 @@ const Contact = () => {
               </div>
             )}
 
-            <form ref={formRef} className="space-y-5">
+            <form ref={formRef} className="space-y-4">
               <div>
-                <label htmlFor="name" className="sr-only">Full name</label>
-                <input type="text" name="name" id="name" autoComplete="name" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Full Name" />
+                <label htmlFor="name" className="text-xs text-gray-400 font-medium mb-1 block">Full Name <span className="text-red-400">*</span></label>
+                <input type="text" name="name" id="name" autoComplete="name" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Full Name" />
               </div>
               <div>
-                <label htmlFor="email" className="sr-only">Email</label>
-                <input type="email" name="email" id="email" autoComplete="email" className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Email Address (Optional)" />
+                <label htmlFor="phone" className="text-xs text-gray-400 font-medium mb-1 block">Phone Number <span className="text-red-400">*</span> <span className="text-gray-500 font-normal">(required for WhatsApp)</span></label>
+                <input type="tel" name="phone" id="phone" autoComplete="tel" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Phone Number"
+                  value={phone} onChange={(e) => setPhone(e.target.value)} />
               </div>
               <div>
-                <label htmlFor="phone" className="sr-only">Phone</label>
-                <input type="tel" name="phone" id="phone" autoComplete="tel" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Phone Number" />
+                <label htmlFor="email" className="text-xs text-gray-400 font-medium mb-1 block">Email Address <span className="text-gray-500 font-normal">(required for Send Email)</span></label>
+                <input type="email" name="email" id="email" autoComplete="email" className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Email Address"
+                  value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div>
-                <label htmlFor="message" className="sr-only">Message</label>
-                <textarea id="message" name="message" rows="4" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Your Message"></textarea>
+                <label htmlFor="message" className="text-xs text-gray-400 font-medium mb-1 block">Message <span className="text-red-400">*</span></label>
+                <textarea id="message" name="message" rows="4" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Your Message" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
               </div>
 
               {/* Two Buttons */}
               <div className="grid grid-cols-2 gap-3 pt-1">
-                <button
-                  onClick={handleWhatsApp}
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-md shadow-sm text-base font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-green-500 transition-colors"
-                >
-                  <FaWhatsapp className="w-5 h-5" />
-                  WhatsApp
-                </button>
-                <button
-                  onClick={handleEmail}
-                  disabled={emailStatus === 'sending'}
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-md shadow-sm text-base font-medium text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-yellow-400 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  <HiOutlineMail className="w-5 h-5" />
-                  {emailStatus === 'sending' ? 'Sending...' : 'Send Email'}
-                </button>
+                <div>
+                  <button
+                    onClick={handleWhatsApp}
+                    className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-md text-base font-medium text-white transition-colors ${whatsappEnabled ? 'bg-green-500 hover:bg-green-600' : 'bg-green-300 cursor-not-allowed'}`}
+                  >
+                    <FaWhatsapp className="w-5 h-5" />
+                    WhatsApp
+                  </button>
+                  {whatsappHint && <p className="text-xs text-red-400 mt-1 text-center">{whatsappHint}</p>}
+                </div>
+                <div>
+                  <button
+                    onClick={handleEmail}
+                    disabled={emailStatus === 'sending'}
+                    className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-md text-base font-medium transition-colors disabled:cursor-not-allowed ${emailEnabled ? 'bg-yellow-400 hover:bg-yellow-500 text-gray-900' : 'bg-yellow-200 text-gray-400 cursor-not-allowed'}`}
+                  >
+                    <HiOutlineMail className="w-5 h-5" />
+                    {emailStatus === 'sending' ? 'Sending...' : 'Send Email'}
+                  </button>
+                  {emailHint && <p className="text-xs text-red-400 mt-1 text-center">{emailHint}</p>}
+                </div>
               </div>
             </form>
           </div>

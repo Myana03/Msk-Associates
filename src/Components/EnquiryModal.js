@@ -19,6 +19,15 @@ const EnquiryModal = ({ isOpen, onClose }) => {
   const contactPhone = getContactPhone();
   const formRef = useRef();
   const [emailStatus, setEmailStatus] = useState(null);
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [whatsappHint, setWhatsappHint] = useState('');
+  const [emailHint, setEmailHint] = useState('');
+
+  const hasMessage = message.trim().length > 0;
+  const whatsappEnabled = phone.trim().length >= 10 && hasMessage;
+  const emailEnabled = email.trim().includes('@') && hasMessage;
 
   useEffect(() => {
     if (isOpen) document.body.style.overflow = 'hidden';
@@ -40,6 +49,11 @@ const EnquiryModal = ({ isOpen, onClose }) => {
 
   const handleWhatsApp = (e) => {
     e.preventDefault();
+    if (!whatsappEnabled) {
+      setWhatsappHint('Please enter your phone number to use WhatsApp.');
+      setTimeout(() => setWhatsappHint(''), 3000);
+      return;
+    }
     if (!formRef.current.reportValidity()) return;
     if (!contactPhone.raw) return;
 
@@ -54,6 +68,11 @@ const EnquiryModal = ({ isOpen, onClose }) => {
 
   const handleEmail = async (e) => {
     e.preventDefault();
+    if (!emailEnabled) {
+      setEmailHint('Please enter your email address to send an email.');
+      setTimeout(() => setEmailHint(''), 3000);
+      return;
+    }
     if (!formRef.current.reportValidity()) return;
 
     const { name, email, phone, message } = getFormData();
@@ -119,48 +138,60 @@ const EnquiryModal = ({ isOpen, onClose }) => {
 
         {/* Form */}
         <form ref={formRef} className="px-8 pt-5 pb-8 space-y-3">
-          <input
-            type="text" name="name" required
-            placeholder="Full Name"
-            className={inputClass}
-          />
-          <input
-            type="tel" name="phone" required
-            placeholder="Phone Number"
-            className={inputClass}
-          />
-          <input
-            type="email" name="email"
-            placeholder="Email Address (Optional)"
-            className={inputClass}
-          />
-          <textarea
-            name="message" rows="3" required
-            placeholder="Tell us about your project"
-            className={inputClass}
-            style={{ resize: 'none' }}
-          />
+          <div>
+            <label className="text-xs text-gray-500 font-medium mb-1 block">Full Name <span className="text-red-500">*</span></label>
+            <input type="text" name="name" required placeholder="Full Name" className={inputClass} />
+          </div>
+          <div>
+            <label className="text-xs text-gray-500 font-medium mb-1 block">Phone Number <span className="text-red-500">*</span> <span className="text-gray-400 font-normal">(required for WhatsApp)</span></label>
+            <input
+              type="tel" name="phone" required
+              placeholder="Phone Number"
+              className={inputClass}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="text-xs text-gray-500 font-medium mb-1 block">Email Address <span className="text-gray-400 font-normal">(required for Send Email)</span></label>
+            <input
+              type="email" name="email"
+              placeholder="Email Address"
+              className={inputClass}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="text-xs text-gray-500 font-medium mb-1 block">Message <span className="text-red-500">*</span></label>
+            <textarea name="message" rows="3" required placeholder="Tell us about your project" className={inputClass} style={{ resize: 'none' }} value={message} onChange={(e) => setMessage(e.target.value)} />
+          </div>
 
           {/* Buttons */}
           <div className="grid grid-cols-2 gap-3 pt-2">
-            <button
-              onClick={handleWhatsApp}
-              className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-semibold text-white bg-green-500 hover:bg-green-600 transition-colors duration-200"
-            >
-              <FaWhatsapp className="w-4 h-4" />
-              WhatsApp
-            </button>
-            <button
-              onClick={handleEmail}
-              disabled={emailStatus === 'sending'}
-              className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-semibold text-gray-900 bg-yellow-400 hover:bg-yellow-500 transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              <HiOutlineMail className="w-4 h-4" />
-              {emailStatus === 'sending' ? 'Sending...' : 'Send Email'}
-            </button>
+            <div>
+              <button
+                onClick={handleWhatsApp}
+                className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-semibold text-white transition-colors duration-200 ${whatsappEnabled ? 'bg-green-500 hover:bg-green-600' : 'bg-green-300 cursor-not-allowed'}`}
+              >
+                <FaWhatsapp className="w-4 h-4" />
+                WhatsApp
+              </button>
+              {whatsappHint && <p className="text-xs text-red-500 mt-1 text-center">{whatsappHint}</p>}
+            </div>
+            <div>
+              <button
+                onClick={handleEmail}
+                disabled={emailStatus === 'sending'}
+                className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-semibold transition-colors duration-200 disabled:cursor-not-allowed ${emailEnabled ? 'bg-yellow-400 hover:bg-yellow-500 text-gray-900' : 'bg-yellow-200 text-gray-400 cursor-not-allowed'}`}
+              >
+                <HiOutlineMail className="w-4 h-4" />
+                {emailStatus === 'sending' ? 'Sending...' : 'Send Email'}
+              </button>
+              {emailHint && <p className="text-xs text-red-500 mt-1 text-center">{emailHint}</p>}
+            </div>
           </div>
 
-          {/* Footer note */}
           <p className="text-center text-xs text-gray-400 pt-1">Hanamkonda, Telangana · mskassociates.com</p>
         </form>
       </div>
