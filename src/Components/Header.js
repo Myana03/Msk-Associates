@@ -45,7 +45,7 @@ function Header() {
             href="#home"
             className="font-extrabold text-white text-3xl md:text-4xl tracking-widest"
           >
-            MSK ASSOCIATES
+            MSKASSOCIATES
           </a>
           <span className="mt-1 text-gray-400 uppercase text-xs tracking-widest text-center md:text-left">
             Structural Engineers, Planners & Builders

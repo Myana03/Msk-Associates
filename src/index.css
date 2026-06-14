@@ -101,3 +101,13 @@ code {
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
+
+/* Fix browser autofill overriding input backgrounds */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #f3f4f6 inset !important;
+  -webkit-text-fill-color: #111827 !important;
+  caret-color: #111827;
+}

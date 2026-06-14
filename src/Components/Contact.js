@@ -29,7 +29,7 @@ const Contact = () => {
     if (!contactPhone.raw) return;
 
     const { name, email, phone, message } = getFormData();
-    const text = `Hello MSK Associates,\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`;
+    const text = `Hello MSKAssociates,\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`;
     const whatsappUrl = `https://wa.me/${contactPhone.raw}?text=${encodeURIComponent(text)}`;
 
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -90,7 +90,7 @@ const Contact = () => {
               style={{ border: 0, minHeight: '450px' }}
               allowFullScreen=""
               loading="lazy"
-              title="MSK Associates Location"
+              title="MSKAssociates Location"
               className="filter grayscale-100 contrast-120"
             ></iframe>
           </div>

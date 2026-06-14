@@ -12,7 +12,7 @@ const Footer = () => {
         </div>
         <div className="text-center">
           <p className="text-gray-300">
-            &copy; {new Date().getFullYear()} MSK Associates. All Rights Reserved.
+            &copy; {new Date().getFullYear()} MSKAssociates. All Rights Reserved.
           </p>
           <p className="text-sm text-gray-400 mt-2">
             Designed with Precision, Built with Passion.

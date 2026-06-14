@@ -27,13 +27,13 @@ const AboutUs = () => {
           <div className="text-gray-300 space-y-6">
             {/* Lead paragraph */}
             <p className="text-xl">
-              Established in August 2021, MSK ASSOCIATES is a growing team of passionate Structural Engineers, Planners, and Builders committed to delivering innovative and reliable engineering solutions. We specialize in designing safe, efficient, and sustainable structures that stand the test of time.
+              Established in August 2021, MSKASSOCIATES is a growing team of passionate Structural Engineers, Planners, and Builders committed to delivering innovative and reliable engineering solutions. We specialize in designing safe, efficient, and sustainable structures that stand the test of time.
             </p>
             <p className="text-lg">
               With a deep understanding of modern construction practices and regulatory standards, we partner closely with clients to turn their visions into reality—whether it's a residential development, commercial facility, or industrial project.
             </p>
             <p className="text-lg">
-              Our strength lies in our attention to detail, engineering precision, and client-focused approach. At MSK ASSOCIATES, we believe in building not just structures, but lasting relationships based on trust and technical excellence.
+              Our strength lies in our attention to detail, engineering precision, and client-focused approach. At MSKASSOCIATES, we believe in building not just structures, but lasting relationships based on trust and technical excellence.
             </p>
           </div>
         </div>
@@ -47,10 +47,10 @@ const AboutUs = () => {
           </h3>
           <div className="mt-6 border-l-4 border-yellow-500 pl-6 text-gray-300 space-y-4 italic text-lg" data-aos="fade-right" data-aos-delay="400">
             <p>
-              "As a Structural Engineer with over 7 years of industry experience designing and delivering safe, efficient, and code-compliant structures, I founded MSK ASSOCIATES in August 2021 with a vision to offer reliable, high-quality structural engineering and planning services tailored to the unique needs of each project."
+              "As a Structural Engineer with over 7 years of industry experience designing and delivering safe, efficient, and code-compliant structures, I founded MSKASSOCIATES in August 2021 with a vision to offer reliable, high-quality structural engineering and planning services tailored to the unique needs of each project."
             </p>
             <p>
-              "Throughout my career, I've worked on a wide range of residential, commercial, and industrial projects—ensuring every design meets the highest standards of safety, functionality, and sustainability. With MSK ASSOCIATES, my mission is to bring that same level of precision and care to every client, from concept to completion."
+              "Throughout my career, I've worked on a wide range of residential, commercial, and industrial projects—ensuring every design meets the highest standards of safety, functionality, and sustainability. With MSKASSOCIATES, my mission is to bring that same level of precision and care to every client, from concept to completion."
             </p>
           </div>
           <p className="mt-8 font-semibold text-white text-right text-lg" data-aos="fade-up" data-aos-delay="600">
