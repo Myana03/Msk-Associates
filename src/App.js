@@ -10,6 +10,7 @@ import Testimonials from './Components/Testimonials';
 import CallToAction from './Components/CallToAction';
 import Contact from './Components/Contact';
 import Footer from './Components/Footer';
+import WhatsAppFloat from './Components/WhatsAppFloat';
 
 function App() {
   useEffect(() => {
@@ -50,6 +51,7 @@ function App() {
         </div>
       </main>
       <Footer />
+      <WhatsAppFloat />
     </div>
   );
 }

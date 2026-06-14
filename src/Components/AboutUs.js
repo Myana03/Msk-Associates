@@ -5,8 +5,8 @@ const AboutUs = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Top Section: About Us text + Image */}
       <div className="lg:grid lg:grid-cols-2 lg:gap-24 lg:items-stretch">
-        {/* Image on the left for large screens */}
-        <div className="mt-10 lg:mt-0" data-aos="fade-right" data-aos-delay="200">
+        {/* Image — above text on mobile, left on desktop */}
+        <div className="mb-8 lg:mb-0" data-aos="fade-right" data-aos-delay="200">
           <img
             className="rounded-2xl shadow-2xl w-full h-full object-cover"
             src="/Images/OnlineImages/jr-harris-T72ooC45UTE-unsplash.jpg"
