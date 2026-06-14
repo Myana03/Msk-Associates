@@ -4,9 +4,9 @@ import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker } from 'react-ic
 import { FaWhatsapp } from 'react-icons/fa';
 import { getContactPhone } from '../config/contact';
 
-const EMAILJS_SERVICE_ID = 'service_p46kt06';
-const EMAILJS_TEMPLATE_ID = 'template_2t2g4z9';
-const EMAILJS_PUBLIC_KEY = 'ZRrzsWOC2SjYmdNpp';
+const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
 const Contact = () => {
   const contactPhone = getContactPhone();
@@ -157,8 +157,8 @@ const Contact = () => {
                 <HiOutlineMail className="w-7 h-7 mr-4 text-yellow-400 flex-shrink-0" />
                 <div>
                   <strong className="text-gray-100">Email</strong>
-                  <a href="mailto:designs.mskassociates@gmail.com" className="block text-yellow-400 hover:underline">
-                    designs.mskassociates@gmail.com
+                  <a href="mailto:designs@mskassociates.com" className="block text-yellow-400 hover:underline">
+                    designs@mskassociates.com
                   </a>
                 </div>
               </div>
