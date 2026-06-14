@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker } from 'react-icons/hi';
+import { getContactPhone } from '../config/contact';
 
 const Contact = () => {
-  const [showModal, setShowModal] = useState(false);
+  const contactPhone = getContactPhone();
 
   const handleFormSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission
-    setShowModal(true);   // Show the custom modal
+    e.preventDefault();
+
+    if (!contactPhone.raw) {
+      return;
+    }
+
+    const formData = new FormData(e.target);
+    const name = formData.get('name').trim();
+    const email = formData.get('email').trim();
+    const phone = formData.get('phone').trim();
+    const message = formData.get('message').trim();
+
+    const text = `Hello MSK Associates,\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`;
+    const whatsappUrl = `https://wa.me/${contactPhone.raw}?text=${encodeURIComponent(text)}`;
+
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = whatsappUrl;
+    } else {
+      window.open(whatsappUrl, '_blank');
+    }
   };
 
   return (
@@ -45,11 +65,11 @@ const Contact = () => {
               </div>
               <div>
                 <label htmlFor="email" className="sr-only">Email</label>
-                <input type="email" name="email" id="email" autoComplete="email" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Email Address" />
+                <input type="email" name="email" id="email" autoComplete="email" className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Email Address (Optional)" />
               </div>
               <div>
                 <label htmlFor="phone" className="sr-only">Phone</label>
-                <input type="tel" name="phone" id="phone" autoComplete="tel" className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Phone Number (Optional)" />
+                <input type="tel" name="phone" id="phone" autoComplete="tel" required className="block w-full px-4 py-3 rounded-md bg-gray-900 bg-opacity-70 border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Phone Number" />
               </div>
               <div>
                 <label htmlFor="message" className="sr-only">Message</label>
@@ -80,8 +100,8 @@ const Contact = () => {
                 <HiOutlinePhone className="w-7 h-7 mr-4 text-yellow-400 flex-shrink-0" />
                 <div>
                   <strong className="text-gray-100">Phone</strong>
-                  <a href="tel:+919989090978" className="block text-yellow-400 hover:underline">
-                    +91 99890 90978
+                  <a href={contactPhone.tel} className="block text-yellow-400 hover:underline">
+                    {contactPhone.display}
                   </a>
                 </div>
               </div>
@@ -99,40 +119,6 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* "Coming Soon" Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 px-4">
-          <div 
-            className="bg-gray-800 rounded-2xl shadow-2xl p-8 text-center max-w-md w-full"
-            data-aos="zoom-in"
-          >
-            <h3 className="text-3xl font-bold text-white mb-4 font-serif">Feature Coming Soon!</h3>
-            <p className="text-lg text-gray-300 mb-6">
-              This form is under construction. For now, please contact us directly:
-            </p>
-            <div className="space-y-4 text-lg">
-              <p>
-                <strong className="text-gray-100">Email:</strong>{' '}
-                <a href="mailto:designs@mskassociates.com" className="text-yellow-400 hover:underline">
-                  designs@mskassociates.com
-                </a>
-              </p>
-              <p>
-                <strong className="text-gray-100">Phone:</strong>{' '}
-                <a href="tel:+919989090978" className="text-yellow-400 hover:underline">
-                  +91 99890 90978
-                </a>
-              </p>
-            </div>
-            <button 
-              onClick={() => setShowModal(false)} 
-              className="mt-8 w-full bg-yellow-400 text-gray-900 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-yellow-500 transform transition-all duration-300"
-            >
-              Got it!
-            </button>
-          </div>
-        </div>
-      )}
     </>
   );
 };
