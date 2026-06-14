@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Header from './Components/Header';
@@ -12,6 +13,12 @@ import Contact from './Components/Contact';
 import Footer from './Components/Footer';
 import WhatsAppFloat from './Components/WhatsAppFloat';
 import BackToTop from './Components/BackToTop';
+import CookieNotice from './Components/CookieNotice';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+};
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -40,29 +47,30 @@ function App() {
         </section>
 
         <div className="relative z-10">
-          <section id="services" className="py-20 bg-gray-900 bg-opacity-80 backdrop-blur-sm">
+          <motion.section id="services" className="py-20 bg-gray-900 bg-opacity-80 backdrop-blur-sm" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
             <Services />
-          </section>
-          <section id="about" className="py-20 bg-gray-800 bg-opacity-80 backdrop-blur-sm">
+          </motion.section>
+          <motion.section id="about" className="py-20 bg-gray-800 bg-opacity-80 backdrop-blur-sm" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
             <AboutUs />
-          </section>
-          <section id="projects" className="py-20 bg-gray-900 bg-opacity-80 backdrop-blur-sm">
+          </motion.section>
+          <motion.section id="projects" className="py-20 bg-gray-900 bg-opacity-80 backdrop-blur-sm" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
             <ProjectGallery />
-          </section>
-          <section id="testimonials" className="py-20 bg-gray-800 bg-opacity-80 backdrop-blur-sm">
+          </motion.section>
+          <motion.section id="testimonials" className="py-20 bg-gray-800 bg-opacity-80 backdrop-blur-sm" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
             <Testimonials />
-          </section>
-          <section id="cta" className="bg-yellow-400">
+          </motion.section>
+          <motion.section id="cta" className="bg-yellow-400" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
             <CallToAction />
-          </section>
-          <section id="contact" className="py-20 bg-gray-900 bg-opacity-80 backdrop-blur-sm">
+          </motion.section>
+          <motion.section id="contact" className="py-20 bg-gray-900 bg-opacity-80 backdrop-blur-sm" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
             <Contact />
-          </section>
+          </motion.section>
         </div>
       </main>
       <Footer />
       <WhatsAppFloat />
       <BackToTop />
+      <CookieNotice />
     </div>
   );
 }
