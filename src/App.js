@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Header from './Components/Header';
@@ -11,15 +11,25 @@ import CallToAction from './Components/CallToAction';
 import Contact from './Components/Contact';
 import Footer from './Components/Footer';
 import WhatsAppFloat from './Components/WhatsAppFloat';
+import BackToTop from './Components/BackToTop';
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-      offset: 50,
-    });
+    AOS.init({ duration: 1000, once: true, offset: 50 });
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
   }, []);
+
+  if (loading) {
+    return (
+      <div className="fixed inset-0 bg-gray-950 flex flex-col items-center justify-center z-50">
+        <p className="text-yellow-400 font-extrabold text-2xl tracking-widest mb-6">MSKASSOCIATES</p>
+        <div className="w-10 h-10 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="App text-gray-200">
@@ -52,6 +62,7 @@ function App() {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <BackToTop />
     </div>
   );
 }
