@@ -1,112 +1,111 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
-const AboutUs = () => {
-  return (
-    <div className="max-w-7xl mx-auto px-6 lg:px-12">
+const fadeLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } },
+};
+const fadeRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } },
+};
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+};
 
-      {/* Split layout */}
-      <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+const AboutUs = () => (
+  <div style={{ backgroundColor: '#FAFAF8' }}>
+    <div className="max-w-7xl mx-auto px-6 lg:px-14" style={{ paddingTop: '7rem', paddingBottom: '7rem' }}>
 
-        {/* Photo */}
-        <div data-aos="fade-right">
-          <div className="relative overflow-hidden" style={{ borderRadius: '4px' }}>
+      <motion.p
+        initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.4 }} variants={fadeUp}
+        style={{
+          display: 'flex', alignItems: 'center', gap: '0.8rem',
+          fontSize: '0.58rem', color: '#C1440E', fontWeight: 700,
+          textTransform: 'uppercase', letterSpacing: '0.22em',
+          fontFamily: 'Inter, sans-serif', marginBottom: '5rem',
+        }}
+      >
+        <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#C1440E' }} />
+        About MSK Associates
+      </motion.p>
+
+      <div className="grid lg:grid-cols-2 gap-16 lg:gap-28 items-center" style={{ marginBottom: '6rem' }}>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeLeft}>
+          <div style={{ position: 'relative', borderRadius: '4px', overflow: 'hidden' }}>
             <img
-              src="/Images/OnlineImages/jr-harris-T72ooC45UTE-unsplash.jpg"
-              alt="MSK Associates construction site"
-              className="w-full object-cover"
-              style={{ height: '520px' }}
+              src="https://images.unsplash.com/photo-1563166423-482a8c14b2d6?w=900&q=90&auto=format&fit=crop"
+              alt="MSK Associates structural engineering site work"
+              loading="lazy"
+              decoding="async"
+              style={{ width: '100%', height: '520px', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
             />
-            {/* Year badge */}
-            <div
-              className="absolute bottom-0 left-0 px-8 py-6"
-              style={{ backgroundColor: '#C1440E' }}
-            >
-              <p className="text-white font-extrabold" style={{ fontSize: '2rem', lineHeight: 1 }}>2021</p>
-              <p className="text-white text-xs uppercase tracking-widest mt-1">Founded</p>
-            </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Text */}
-        <div data-aos="fade-left">
-          <p className="uppercase tracking-widest font-semibold mb-6" style={{ fontSize: '0.7rem', color: '#C1440E', letterSpacing: '0.15em' }}>
-            About Us
-          </p>
-          <h2
-            className="font-extrabold mb-8"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#0F2040', lineHeight: 1.1 }}
-          >
-            Pioneering with Precision
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeRight}>
+          <h2 style={{
+            fontFamily: 'Cormorant Garant, Georgia, serif',
+            fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)',
+            fontWeight: 700, lineHeight: 1.0,
+            letterSpacing: '-0.025em', color: '#1a1714',
+            marginBottom: '2rem',
+          }}>
+            Pioneering with<br />Precision.
           </h2>
-          <div style={{ width: '40px', height: '3px', backgroundColor: '#C1440E', marginBottom: '2rem' }} />
-          <div style={{ color: '#555', lineHeight: 1.85, fontSize: '0.95rem' }} className="space-y-5">
-            <p>
-              MSK Associates has been operating out of Hanamakonda since August 2021 — a focused team that has delivered structural work on 49 projects across Telangana.
-            </p>
-            <p>
-              We handle the full scope: residential homes, multi-storey commercial complexes, industrial structures, and layout planning for plots and townships. Every project moves through the same process — drawings, statutory stamping, and site visits at critical milestones.
-            </p>
-            <p>
-              Small enough that the founder reviews every drawing personally. Experienced enough to run concurrent projects without cutting corners on calculation or site supervision.
-            </p>
+          <div style={{ width: '40px', height: '2px', backgroundColor: '#C1440E', marginBottom: '2rem' }} />
+          <div style={{ color: '#666', lineHeight: 1.9, fontSize: '0.95rem', fontFamily: 'Inter, sans-serif' }}
+            className="space-y-5">
+            <p>MSK Associates is a focused structural engineering firm based in Warangal — delivering residential, commercial, and industrial projects across Telangana.</p>
+            <p>We handle the full scope: residential homes, multi-storey complexes, industrial structures, and layout planning. Every project goes through the same process — drawings, statutory stamping, site visits at every critical milestone.</p>
+            <p>Small enough that the founder reviews every drawing personally. Experienced enough to run concurrent projects without cutting corners on calculation or supervision.</p>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Founder's Note */}
-      <div
-        className="mt-20 relative overflow-hidden"
-        style={{ backgroundColor: '#0F2040', borderRadius: '4px' }}
-        data-aos="fade-up"
+      <motion.div
+        initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeUp}
+        style={{
+          position: 'relative', overflow: 'hidden',
+          backgroundColor: '#EDEAE3',
+          borderRadius: '4px',
+          borderLeft: '4px solid #C1440E',
+          padding: 'clamp(2.5rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem)',
+          boxShadow: '0 2px 24px rgba(26,23,20,0.06)',
+        }}
       >
-        {/* Decorative background quote mark */}
-        <span
-          aria-hidden="true"
-          style={{
-            position: 'absolute', top: '-0.5rem', left: '1.5rem',
-            fontSize: '16rem', lineHeight: 1, color: 'rgba(193,68,14,0.08)',
-            fontFamily: 'Georgia, serif', userSelect: 'none', pointerEvents: 'none',
-          }}
-        >&ldquo;</span>
-
-        <div className="relative px-10 py-14 lg:px-16">
-          {/* Pull-quote */}
-          <p
-            className="italic"
-            style={{
-              color: '#ffffff',
-              fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
-              lineHeight: 1.65,
-              fontFamily: 'Georgia, serif',
-              maxWidth: '780px',
-              marginBottom: '2rem',
-            }}
-          >
+        <span style={{
+          position: 'absolute', top: '-2rem', left: '1.5rem',
+          fontSize: '16rem', lineHeight: 1,
+          color: 'rgba(193,68,14,0.07)', fontFamily: 'Georgia, serif',
+          userSelect: 'none', pointerEvents: 'none',
+        }}>"</span>
+        <div style={{ position: 'relative' }}>
+          <p style={{
+            fontFamily: 'Cormorant Garant, Georgia, serif',
+            fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
+            fontStyle: 'italic', lineHeight: 1.55,
+            color: '#1a1714', maxWidth: '780px', marginBottom: '2rem',
+            letterSpacing: '-0.01em',
+          }}>
             "I started MSK Associates with one belief — that the engineer who designs your structure should also be the one who stands on your site."
           </p>
-
-          {/* Supporting prose */}
-          <p style={{ color: '#9ca3af', fontSize: '0.95rem', lineHeight: 1.85, maxWidth: '680px', marginBottom: '2.5rem' }}>
-            With over 7 years of experience across residential, commercial, and industrial projects in Telangana, I founded MSK Associates in 2021 to bring that personal accountability to every client. When you work with us, you work directly with me — from the first calculation to the final inspection.
+          <p style={{ color: '#6b6460', fontSize: '0.92rem', lineHeight: 1.85, maxWidth: '640px', marginBottom: '2.5rem', fontFamily: 'Inter, sans-serif' }}>
+            With over 10 years of experience across residential, commercial, and industrial projects in Telangana, I built MSK Associates on one principle — personal accountability on every project. When you work with us, you work directly with me — from the first calculation to the final inspection.
           </p>
-
-          {/* Divider + attribution */}
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)', paddingTop: '1.75rem' }}>
-            <div className="flex items-center gap-4">
-              <div style={{ width: '28px', height: '2px', backgroundColor: '#C1440E' }} />
-              <div>
-                <p className="font-bold text-white" style={{ fontSize: '0.95rem', letterSpacing: '0.04em' }}>Er. Myana Sai Krishna</p>
-                <p style={{ color: '#6b7280', fontSize: '0.78rem', marginTop: '3px', letterSpacing: '0.04em' }}>
-                  ME (Structures), AMIE &nbsp;·&nbsp; Founder, MSK Associates
-                </p>
-              </div>
+          <div style={{ borderTop: '1px solid #d0cbc2', paddingTop: '1.75rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div style={{ width: '28px', height: '2px', backgroundColor: '#C1440E', flexShrink: 0 }} />
+            <div>
+              <p style={{ fontWeight: 700, color: '#1a1714', fontSize: '0.9rem', fontFamily: 'Inter, sans-serif' }}>Er. Myana Sai Krishna</p>
+              <p style={{ color: '#9ca3af', fontSize: '0.75rem', marginTop: '3px', fontFamily: 'Inter, sans-serif' }}>ME (Structures), AMIE · Founder, MSK Associates</p>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
     </div>
-  );
-};
+  </div>
+);
 
 export default AboutUs;

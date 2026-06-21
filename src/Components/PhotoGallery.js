@@ -1,251 +1,266 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { FiArrowLeft, FiArrowRight, FiLoader } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FiArrowLeft, FiArrowRight, FiX } from 'react-icons/fi';
 
 const allImages = [
-  // User's current image list
-  '/Images/realimages/IMG_20220506_103613.jpg',
-  '/Images/realimages/IMG_20220515_121455.jpg',
-  '/Images/realimages/IMG_20220525_114232.jpg',
-  '/Images/realimages/IMG_20220602_111741.jpg',
-  '/Images/realimages/IMG_20220615_110540.jpg',
-  '/Images/realimages/IMG_20220615_110605.jpg',
-  '/Images/realimages/IMG_20220705_114831.jpg',
-  '/Images/realimages/IMG_20220826_104534.jpg',
-  '/Images/realimages/IMG_20221012_111414.jpg',
-  '/Images/realimages/IMG_20221018_112006.jpg',
-  '/Images/realimages/IMG_20221018_112021.jpg',
-  '/Images/realimages/IMG_20230127_123912.jpg',
-  '/Images/realimages/IMG_20230303_131528.jpg',
-  '/Images/realimages/IMG_20230411_164404.jpg',
-  '/Images/realimages/IMG_20230411_164422.jpg',
-  '/Images/realimages/IMG_20231022_165056.jpg',
-  '/Images/realimages/IMG_20231022_165058.jpg',
-  '/Images/realimages/IMG_20231122_142531.jpg',
-  '/Images/realimages/IMG_20240113_134900.jpg',
-  '/Images/realimages/IMG_20240113_134909.jpg',
-  '/Images/realimages/IMG_20240113_134912.jpg',
-  '/Images/realimages/IMG_20240113_134914.jpg',
-  '/Images/realimages/IMG_20240212_131644.jpg',
-  '/Images/realimages/IMG_20240221_122408.jpg',
-  '/Images/realimages/IMG_20240221_122412.jpg',
-  '/Images/realimages/IMG_20240221_122419.jpg',
-  '/Images/realimages/IMG_20240221_122503.jpg',
-  '/Images/realimages/IMG_20240507_094011.jpg',
-  '/Images/realimages/IMG_20240507_094108.jpg',
-  '/Images/realimages/IMG_20240517_115803.jpg',
-  '/Images/realimages/IMG_20240824_093940.jpg',
-  '/Images/realimages/IMG_20240824_093941.jpg',
-  '/Images/realimages/IMG_20240824_093949.jpg',
-  '/Images/realimages/IMG_20241109_101025.jpg',
-  '/Images/realimages/IMG_20241126_080548.jpg',
-  '/Images/realimages/IMG_20241126_080553.jpg',
-  '/Images/realimages/IMG_20250225_103256.jpg',
-  '/Images/realimages/IMG_20250410_102606.jpg',
-  '/Images/realimages/IMG_20250412_123736.jpg',
-  '/Images/realimages/IMG_20250418_165924.jpg',
-  '/Images/realimages/IMG_20250613_114004.jpg',
-  '/Images/realimages/IMG_20250613_114121.jpg',
-  '/Images/realimages/IMG_20250613_115556.jpg',
-  '/Images/realimages/IMG_20250613_115557.jpg',
-  '/Images/realimages/IMG_20250615_090008.jpg',
-  '/Images/realimages/IMG_20250615_090234.jpg',
   '/Images/realimages/IMG_20250615_090253.jpg',
+  '/Images/realimages/IMG_20250615_090234.jpg',
+  '/Images/realimages/IMG_20250615_090008.jpg',
+  '/Images/realimages/IMG_20250613_115557.jpg',
+  '/Images/realimages/IMG_20250613_115556.jpg',
+  '/Images/realimages/IMG_20250613_114121.jpg',
+  '/Images/realimages/IMG_20250613_114004.jpg',
+  '/Images/realimages/IMG_20250418_165924.jpg',
+  '/Images/realimages/IMG_20250412_123736.jpg',
+  '/Images/realimages/IMG_20250410_102606.jpg',
+  '/Images/realimages/IMG_20250225_103256.jpg',
+  '/Images/realimages/IMG_20241126_080553.jpg',
+  '/Images/realimages/IMG_20241126_080548.jpg',
+  '/Images/realimages/IMG_20241109_101025.jpg',
+  '/Images/realimages/IMG_20240824_093949.jpg',
+  '/Images/realimages/IMG_20240824_093941.jpg',
+  '/Images/realimages/IMG_20240824_093940.jpg',
+  '/Images/realimages/IMG_20240517_115803.jpg',
+  '/Images/realimages/IMG_20240507_094108.jpg',
+  '/Images/realimages/IMG_20240507_094011.jpg',
+  '/Images/realimages/IMG_20240221_122503.jpg',
+  '/Images/realimages/IMG_20240221_122419.jpg',
+  '/Images/realimages/IMG_20240221_122412.jpg',
+  '/Images/realimages/IMG_20240221_122408.jpg',
+  '/Images/realimages/IMG_20240212_131644.jpg',
+  '/Images/realimages/IMG_20240113_134914.jpg',
+  '/Images/realimages/IMG_20240113_134912.jpg',
+  '/Images/realimages/IMG_20240113_134909.jpg',
+  '/Images/realimages/IMG_20240113_134900.jpg',
+  '/Images/realimages/IMG_20231122_142531.jpg',
+  '/Images/realimages/IMG_20231022_165058.jpg',
+  '/Images/realimages/IMG_20231022_165056.jpg',
+  '/Images/realimages/IMG_20230411_164422.jpg',
+  '/Images/realimages/IMG_20230411_164404.jpg',
+  '/Images/realimages/IMG_20230303_131528.jpg',
+  '/Images/realimages/IMG_20230127_123912.jpg',
+  '/Images/realimages/IMG_20221018_112021.jpg',
+  '/Images/realimages/IMG_20221018_112006.jpg',
+  '/Images/realimages/IMG_20221012_111414.jpg',
+  '/Images/realimages/IMG_20220826_104534.jpg',
+  '/Images/realimages/IMG_20220705_114831.jpg',
+  '/Images/realimages/IMG_20220615_110605.jpg',
+  '/Images/realimages/IMG_20220615_110540.jpg',
+  '/Images/realimages/IMG_20220602_111741.jpg',
+  '/Images/realimages/IMG_20220525_114232.jpg',
+  '/Images/realimages/IMG_20220515_121455.jpg',
+  '/Images/realimages/IMG_20220506_103613.jpg',
   '/Images/realimages/Snapchat-1993090342.jpg',
   '/Images/realimages/Snapchat-2098051749.jpg',
 ];
 
-function PhotoGallery() {
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [current, setCurrent] = useState(0);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [aspectRatio, setAspectRatio] = useState(16 / 9); // Default
-  const [autoPlay, setAutoPlay] = useState(true);
+const GRID_COUNT = 9;
 
-  // Sort images by aspect ratio on mount
-  useEffect(() => {
-    const sortImages = async () => {
-      const promises = allImages.map(src => {
-        return new Promise(resolve => {
-          const img = new Image();
-          img.src = src;
-          img.onload = () => resolve({ src, ratio: img.naturalWidth / img.naturalHeight });
-          img.onerror = () => resolve({ src, ratio: 0 }); // Treat errors as un-sortable
-        });
-      });
-      
-      const results = await Promise.all(promises);
+export default function PhotoGallery() {
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [hovered, setHovered] = useState(null);
 
-      const landscapes = results.filter(res => res.ratio > 1.05);
-      const portraits = results.filter(res => res.ratio < 0.95);
-      const squares = results.filter(res => res.ratio >= 0.95 && res.ratio <= 1.05);
+  const openLightbox = (i) => setLightboxIndex(i);
+  const closeLightbox = () => setLightboxIndex(null);
 
-      const sorted = [...landscapes, ...squares, ...portraits].map(res => res.src);
-      
-      setImages(sorted);
-      setIsLoading(false);
-    };
-
-    sortImages();
+  const prev = useCallback(() => {
+    setLightboxIndex(i => (i - 1 + allImages.length) % allImages.length);
   }, []);
 
-  // Update aspect ratio when image changes
-  useEffect(() => {
-    if (images.length === 0) return;
-    const img = new Image();
-    img.src = images[current];
-    img.onload = () => {
-      setAspectRatio(img.naturalWidth / img.naturalHeight);
-    };
-  }, [current, images]);
-  
-  const prev = useCallback(() => {
-    setCurrent(current === 0 ? images.length - 1 : current - 1);
-  }, [current, images.length]);
-
   const next = useCallback(() => {
-    setCurrent(current === images.length - 1 ? 0 : current + 1);
-  }, [current, images.length]);
-  
-  // Auto-play slideshow
+    setLightboxIndex(i => (i + 1) % allImages.length);
+  }, []);
+
   useEffect(() => {
-    let interval;
-    if (autoPlay && !lightboxOpen && images.length > 0) {
-      interval = setInterval(next, 1000);
-    }
-    return () => {
-      if (interval) {
-        clearInterval(interval);
-      }
+    if (lightboxIndex === null) return;
+    const onKey = (e) => {
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'Escape') closeLightbox();
     };
-  }, [autoPlay, lightboxOpen, images.length, next]);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightboxIndex, prev, next]);
 
-  const openLightbox = () => setLightboxOpen(true);
-  const closeLightbox = () => setLightboxOpen(false);
-
-  // Keyboard navigation
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (images.length === 0) return;
-      if (lightboxOpen) {
-        if (e.key === 'ArrowLeft') prev();
-        if (e.key === 'ArrowRight') next();
-        if (e.key === 'Escape') closeLightbox();
-      } else {
-        if (e.key === 'ArrowLeft') prev();
-        if (e.key === 'ArrowRight') next();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxOpen, current, images, prev, next]);
-
-  if (isLoading) {
-    return (
-      <div className="my-8 text-center text-gray-400 py-24 flex flex-col items-center justify-center min-h-[400px]">
-        <FiLoader className="animate-spin text-4xl text-orange-500 mb-4" />
-        <p className="font-semibold text-lg text-white">Organizing Gallery...</p>
-        <p>Sorting images for the best viewing experience.</p>
-      </div>
-    );
-  }
+    document.body.style.overflow = lightboxIndex !== null ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [lightboxIndex]);
 
   return (
-    <div className="my-8 flex justify-center items-center">
-      <div className="max-w-4xl w-full mx-auto px-4">
-        {/* Adaptive Card Container */}
-        <div 
-          className="relative bg-gray-900/50 rounded-2xl overflow-hidden shadow-2xl group transition-all duration-300 hover:shadow-orange-500/20"
-          onMouseEnter={() => setAutoPlay(false)}
-          onMouseLeave={() => setAutoPlay(true)}
-        >
-          
-          {/* Aspect Ratio Box */}
+    <>
+      <style>{`
+        .gallery-img { transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+        .gallery-cell:hover .gallery-img { transform: scale(1.06); }
+        .gallery-overlay { opacity: 0; transition: opacity 0.3s ease; background: rgba(26,23,20,0.38); }
+        .gallery-cell:hover .gallery-overlay { opacity: 1; }
+      `}</style>
+
+      {/* 3×3 grid */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '6px',
+        borderRadius: '6px',
+        overflow: 'hidden',
+      }}>
+        {allImages.slice(0, GRID_COUNT).map((src, i) => (
           <div
-            className="relative w-full transition-[padding-bottom] duration-500 ease-in-out"
-            style={{ paddingBottom: `${(1 / aspectRatio) * 100}%` }}
+            key={src}
+            className="gallery-cell"
+            onClick={() => openLightbox(i)}
+            style={{
+              aspectRatio: '4/3',
+              overflow: 'hidden',
+              cursor: 'pointer',
+              position: 'relative',
+              backgroundColor: '#e0dbd2',
+            }}
           >
-            {images.length > 0 && (
-              <>
-                <AnimatePresence initial={false}>
-                  <motion.img
-                    key={images[current]}
-                    src={images[current]}
-                    alt={`Project ${current + 1}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, position: 'absolute' }}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                    className="absolute top-0 left-0 w-full h-full object-cover"
-                    onClick={openLightbox}
-                  />
-                </AnimatePresence>
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none"></div>
-
-                <button
-                  onClick={(e) => { e.stopPropagation(); prev(); }}
-                  aria-label="Previous image"
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-3 shadow-lg transition-all z-20 opacity-0 group-hover:opacity-100 focus:opacity-100"
-                >
-                  <FiArrowLeft size={24} />
-                </button>
-                <button
-                  onClick={(e) => { e.stopPropagation(); next(); }}
-                  aria-label="Next image"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-3 shadow-lg transition-all z-20 opacity-0 group-hover:opacity-100 focus:opacity-100"
-                >
-                  <FiArrowRight size={24} />
-                </button>
-                
-                <div className="absolute bottom-4 left-4 text-white font-semibold bg-black/50 px-3 py-1 rounded-full text-sm pointer-events-none">
-                  {current + 1} / {images.length}
-                </div>
-              </>
-            )}
+            <img
+              src={src}
+              alt={`MSK Project ${i + 1}`}
+              loading="lazy"
+              decoding="async"
+              className="gallery-img"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+            <div className="gallery-overlay" style={{
+              position: 'absolute', inset: 0,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <span style={{
+                fontSize: '0.6rem', fontWeight: 700,
+                color: 'rgba(255,255,255,0.9)', letterSpacing: '0.2em',
+                textTransform: 'uppercase', fontFamily: 'Inter, sans-serif',
+              }}>View</span>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
 
-      {/* Lightbox Modal */}
-      {lightboxOpen && images.length > 0 && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4" onClick={closeLightbox}>
-          <button onClick={(e) => { e.stopPropagation(); closeLightbox(); }} className="absolute top-5 right-5 text-white text-4xl hover:text-orange-500 transition-colors z-50" aria-label="Close">
-            &times;
-          </button>
-          <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-            <button 
-              onClick={(e) => { e.stopPropagation(); prev(); }} 
-              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-3 shadow-lg transition-all z-50"
-              aria-label="Previous image"
+      {/* View all */}
+      <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <button
+          onClick={() => openLightbox(0)}
+          style={{
+            background: 'none', border: '1px solid #c8c4bc',
+            borderRadius: '3px', padding: '11px 28px',
+            fontSize: '0.68rem', fontWeight: 700,
+            fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em',
+            textTransform: 'uppercase', cursor: 'pointer',
+            color: '#1a1714',
+            transition: 'border-color 0.2s ease, color 0.2s ease',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = '#C1440E'; e.currentTarget.style.color = '#C1440E'; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = '#c8c4bc'; e.currentTarget.style.color = '#1a1714'; }}
+        >
+          Browse Projects
+        </button>
+        <span style={{ fontSize: '0.75rem', color: '#9ca3af', fontFamily: 'Inter, sans-serif' }}>
+          Click any photo to open full view
+        </span>
+      </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22 }}
+            onClick={closeLightbox}
+            style={{
+              position: 'fixed', inset: 0, zIndex: 200,
+              backgroundColor: 'rgba(10,8,6,0.94)',
+              backdropFilter: 'blur(12px)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            {/* Close */}
+            <button
+              onClick={closeLightbox}
+              style={{
+                position: 'absolute', top: '1.5rem', right: '1.5rem',
+                background: 'rgba(255,255,255,0.08)', border: 'none',
+                borderRadius: '50%', width: '44px', height: '44px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', color: '#fff', zIndex: 10,
+                transition: 'background 0.2s ease',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.16)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
             >
-              <FiArrowLeft size={24} />
+              <FiX size={20} />
             </button>
-            <AnimatePresence initial={false}>
+
+            {/* Counter */}
+            <div style={{
+              position: 'absolute', top: '1.5rem', left: '1.5rem',
+              fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)',
+              fontFamily: 'Inter, sans-serif', letterSpacing: '0.12em',
+              fontWeight: 600, textTransform: 'uppercase',
+            }}>
+              {lightboxIndex + 1} / {allImages.length}
+            </div>
+
+            {/* Prev */}
+            <button
+              onClick={e => { e.stopPropagation(); prev(); }}
+              style={{
+                position: 'absolute', left: '1.5rem', top: '50%', transform: 'translateY(-50%)',
+                background: 'rgba(255,255,255,0.08)', border: 'none',
+                borderRadius: '50%', width: '48px', height: '48px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', color: '#fff', zIndex: 10,
+                transition: 'background 0.2s ease',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.16)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
+            >
+              <FiArrowLeft size={20} />
+            </button>
+
+            {/* Image */}
+            <AnimatePresence mode="wait" initial={false}>
               <motion.img
-                key={`lightbox-${images[current]}`}
-                src={images[current]}
-                alt={`Project ${current + 1}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, position: 'absolute' }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl"
+                key={lightboxIndex}
+                src={allImages[lightboxIndex]}
+                alt={`MSK Project ${lightboxIndex + 1}`}
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                onClick={e => e.stopPropagation()}
+                style={{
+                  maxWidth: '88vw', maxHeight: '88vh',
+                  objectFit: 'contain',
+                  borderRadius: '4px',
+                  boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
+                }}
               />
             </AnimatePresence>
-            <button 
-              onClick={(e) => { e.stopPropagation(); next(); }} 
-              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-3 shadow-lg transition-all z-50"
-              aria-label="Next image"
+
+            {/* Next */}
+            <button
+              onClick={e => { e.stopPropagation(); next(); }}
+              style={{
+                position: 'absolute', right: '1.5rem', top: '50%', transform: 'translateY(-50%)',
+                background: 'rgba(255,255,255,0.08)', border: 'none',
+                borderRadius: '50%', width: '48px', height: '48px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', color: '#fff', zIndex: 10,
+                transition: 'background 0.2s ease',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.16)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
             >
-              <FiArrowRight size={24} />
+              <FiArrowRight size={20} />
             </button>
-          </div>
-        </div>
-      )}
-    </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
-
-export default PhotoGallery;

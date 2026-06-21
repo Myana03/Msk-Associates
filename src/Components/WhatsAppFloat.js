@@ -42,15 +42,22 @@ const WhatsAppFloat = () => {
       {/* Button */}
       <button
         onClick={handleClick}
-        className="relative w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110"
         aria-label="Chat on WhatsApp"
+        style={{
+          position: 'relative',
+          width: '52px', height: '52px',
+          backgroundColor: '#1a1714',
+          borderRadius: '50%',
+          border: 'none', cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 8px 28px rgba(26,23,20,0.32)',
+          color: '#fff',
+          transition: 'transform 0.22s ease, box-shadow 0.22s ease',
+        }}
+        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.boxShadow = '0 12px 36px rgba(26,23,20,0.42)'; }}
+        onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 8px 28px rgba(26,23,20,0.32)'; }}
       >
-        <FaWhatsapp className="w-7 h-7" />
-
-        {/* Pulse ring */}
-        {pulse && (
-          <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-60" />
-        )}
+        <FaWhatsapp size={22} />
       </button>
     </div>
   );
