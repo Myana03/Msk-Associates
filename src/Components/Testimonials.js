@@ -1,66 +1,151 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const testimonials = [
   {
-    quote:
-      "MSK's team was on site before every pour. No shortcuts, no surprises — the RCC framing was done exactly to spec and within schedule.",
-    name: 'Ramesh K.',
-    detail: 'Residential G+3 — Hanamakonda',
+    quote: 'MSK Associates is a very good and dedicated firm. They have great knowledge and communication skills. They guide you clearly whether you\'re building a new home or a commercial space, and their passion for interiors with latest designs sets them apart. In one word — Approach MSK and forget your tensions.',
+    name: 'Venkata Ramana Reddy Beemireddy',
+    detail: 'Residential & Interiors · Warangal',
   },
   {
-    quote:
-      'They handled our commercial complex from structural drawings to DTCP approval. Er. Sai Krishna was reachable at every stage, not just at the start.',
-    name: 'Suresh Reddy',
-    detail: 'Commercial Complex — Warangal',
+    quote: 'I recently had the pleasure of working with MSK Associates on the construction of our new home, and I couldn\'t be more satisfied with the results. From start to finish, their team demonstrated professionalism, transparency, and attention to detail that gave us complete confidence throughout the entire process. They made what could have been a stressful process feel smooth and rewarding.',
+    name: 'Tejaswini Surabhi',
+    detail: 'New Home Construction · Warangal',
   },
   {
-    quote:
-      'Got a second opinion on an existing building. MSK found two slab issues before we started renovation. Glad we called them first.',
-    name: 'Anitha M.',
-    detail: 'Structural Audit & Retrofit — Kazipet',
+    quote: 'We had a wonderful experience working with MSK Associates. Their team understood our requirements perfectly and transformed our ideas into a beautiful and practical design. Their attention to detail, creativity, and professionalism truly stand out.',
+    name: 'Vineeth Kumar',
+    detail: 'Google Local Guide · Warangal',
+  },
+  {
+    quote: 'The team at MSK Associates was very easy to communicate with. They understood our requirements clearly and guided us with honest suggestions. The final design perfectly matched our vision.',
+    name: 'Samskruthareddy Palle',
+    detail: 'Design & Planning · Warangal',
+  },
+  {
+    quote: 'From the very first discussion, the team made us feel comfortable and understood our expectations clearly. They were patient with all our changes and delivered a design we truly loved.',
+    name: 'Avanthi Mudiraaj',
+    detail: 'Residential Design · Warangal',
+  },
+  {
+    quote: 'The best thing about working with them was their honesty and professionalism. They gave practical suggestions instead of simply following trends, which made a huge difference in the final design.',
+    name: 'Ravikishore Thangellapelly',
+    detail: 'Structural Design · Warangal',
+  },
+  {
+    quote: 'Very professional and detail-oriented, with a strong understanding of requirements and a commitment to delivering practical, robust solutions. Regular site visits and close monitoring of progress reflect their dedication. Highly recommended for civil and structural engineering needs.',
+    name: 'Pavan Nagavalli',
+    detail: 'Google Local Guide · Warangal',
   },
 ];
 
-const Testimonials = () => {
+export default function Testimonials() {
+  const [active, setActive] = useState(0);
+  const [dir, setDir] = useState(1);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setDir(1);
+      setActive(a => (a + 1) % testimonials.length);
+    }, 6000);
+    return () => clearInterval(t);
+  }, []);
+
+  const go = (i) => {
+    setDir(i > active ? 1 : -1);
+    setActive(i);
+  };
+
+  const t = testimonials[active];
+
   return (
-    <div className="max-w-7xl mx-auto px-6 lg:px-12">
-
-      <div className="mb-14" data-aos="fade-up">
-        <p className="uppercase tracking-widest font-semibold mb-4" style={{ fontSize: '0.7rem', color: '#C1440E', letterSpacing: '0.15em' }}>
-          Client Feedback
-        </p>
-        <h2
-          className="font-extrabold"
-          style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#0F2040', lineHeight: 1.1 }}
+    <div style={{ backgroundColor: '#FAFAF8', borderTop: '1px solid #e0dbd2' }}>
+      <div
+        className="max-w-7xl mx-auto px-6 lg:px-14"
+        style={{ paddingTop: 'clamp(4rem, 8vw, 7rem)', paddingBottom: 'clamp(4rem, 8vw, 7rem)' }}
+      >
+        {/* Label */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            display: 'flex', alignItems: 'center', gap: '0.8rem',
+            fontSize: '0.58rem', color: '#C1440E', fontWeight: 700,
+            textTransform: 'uppercase', letterSpacing: '0.22em',
+            fontFamily: 'Inter, sans-serif', marginBottom: 'clamp(3rem, 6vw, 5rem)',
+          }}
         >
-          What Our Clients Say
-        </h2>
-      </div>
+          <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#C1440E' }} />
+          Client Feedback
+        </motion.p>
 
-      <div className="grid md:grid-cols-3 gap-10">
-        {testimonials.map((t, i) => (
-          <div
-            key={i}
-            data-aos="fade-up"
-            data-aos-delay={i * 100}
-            style={{ borderTop: '3px solid #C1440E', paddingTop: '1.75rem' }}
-          >
-            <p style={{ color: '#555', fontSize: '0.95rem', lineHeight: 1.85, fontStyle: 'italic', marginBottom: '1.75rem' }}>
-              "{t.quote}"
-            </p>
-            <div className="flex items-center gap-3">
-              <div style={{ width: '24px', height: '2px', backgroundColor: '#C1440E', flexShrink: 0 }} />
-              <div>
-                <p style={{ fontWeight: 700, color: '#0F2040', fontSize: '0.88rem' }}>{t.name}</p>
-                <p style={{ color: '#888', fontSize: '0.75rem', marginTop: '2px' }}>{t.detail}</p>
+        {/* Quote */}
+        <div style={{ position: 'relative', minHeight: 'clamp(120px, 30vw, 260px)' }}>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: dir > 0 ? 24 : -24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: dir > 0 ? -24 : 24 }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <p style={{
+                fontFamily: 'Cormorant Garant, Georgia, serif',
+                fontSize: 'clamp(1.05rem, 3.5vw, 2.8rem)',
+                fontStyle: 'italic',
+                lineHeight: 1.45,
+                letterSpacing: '-0.01em',
+                color: '#1a1714',
+                maxWidth: '860px',
+                marginBottom: 'clamp(2rem, 4vw, 3rem)',
+              }}>
+                "{t.quote}"
+              </p>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div style={{ width: '28px', height: '2px', backgroundColor: '#C1440E', flexShrink: 0 }} />
+                <div>
+                  <p style={{
+                    fontWeight: 700, color: '#1a1714',
+                    fontSize: '0.88rem', fontFamily: 'Inter, sans-serif',
+                  }}>{t.name}</p>
+                  <p style={{
+                    color: '#9ca3af', fontSize: '0.72rem',
+                    marginTop: '3px', fontFamily: 'Inter, sans-serif',
+                  }}>{t.detail}</p>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
+        {/* Progress dots */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: '0.6rem',
+          marginTop: 'clamp(2.5rem, 5vw, 4rem)',
+        }}>
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => go(i)}
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                padding: '6px 0',
+              }}
+            >
+              <div style={{
+                height: '2px',
+                width: i === active ? '36px' : '16px',
+                borderRadius: '2px',
+                backgroundColor: i === active ? '#C1440E' : '#d0cbc2',
+                transition: 'width 0.4s ease, background-color 0.3s ease',
+              }} />
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
-};
-
-export default Testimonials;
+}

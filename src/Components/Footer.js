@@ -2,79 +2,79 @@ import React from 'react';
 import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 
-const Footer = () => {
-  return (
-    <footer style={{ backgroundColor: '#0F2040', borderTop: '3px solid #C1440E' }}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-14">
+const Footer = () => (
+  <footer style={{ backgroundColor: '#1a1714', borderTop: '3px solid #C1440E' }}>
+    <div className="max-w-7xl mx-auto px-6 lg:px-14" style={{ paddingTop: '4rem', paddingBottom: '3rem' }}>
 
-        <div className="grid md:grid-cols-3 gap-10">
+      <div className="grid md:grid-cols-3 gap-12" style={{ paddingBottom: '3rem', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
 
-          {/* Brand + address */}
-          <div>
-            <a href="#home" className="block mb-4">
-              <img src="/Images/logos/logo-dark.png" alt="MSK Associates" style={{ height: '64px', width: 'auto' }} />
-            </a>
-            <p style={{ color: '#6b7280', fontSize: '0.8rem', lineHeight: 1.9 }}>
-              Pranay Marg, Waddepally,<br />
-              Phase 1, Teachers Colony,<br />
-              Hanamakonda, Telangana 506370
-            </p>
-            <a href="tel:+919989090978" className="block mt-3 transition-colors hover:text-white" style={{ color: '#9ca3af', fontSize: '0.82rem' }}>
-              +91 99890 90978
-            </a>
-          </div>
-
-          {/* Nav */}
-          <div>
-            <p className="uppercase tracking-widest mb-4" style={{ fontSize: '0.65rem', color: '#C1440E', letterSpacing: '0.15em' }}>Navigation</p>
-            <div className="flex flex-col gap-3">
-              {['Home', 'Services', 'Projects', 'About', 'Contact'].map(item => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="transition-colors duration-200 hover:text-white"
-                  style={{ color: '#6b7280', fontSize: '0.8rem' }}
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Socials + email */}
-          <div>
-            <p className="uppercase tracking-widest mb-4" style={{ fontSize: '0.65rem', color: '#C1440E', letterSpacing: '0.15em' }}>Connect</p>
-            <div className="flex gap-5 mb-5">
-              <a href="https://www.instagram.com/mskassociates_" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-                 className="transition-colors hover:text-white" style={{ color: '#6b7280' }}>
-                <FaInstagram size={20} />
-              </a>
-              <a href="https://wa.me/919989090978" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
-                 className="transition-colors hover:text-white" style={{ color: '#6b7280' }}>
-                <FaWhatsapp size={20} />
-              </a>
-              <a href="mailto:designs@mskassociates.com" aria-label="Email"
-                 className="transition-colors hover:text-white" style={{ color: '#6b7280' }}>
-                <HiOutlineMail size={20} />
-              </a>
-            </div>
-            <a href="mailto:designs@mskassociates.com" className="transition-colors hover:text-white" style={{ color: '#6b7280', fontSize: '0.8rem' }}>
-              designs@mskassociates.com
-            </a>
-          </div>
-
-        </div>
-
-        {/* Bottom line */}
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: '2.5rem', paddingTop: '1.5rem' }}>
-          <p className="text-center uppercase tracking-widest" style={{ color: '#374151', fontSize: '0.65rem', letterSpacing: '0.12em' }}>
-            &copy; {new Date().getFullYear()} MSK Associates &mdash; Structural Engineers, Planners &amp; Builders
+        <div>
+          <a href="#home" style={{ display: 'inline-block', marginBottom: '1.2rem' }}>
+            <img src="/Images/logos/logo-dark.png" alt="MSK Associates" style={{ height: '104px', width: 'auto' }} />
+          </a>
+          <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.78rem', lineHeight: 1.85, fontFamily: 'Inter, sans-serif', whiteSpace: 'nowrap' }}>
+            Structural Engineers · Planners · Builders
           </p>
+          <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.78rem', lineHeight: 1.85, fontFamily: 'Inter, sans-serif' }}>
+            Warangal, Telangana
+          </p>
+          <div style={{ display: 'flex', gap: '1.2rem', marginTop: '1.5rem' }}>
+            {[
+              { href: 'https://www.instagram.com/mskassociates_', icon: <FaInstagram size={18} />, label: 'Instagram' },
+              { href: 'https://wa.me/919989090978', icon: <FaWhatsapp size={18} />, label: 'WhatsApp' },
+              { href: 'mailto:designs@mskassociates.com', icon: <HiOutlineMail size={18} />, label: 'Email' },
+            ].map(({ href, icon, label }) => (
+              <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined}
+                rel="noopener noreferrer" aria-label={label}
+                style={{ color: 'rgba(255,255,255,0.3)', transition: 'color 0.2s ease' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#C1440E'}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.3)'}
+              >{icon}</a>
+            ))}
+          </div>
         </div>
 
+        <div>
+          <p style={{ fontSize: '0.58rem', color: '#C1440E', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: 'Inter, sans-serif', marginBottom: '1.4rem' }}>Navigation</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+            {['Home', 'Services', 'About', 'Projects', 'Contact'].map(item => (
+              <a key={item} href={`#${item.toLowerCase()}`}
+                style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.82rem', textDecoration: 'none', fontFamily: 'Inter, sans-serif', transition: 'color 0.2s ease' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}
+              >{item}</a>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p style={{ fontSize: '0.58rem', color: '#C1440E', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: 'Inter, sans-serif', marginBottom: '1.4rem' }}>Get in Touch</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+            {[
+              { label: 'Phone', val: '+91 99890 90978' },
+              { label: 'Email', val: 'designs@mskassociates.com' },
+              { label: 'Office', val: 'Waddepally, Hanamakonda, Telangana' },
+              { label: 'Hours', val: 'Mon – Fri, 9 AM – 6 PM' },
+            ].map(({ label, val }) => (
+              <div key={label}>
+                <p style={{ fontSize: '0.54rem', color: 'rgba(255,255,255,0.22)', textTransform: 'uppercase', letterSpacing: '0.14em', fontFamily: 'Inter, sans-serif', marginBottom: '2px' }}>{label}</p>
+                <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.52)', fontFamily: 'Inter, sans-serif' }}>{val}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </footer>
-  );
-};
+
+      <div style={{ paddingTop: '1.75rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '0.5rem', alignItems: 'center' }}>
+        <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.62rem', textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Inter, sans-serif' }}>
+          © {new Date().getFullYear()} MSK Associates · All rights reserved
+        </p>
+        <p style={{ color: 'rgba(255,255,255,0.12)', fontSize: '0.58rem', fontFamily: 'Inter, sans-serif' }}>
+          Structural Engineers · Planners · Builders
+        </p>
+      </div>
+    </div>
+  </footer>
+);
 
 export default Footer;
