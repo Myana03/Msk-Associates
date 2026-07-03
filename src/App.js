@@ -83,10 +83,10 @@ function WizardModal({ onClose, onOpen }) {
             position: 'sticky', top: 0, backgroundColor: 'white', zIndex: 1,
           }}>
             <div>
-              <p style={{ fontSize: '0.6rem', color: '#C1440E', fontFamily: 'Inter', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '3px' }}>
+              <p style={{ fontSize: '0.6rem', color: '#cc785c', fontFamily: 'Inter', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '3px' }}>
                 Project Planner
               </p>
-              <p style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0F2040', fontFamily: 'Inter', lineHeight: 1.2 }}>
+              <p style={{ fontSize: '1.05rem', fontWeight: 500, color: '#141413', fontFamily: 'Inter', lineHeight: 1.2 }}>
                 What does your project need?
               </p>
             </div>
@@ -100,7 +100,7 @@ function WizardModal({ onClose, onOpen }) {
                 color: '#9ca3af', fontSize: '1rem', flexShrink: 0,
                 transition: 'border-color 0.15s, color 0.15s',
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = '#C1440E'; e.currentTarget.style.color = '#C1440E'; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = '#cc785c'; e.currentTarget.style.color = '#cc785c'; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.color = '#9ca3af'; }}
             >
               ✕
@@ -129,7 +129,7 @@ function App() {
     return (
       <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-50">
         <img src="/Images/logos/logo-light.png" alt="MSK Associates" style={{ height: '80px', width: 'auto', marginBottom: '1.5rem' }} />
-        <div className="w-8 h-8 border-4 rounded-full animate-spin" style={{borderColor:'#C1440E', borderTopColor:'transparent'}} />
+        <div className="w-8 h-8 border-4 rounded-full animate-spin" style={{borderColor:'#cc785c', borderTopColor:'transparent'}} />
       </div>
     );
   }

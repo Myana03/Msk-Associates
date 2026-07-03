@@ -16,14 +16,20 @@ const CookieNotice = () => {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-gray-900 border-t border-gray-700 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p className="text-sm text-gray-400 text-center sm:text-left">
+    <div
+      className="fixed bottom-0 left-0 right-0 z-50 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4"
+      style={{ backgroundColor: '#181715', fontFamily: 'Inter, sans-serif' }}
+    >
+      <p className="text-sm text-center sm:text-left" style={{ color: '#a09d96' }}>
         We use cookies and collect enquiry data to improve your experience. By using this site you agree to our{' '}
-        <a href="/privacy" className="text-orange-500 hover:underline">Privacy Policy</a>.
+        <a href="/privacy" className="hover:underline" style={{ color: '#cc785c' }}>Privacy Policy</a>.
       </p>
       <button
         onClick={accept}
-        className="flex-shrink-0 bg-orange-700 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-colors"
+        className="flex-shrink-0 text-sm font-medium px-5 py-2 transition-colors"
+        style={{ backgroundColor: '#cc785c', color: '#ffffff', borderRadius: '8px' }}
+        onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#a9583e'; }}
+        onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#cc785c'; }}
       >
         Got it
       </button>

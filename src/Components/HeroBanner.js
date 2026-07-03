@@ -24,7 +24,7 @@ export default function HeroBanner({ onStartProject }) {
   }, [current, tick]);
 
   return (
-    <div style={{ position: 'relative', height: '100svh', minHeight: '620px', overflow: 'hidden', backgroundColor: '#060a10' }}>
+    <div style={{ position: 'relative', height: '100svh', minHeight: '620px', overflow: 'hidden', backgroundColor: '#181715' }}>
 
       <style>{`
         @keyframes kenBurns {
@@ -44,8 +44,8 @@ export default function HeroBanner({ onStartProject }) {
         }
         .hero-btn-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 14px 40px rgba(193,68,14,0.45);
-          background-color: #a8390b;
+          box-shadow: 0 14px 40px rgba(204,120,92,0.45);
+          background-color: #a9583e;
         }
         .hero-link { transition: color 0.22s ease; }
         .hero-link:hover { color: #fff !important; }
@@ -83,17 +83,17 @@ export default function HeroBanner({ onStartProject }) {
                   /* Floor plan slide: dark only on left — plan visible on right */
                   <div style={{
                     position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-                    background: 'linear-gradient(to right, rgba(4,8,16,0.94) 0%, rgba(4,8,16,0.90) 38%, rgba(4,8,16,0.30) 62%, rgba(4,8,16,0.06) 100%)',
+                    background: 'linear-gradient(to right, rgba(24,23,21,0.94) 0%, rgba(24,23,21,0.90) 38%, rgba(24,23,21,0.30) 62%, rgba(24,23,21,0.06) 100%)',
                   }} />
                 ) : (
                   <>
                     <div style={{
                       position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-                      background: 'linear-gradient(110deg, rgba(4,8,16,0.86) 0%, rgba(4,8,16,0.58) 55%, rgba(4,8,16,0.18) 100%)',
+                      background: 'linear-gradient(110deg, rgba(24,23,21,0.86) 0%, rgba(24,23,21,0.58) 55%, rgba(24,23,21,0.18) 100%)',
                     }} />
                     <div style={{
                       position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-                      background: 'linear-gradient(to top, rgba(4,8,16,0.82) 0%, rgba(4,8,16,0) 42%)',
+                      background: 'linear-gradient(to top, rgba(24,23,21,0.82) 0%, rgba(24,23,21,0) 42%)',
                     }} />
                   </>
                 )}
@@ -124,7 +124,7 @@ export default function HeroBanner({ onStartProject }) {
             marginBottom: '1.8rem',
           }}
         >
-          <span style={{ display: 'inline-block', width: '26px', height: '1.5px', backgroundColor: '#C1440E', flexShrink: 0 }} />
+          <span style={{ display: 'inline-block', width: '26px', height: '1.5px', backgroundColor: '#cc785c', flexShrink: 0 }} />
           Structural Engineers · Warangal, Telangana
         </motion.p>
 
@@ -135,9 +135,9 @@ export default function HeroBanner({ onStartProject }) {
             animate={{ y: '0%' }}
             transition={{ duration: 0.95, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              fontFamily: 'Cormorant Garant, Georgia, serif',
+              fontFamily: 'Cormorant Garamond, Georgia, serif',
               fontSize: 'clamp(2rem, 8vw, 6.8rem)',
-              fontWeight: 700, lineHeight: 0.92,
+              fontWeight: 500, lineHeight: 0.92,
               letterSpacing: '-0.035em', color: '#ffffff', margin: 0,
             }}
           >
@@ -152,9 +152,9 @@ export default function HeroBanner({ onStartProject }) {
             animate={{ y: '0%' }}
             transition={{ duration: 0.95, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              fontFamily: 'Cormorant Garant, Georgia, serif',
+              fontFamily: 'Cormorant Garamond, Georgia, serif',
               fontSize: 'clamp(2rem, 8vw, 6.8rem)',
-              fontWeight: 700, lineHeight: 0.92,
+              fontWeight: 500, lineHeight: 0.92,
               letterSpacing: '-0.035em', color: '#ffffff', margin: 0,
             }}
           >
@@ -167,7 +167,7 @@ export default function HeroBanner({ onStartProject }) {
           initial={{ width: 0 }}
           animate={{ width: '48px' }}
           transition={{ duration: 0.5, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          style={{ height: '2px', backgroundColor: '#C1440E', marginBottom: '1.6rem' }}
+          style={{ height: '2px', backgroundColor: '#cc785c', marginBottom: '1.6rem' }}
         />
 
         {/* Sub */}
@@ -228,7 +228,7 @@ export default function HeroBanner({ onStartProject }) {
             <div style={{
               width: i === current ? '32px' : '8px',
               height: '2px', borderRadius: '2px',
-              backgroundColor: i === current ? '#C1440E' : 'rgba(255,255,255,0.28)',
+              backgroundColor: i === current ? '#cc785c' : 'rgba(255,255,255,0.28)',
               transition: 'width 0.4s ease, background-color 0.4s ease',
               position: 'relative', overflow: 'hidden',
             }}>
@@ -237,7 +237,7 @@ export default function HeroBanner({ onStartProject }) {
                   key={`fill-${tick}`}
                   style={{
                     position: 'absolute', left: 0, top: 0, bottom: 0,
-                    backgroundColor: '#C1440E',
+                    backgroundColor: '#cc785c',
                     animation: `progressFill ${DURATION}ms linear forwards`,
                   }}
                 />

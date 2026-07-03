@@ -92,7 +92,7 @@ export default function PhotoGallery() {
       <style>{`
         .gallery-img { transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
         .gallery-cell:hover .gallery-img { transform: scale(1.06); }
-        .gallery-overlay { opacity: 0; transition: opacity 0.3s ease; background: rgba(26,23,20,0.38); }
+        .gallery-overlay { opacity: 0; transition: opacity 0.3s ease; background: rgba(20,20,19,0.38); }
         .gallery-cell:hover .gallery-overlay { opacity: 1; }
       `}</style>
 
@@ -114,7 +114,7 @@ export default function PhotoGallery() {
               overflow: 'hidden',
               cursor: 'pointer',
               position: 'relative',
-              backgroundColor: '#e0dbd2',
+              backgroundColor: '#e6dfd8',
             }}
           >
             <img
@@ -130,7 +130,7 @@ export default function PhotoGallery() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
               <span style={{
-                fontSize: '0.6rem', fontWeight: 700,
+                fontSize: '0.6rem', fontWeight: 500,
                 color: 'rgba(255,255,255,0.9)', letterSpacing: '0.2em',
                 textTransform: 'uppercase', fontFamily: 'Inter, sans-serif',
               }}>View</span>
@@ -144,16 +144,16 @@ export default function PhotoGallery() {
         <button
           onClick={() => openLightbox(0)}
           style={{
-            background: 'none', border: '1px solid #c8c4bc',
+            background: 'none', border: '1px solid #e6dfd8',
             borderRadius: '3px', padding: '11px 28px',
-            fontSize: '0.68rem', fontWeight: 700,
+            fontSize: '0.68rem', fontWeight: 500,
             fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em',
             textTransform: 'uppercase', cursor: 'pointer',
-            color: '#1a1714',
+            color: '#141413',
             transition: 'border-color 0.2s ease, color 0.2s ease',
           }}
-          onMouseEnter={e => { e.currentTarget.style.borderColor = '#C1440E'; e.currentTarget.style.color = '#C1440E'; }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor = '#c8c4bc'; e.currentTarget.style.color = '#1a1714'; }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = '#cc785c'; e.currentTarget.style.color = '#cc785c'; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = '#e6dfd8'; e.currentTarget.style.color = '#141413'; }}
         >
           Browse Projects
         </button>
