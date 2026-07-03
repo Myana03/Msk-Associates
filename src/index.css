@@ -1,7 +1,7 @@
 :root {
-  --primary-color: #0F2040; /* dark navy */
-  --accent-color: #C1440E; /* terracotta */
-  --light-bg: #EDEAE3;
+  --primary-color: #141413; /* warm ink */
+  --accent-color: #cc785c; /* Anthropic coral */
+  --light-bg: #f5f0e8;
 }
 
 * {
@@ -20,15 +20,15 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #EDEAE3;
-  color: #1a1714;
+  background-color: #faf9f5;
+  color: #141413;
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cormorant Garant', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   color: var(--primary-color);
 }
 
@@ -41,7 +41,7 @@ a {
   background-color: var(--accent-color);
   color: #fff;
   padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+  border-radius: 8px;
   text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -56,7 +56,7 @@ a {
 }
 .btn-primary:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px rgba(193, 68, 14, 0.38) !important;
+  box-shadow: 0 8px 24px rgba(204, 120, 92, 0.38) !important;
 }
 
 .btn-outline {
@@ -120,7 +120,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #f3f4f6 inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px #faf9f5 inset !important;
   -webkit-text-fill-color: #111827 !important;
   caret-color: #111827;
 }

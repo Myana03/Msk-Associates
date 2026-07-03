@@ -66,22 +66,22 @@ function Header({ onStartProject }) {
               alt="MSK Associates"
               style={{ height: '60px', width: 'auto', display: 'block', transition: 'opacity 0.4s ease' }}
             />
-            <div className="hidden sm:flex flex-col justify-center" style={{ borderLeft: '2px solid #C1440E', paddingLeft: '1rem' }}>
+            <div className="hidden sm:flex flex-col justify-center" style={{ borderLeft: '2px solid #cc785c', paddingLeft: '1rem' }}>
               <span style={{
                 fontFamily: 'Inter, sans-serif', fontSize: '1.2rem', fontWeight: 900,
                 letterSpacing: '0.2em', lineHeight: 1,
-                color: onDark ? '#ffffff' : '#1a1714',
+                color: onDark ? '#ffffff' : '#141413',
                 transition: 'color 0.5s ease',
               }}>
                 MSKASSOCIATES
               </span>
               <span style={{
                 fontFamily: 'Inter, sans-serif', fontSize: '0.6rem', letterSpacing: '0.06em', lineHeight: 1,
-                color: onDark ? 'rgba(255,255,255,0.45)' : '#888',
+                color: onDark ? 'rgba(255,255,255,0.45)' : '#6c6a64',
                 marginTop: '4px',
                 transition: 'color 0.5s ease',
               }}>
-                Structural Engineers <span style={{ color: '#C1440E' }}>·</span> Planners <span style={{ color: '#C1440E' }}>·</span> Builders
+                Structural Engineers <span style={{ color: '#cc785c' }}>·</span> Planners <span style={{ color: '#cc785c' }}>·</span> Builders
               </span>
             </div>
           </a>
@@ -95,7 +95,7 @@ function Header({ onStartProject }) {
                 className={`msk-nav-link relative px-3 py-2 text-sm${activeLink === link.id ? ' active' : ''}`}
                 style={{
                   color: activeLink === link.id
-                    ? '#C1440E'
+                    ? '#cc785c'
                     : onDark ? 'rgba(255,255,255,0.7)' : '#6b7280',
                   fontWeight: activeLink === link.id ? 700 : 500,
                   textDecoration: 'none',
@@ -106,7 +106,7 @@ function Header({ onStartProject }) {
                 {link.label}
                 <span className="msk-underline" style={{
                   position: 'absolute', bottom: '4px', left: '12px', right: '12px',
-                  height: '1.5px', backgroundColor: '#C1440E', display: 'block',
+                  height: '1.5px', backgroundColor: '#cc785c', display: 'block',
                 }} />
               </a>
             ))}
@@ -117,16 +117,16 @@ function Header({ onStartProject }) {
             onClick={onStartProject}
             className="hidden md:inline-flex items-center"
             style={{
-              backgroundColor: '#C1440E', color: '#fff',
-              border: 'none', borderRadius: '3px',
+              backgroundColor: '#cc785c', color: '#fff',
+              border: 'none', borderRadius: '8px',
               padding: '9px 22px',
-              fontSize: '0.65rem', fontWeight: 700,
+              fontSize: '0.65rem', fontWeight: 500,
               fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em',
               textTransform: 'uppercase', cursor: 'pointer',
               transition: 'background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
             }}
-            onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#a8390b'; e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(193,68,14,0.35)'; }}
-            onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#C1440E'; e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}
+            onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#a9583e'; e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(204,120,92,0.35)'; }}
+            onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#cc785c'; e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}
           >
             Start a Project
           </button>
@@ -136,10 +136,10 @@ function Header({ onStartProject }) {
             <button
               onClick={onStartProject}
               style={{
-                backgroundColor: '#C1440E', color: '#fff',
-                border: 'none', borderRadius: '3px',
+                backgroundColor: '#cc785c', color: '#fff',
+                border: 'none', borderRadius: '8px',
                 padding: '8px 14px',
-                fontSize: '0.58rem', fontWeight: 700,
+                fontSize: '0.58rem', fontWeight: 500,
                 fontFamily: 'Inter, sans-serif', letterSpacing: '0.09em',
                 textTransform: 'uppercase', cursor: 'pointer',
                 whiteSpace: 'nowrap',
@@ -179,7 +179,7 @@ function Header({ onStartProject }) {
                   transition={{ delay: i * 0.04, duration: 0.18 }}
                   className="block py-3 text-sm font-medium"
                   style={{
-                    color: activeLink === link.id ? '#C1440E' : '#374151',
+                    color: activeLink === link.id ? '#cc785c' : '#374151',
                     fontWeight: activeLink === link.id ? 700 : 500,
                     borderBottom: '1px solid rgba(0,0,0,0.05)',
                     textDecoration: 'none',
@@ -198,9 +198,9 @@ function Header({ onStartProject }) {
                 <button
                   onClick={() => { setMenuOpen(false); if (onStartProject) onStartProject(); }}
                   style={{
-                    width: '100%', backgroundColor: '#C1440E', color: '#fff',
-                    border: 'none', borderRadius: '3px', padding: '13px',
-                    fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em',
+                    width: '100%', backgroundColor: '#cc785c', color: '#fff',
+                    border: 'none', borderRadius: '8px', padding: '13px',
+                    fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.1em',
                     textTransform: 'uppercase', cursor: 'pointer',
                     fontFamily: 'Inter, sans-serif',
                   }}
