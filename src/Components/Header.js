@@ -36,14 +36,16 @@ function Header({ onStartProject }) {
     { id: 'contact', label: 'Contact' },
   ];
 
+  const onDark = !scrolled;
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50"
       style={{
-        backgroundColor: scrolled ? 'rgba(247,244,237,0.96)' : '#f7f4ed',
+        backgroundColor: scrolled ? 'rgba(247,244,237,0.96)' : 'transparent',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: scrolled ? '1px solid #eceae4' : '1px solid transparent',
+        borderBottom: scrolled ? '1px solid #eceae4' : '1px solid rgba(255,255,255,0.08)',
         transition: 'background-color 0.4s ease, border-color 0.4s ease',
       }}
     >
@@ -52,20 +54,24 @@ function Header({ onStartProject }) {
         {/* Logo */}
         <a href="#home" className="flex items-center gap-4">
           <img
-            src="/Images/logos/logo-light.png"
+            src={onDark ? '/Images/logos/logo-dark.png' : '/Images/logos/logo-light.png'}
             alt="MSK Associates"
-            style={{ height: '56px', width: 'auto', display: 'block' }}
+            style={{ height: '56px', width: 'auto', display: 'block', transition: 'opacity 0.4s ease' }}
           />
-          <div className="hidden sm:flex flex-col justify-center" style={{ borderLeft: '1px solid #eceae4', paddingLeft: '1rem' }}>
+          <div className="hidden sm:flex flex-col justify-center" style={{ borderLeft: onDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid #eceae4', paddingLeft: '1rem', transition: 'border-color 0.4s ease' }}>
             <span style={{
               fontFamily: 'Figtree, sans-serif', fontSize: '1.1rem', fontWeight: 600,
-              letterSpacing: '0.14em', lineHeight: 1, color: '#1c1c1c',
+              letterSpacing: '0.14em', lineHeight: 1,
+              color: onDark ? '#ffffff' : '#1c1c1c',
+              transition: 'color 0.4s ease',
             }}>
               MSKASSOCIATES
             </span>
             <span style={{
               fontFamily: 'Figtree, sans-serif', fontSize: '0.6rem', letterSpacing: '0.06em', lineHeight: 1,
-              color: '#5f5f5d', marginTop: '4px',
+              color: onDark ? 'rgba(255,255,255,0.45)' : '#5f5f5d',
+              marginTop: '4px',
+              transition: 'color 0.4s ease',
             }}>
               Structural Engineers · Planners · Builders
             </span>
@@ -80,13 +86,13 @@ function Header({ onStartProject }) {
               href={`#${link.id}`}
               className="relative px-3 py-2 text-sm"
               style={{
-                color: '#1c1c1c',
+                color: onDark ? 'rgba(255,255,255,0.85)' : '#1c1c1c',
                 fontWeight: 400,
                 textDecoration: activeLink === link.id ? 'underline' : 'none',
                 textUnderlineOffset: '5px',
                 textDecorationThickness: '1.5px',
                 fontFamily: 'Figtree, sans-serif',
-                transition: 'opacity 0.2s ease',
+                transition: 'color 0.4s ease',
               }}
               onMouseEnter={e => { e.currentTarget.style.textDecoration = 'underline'; }}
               onMouseLeave={e => { if (activeLink !== link.id) e.currentTarget.style.textDecoration = 'none'; }}
@@ -101,14 +107,15 @@ function Header({ onStartProject }) {
           onClick={onStartProject}
           className="hidden md:inline-flex items-center"
           style={{
-            backgroundColor: '#1c1c1c', color: '#fcfbf8',
+            backgroundColor: onDark ? '#f7f4ed' : '#1c1c1c',
+            color: onDark ? '#1c1c1c' : '#fcfbf8',
             border: 'none', borderRadius: '6px',
             padding: '8px 16px',
             fontSize: '0.88rem', fontWeight: 400,
             fontFamily: 'Figtree, sans-serif',
             cursor: 'pointer',
             boxShadow: INSET_SHADOW,
-            transition: 'opacity 0.2s ease',
+            transition: 'opacity 0.2s ease, background-color 0.4s ease, color 0.4s ease',
           }}
           onMouseEnter={e => { e.currentTarget.style.opacity = '0.8'; }}
           onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
@@ -121,13 +128,15 @@ function Header({ onStartProject }) {
           <button
             onClick={onStartProject}
             style={{
-              backgroundColor: '#1c1c1c', color: '#fcfbf8',
+              backgroundColor: onDark ? '#f7f4ed' : '#1c1c1c',
+              color: onDark ? '#1c1c1c' : '#fcfbf8',
               border: 'none', borderRadius: '6px',
               padding: '8px 14px',
               fontSize: '0.78rem', fontWeight: 400,
               fontFamily: 'Figtree, sans-serif',
               cursor: 'pointer', whiteSpace: 'nowrap',
               boxShadow: INSET_SHADOW,
+              transition: 'background-color 0.4s ease, color 0.4s ease',
             }}
           >
             Start a Project
@@ -136,7 +145,7 @@ function Header({ onStartProject }) {
             className="p-2"
             onClick={() => setMenuOpen(v => !v)}
             aria-label="Toggle menu"
-            style={{ color: '#1c1c1c', borderRadius: '6px' }}
+            style={{ color: onDark ? 'rgba(255,255,255,0.85)' : '#1c1c1c', borderRadius: '6px', transition: 'color 0.4s ease' }}
           >
             {menuOpen ? <HiX className="w-6 h-6" /> : <HiMenu className="w-6 h-6" />}
           </button>
