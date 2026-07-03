@@ -52,7 +52,7 @@ export default function WhatWeDo() {
   const [open, setOpen] = useState('structural');
 
   return (
-    <div style={{ backgroundColor: '#FAFAF8', borderTop: '1px solid #e0dbd2' }}>
+    <div style={{ backgroundColor: '#ffffff', borderTop: '1px solid #e2e2e2' }}>
       <style>{`
         @media (max-width: 768px) {
           .wwd-panel { grid-template-columns: 1fr !important; }
@@ -75,25 +75,25 @@ export default function WhatWeDo() {
         >
           <p style={{
             display: 'flex', alignItems: 'center', gap: '0.8rem',
-            fontSize: '0.58rem', color: '#C1440E', fontWeight: 700,
+            fontSize: '0.58rem', color: '#000000', fontWeight: 700,
             textTransform: 'uppercase', letterSpacing: '0.22em',
             fontFamily: 'Inter, sans-serif', marginBottom: '1.2rem',
           }}>
-            <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#C1440E' }} />
+            <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#000000' }} />
             What We Do
           </p>
           <h2 style={{
-            fontFamily: 'Cormorant Garant, Georgia, serif',
+            fontFamily: 'Inter, sans-serif',
             fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)',
-            fontWeight: 700, lineHeight: 1.0,
-            letterSpacing: '-0.025em', color: '#1a1714', margin: 0,
+            fontWeight: 700, lineHeight: 1.08,
+            letterSpacing: '0', color: '#000000', margin: 0,
           }}>
             Four disciplines.<br />One team.
           </h2>
         </motion.div>
 
         {/* Accordion */}
-        <div style={{ borderTop: '1px solid #e0dbd2' }}>
+        <div style={{ borderTop: '1px solid #e2e2e2' }}>
           {services.map((s, idx) => {
             const isOpen = open === s.id;
             return (
@@ -103,7 +103,7 @@ export default function WhatWeDo() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                style={{ borderBottom: '1px solid #e0dbd2' }}
+                style={{ borderBottom: '1px solid #e2e2e2' }}
               >
                 {/* Row trigger */}
                 <button
@@ -119,7 +119,7 @@ export default function WhatWeDo() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(1rem, 3vw, 2.5rem)' }}>
                     <span style={{
                       fontSize: '0.55rem', fontWeight: 700,
-                      color: isOpen ? '#C1440E' : '#b0a89e',
+                      color: isOpen ? '#000000' : '#afafaf',
                       fontFamily: 'Inter, sans-serif', letterSpacing: '0.18em',
                       transition: 'color 0.3s ease', flexShrink: 0,
                     }}>{s.num}</span>
@@ -128,15 +128,15 @@ export default function WhatWeDo() {
                     <span style={{
                       display: 'inline-block',
                       width: isOpen ? '28px' : '0px', height: '2px',
-                      backgroundColor: '#C1440E', flexShrink: 0,
+                      backgroundColor: '#000000', flexShrink: 0,
                       transition: 'width 0.35s ease',
                     }} />
 
                     <span className="wwd-title" style={{
-                      fontFamily: 'Cormorant Garant, Georgia, serif',
+                      fontFamily: 'Inter, sans-serif',
                       fontSize: 'clamp(1.5rem, 3.5vw, 2.4rem)',
-                      fontWeight: 700, letterSpacing: '-0.025em',
-                      color: isOpen ? '#1a1714' : '#6b6460',
+                      fontWeight: 700, letterSpacing: '0',
+                      color: isOpen ? '#000000' : '#5e5e5e',
                       transition: 'color 0.3s ease',
                       lineHeight: 1,
                     }}>{s.title}</span>
@@ -146,7 +146,7 @@ export default function WhatWeDo() {
                   <span style={{
                     fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
                     fontWeight: 300,
-                    color: isOpen ? '#C1440E' : '#b0a89e',
+                    color: isOpen ? '#000000' : '#afafaf',
                     transition: 'color 0.3s ease, transform 0.4s ease',
                     transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
                     display: 'inline-block', lineHeight: 1,
@@ -209,7 +209,7 @@ export default function WhatWeDo() {
                           />
                           <div style={{
                             position: 'absolute', bottom: 0, left: 0, right: 0,
-                            height: '3px', backgroundColor: '#C1440E',
+                            height: '3px', backgroundColor: '#000000',
                           }} />
                         </motion.div>
 
@@ -224,18 +224,18 @@ export default function WhatWeDo() {
                           }}
                         >
                           <h3 style={{
-                            fontFamily: 'Cormorant Garant, Georgia, serif',
+                            fontFamily: 'Inter, sans-serif',
                             fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
                             fontWeight: 700, lineHeight: 0.96,
-                            letterSpacing: '-0.03em', color: '#1a1714',
+                            letterSpacing: '-0.03em', color: '#000000',
                             margin: '0 0 1.6rem',
                             whiteSpace: 'pre-line',
                           }}>{`${s.line1}\n${s.line2}`}</h3>
 
-                          <div style={{ width: '36px', height: '2px', backgroundColor: '#C1440E', marginBottom: '1.4rem' }} />
+                          <div style={{ width: '36px', height: '2px', backgroundColor: '#000000', marginBottom: '1.4rem' }} />
 
                           <p style={{
-                            color: '#6b6460', lineHeight: 1.88,
+                            color: '#5e5e5e', lineHeight: 1.88,
                             fontSize: 'clamp(0.82rem, 1.2vw, 0.92rem)',
                             fontFamily: 'Inter, sans-serif',
                           }}>{s.body}</p>

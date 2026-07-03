@@ -3,7 +3,7 @@ import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 
 const Footer = () => (
-  <footer style={{ backgroundColor: '#1a1714', borderTop: '3px solid #C1440E' }}>
+  <footer style={{ backgroundColor: '#000000', borderTop: '3px solid rgba(255,255,255,0.08)' }}>
     <div className="max-w-7xl mx-auto px-6 lg:px-14" style={{ paddingTop: '4rem', paddingBottom: '3rem' }}>
 
       <div className="grid md:grid-cols-3 gap-12" style={{ paddingBottom: '3rem', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
@@ -27,7 +27,7 @@ const Footer = () => (
               <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined}
                 rel="noopener noreferrer" aria-label={label}
                 style={{ color: 'rgba(255,255,255,0.3)', transition: 'color 0.2s ease' }}
-                onMouseEnter={e => e.currentTarget.style.color = '#C1440E'}
+                onMouseEnter={e => e.currentTarget.style.color = '#ffffff'}
                 onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.3)'}
               >{icon}</a>
             ))}
@@ -35,7 +35,7 @@ const Footer = () => (
         </div>
 
         <div>
-          <p style={{ fontSize: '0.58rem', color: '#C1440E', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: 'Inter, sans-serif', marginBottom: '1.4rem' }}>Navigation</p>
+          <p style={{ fontSize: '0.58rem', color: 'rgba(255,255,255,0.45)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: 'Inter, sans-serif', marginBottom: '1.4rem' }}>Navigation</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
             {['Home', 'Services', 'About', 'Projects', 'Contact'].map(item => (
               <a key={item} href={`#${item.toLowerCase()}`}
@@ -48,7 +48,7 @@ const Footer = () => (
         </div>
 
         <div>
-          <p style={{ fontSize: '0.58rem', color: '#C1440E', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: 'Inter, sans-serif', marginBottom: '1.4rem' }}>Get in Touch</p>
+          <p style={{ fontSize: '0.58rem', color: 'rgba(255,255,255,0.45)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: 'Inter, sans-serif', marginBottom: '1.4rem' }}>Get in Touch</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
             {[
               { label: 'Phone', val: '+91 99890 90978' },

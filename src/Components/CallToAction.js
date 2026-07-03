@@ -11,7 +11,7 @@ const items = [
 ];
 
 const CallToAction = () => (
-  <div style={{ backgroundColor: '#FAFAF8', borderTop: '1px solid #e0dbd2' }}>
+  <div style={{ backgroundColor: '#000000' }}>
     <div
       className="max-w-7xl mx-auto px-6 lg:px-14 cta-grid"
       style={{
@@ -32,24 +32,24 @@ const CallToAction = () => (
       >
         <p style={{
           display: 'flex', alignItems: 'center', gap: '0.8rem',
-          fontSize: '0.58rem', color: '#C1440E', fontWeight: 700,
+          fontSize: '0.58rem', color: 'rgba(255,255,255,0.4)', fontWeight: 700,
           textTransform: 'uppercase', letterSpacing: '0.22em',
           fontFamily: 'Inter, sans-serif', marginBottom: '1.2rem',
         }}>
-          <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#C1440E' }} />
+          <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: 'rgba(255,255,255,0.2)' }} />
           Our Capabilities
         </p>
         <h2 className="cta-heading" style={{
-          fontFamily: 'Cormorant Garant, Georgia, serif',
+          fontFamily: 'Inter, sans-serif',
           fontSize: 'clamp(2.2rem, 3.8vw, 3.4rem)',
-          fontWeight: 700, lineHeight: 1.0,
-          letterSpacing: '-0.025em', color: '#1a1714',
+          fontWeight: 700, lineHeight: 1.08,
+          letterSpacing: '-0.015em', color: '#ffffff',
           margin: '0 0 1.8rem',
         }}>
           Every service<br />your project needs.
         </h2>
         <p style={{
-          color: '#888', lineHeight: 1.85, fontSize: '0.88rem',
+          color: 'rgba(255,255,255,0.55)', lineHeight: 1.85, fontSize: '0.88rem',
           fontFamily: 'Inter, sans-serif', margin: '0 0 2rem',
           maxWidth: '320px',
         }}>
@@ -57,22 +57,22 @@ const CallToAction = () => (
         </p>
         <a href="#contact" style={{
           display: 'inline-block',
-          backgroundColor: '#C1440E', color: '#fff',
-          borderRadius: '3px', padding: '13px 32px',
+          backgroundColor: '#ffffff', color: '#000000',
+          borderRadius: '9999px', padding: '13px 32px',
           fontSize: '0.75rem', fontWeight: 700,
           fontFamily: 'Inter, sans-serif', letterSpacing: '0.07em',
           textTransform: 'uppercase', textDecoration: 'none',
-          transition: 'transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease',
+          transition: 'background-color 0.2s ease, transform 0.2s ease',
         }}
-          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 14px 36px rgba(193,68,14,0.3)'; e.currentTarget.style.backgroundColor = '#a8390b'; }}
-          onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; e.currentTarget.style.backgroundColor = '#C1440E'; }}
+          onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#efefef'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+          onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.transform = ''; }}
         >
           Get in Touch →
         </a>
       </motion.div>
 
-      {/* Right — compact service list */}
-      <div style={{ borderTop: '1px solid #e0dbd2' }}>
+      {/* Right — service list */}
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
         {items.map((title, i) => (
           <motion.div
             key={title}
@@ -82,21 +82,21 @@ const CallToAction = () => (
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',
               padding: '1.35rem 0',
-              borderBottom: '1px solid #e0dbd2',
+              borderBottom: '1px solid rgba(255,255,255,0.1)',
               gap: '1rem',
             }}
           >
             <p style={{
-              fontFamily: 'Cormorant Garant, Georgia, serif',
+              fontFamily: 'Inter, sans-serif',
               fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)',
-              fontWeight: 600, color: '#1a1714',
+              fontWeight: 600, color: 'rgba(255,255,255,0.88)',
               letterSpacing: '-0.01em', lineHeight: 1.2,
               margin: 0,
             }}>{title}</p>
             <span style={{
               flexShrink: 0,
               width: '20px', height: '1px',
-              backgroundColor: '#C1440E',
+              backgroundColor: 'rgba(255,255,255,0.25)',
               display: 'inline-block',
             }} />
           </motion.div>

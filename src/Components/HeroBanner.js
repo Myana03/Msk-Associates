@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 
 const DURATION = 5500;
 
-// General company photos cycling in background — headline stays fixed
 const bgPhotos = [
   { src: 'https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=1920&q=90&auto=format&fit=crop', pos: 'center 50%' },
   { src: 'https://images.unsplash.com/photo-1653312571624-62757bb625f5?w=1920&q=90&auto=format&fit=crop', pos: 'center 40%' },
@@ -24,7 +23,7 @@ export default function HeroBanner({ onStartProject }) {
   }, [current, tick]);
 
   return (
-    <div style={{ position: 'relative', height: '100svh', minHeight: '620px', overflow: 'hidden', backgroundColor: '#060a10' }}>
+    <div style={{ position: 'relative', height: '100svh', minHeight: '620px', overflow: 'hidden', backgroundColor: '#000000' }}>
 
       <style>{`
         @keyframes kenBurns {
@@ -39,21 +38,13 @@ export default function HeroBanner({ onStartProject }) {
           0%   { top: -45%; }
           100% { top: 110%; }
         }
-        .hero-btn-primary {
-          transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
-        }
-        .hero-btn-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 14px 40px rgba(193,68,14,0.45);
-          background-color: #a8390b;
-        }
         .hero-link { transition: color 0.22s ease; }
         .hero-link:hover { color: #fff !important; }
         .hero-link:hover .hero-link-line { width: 42px !important; }
         .hero-link-line { transition: width 0.3s ease; }
       `}</style>
 
-      {/* ── Background photos — crossfade, gradients per-slide ── */}
+      {/* ── Background photos — crossfade ── */}
       {bgPhotos.map((p, i) => {
         const next = (current + 1) % bgPhotos.length;
         const shouldLoad = i === current || i === next;
@@ -66,7 +57,6 @@ export default function HeroBanner({ onStartProject }) {
           }}>
             {shouldLoad && (
               <>
-                {/* Photo layer */}
                 <div
                   key={i === current ? `kb-${tick}` : `idle-${i}`}
                   style={{
@@ -75,28 +65,16 @@ export default function HeroBanner({ onStartProject }) {
                     backgroundSize: 'cover', backgroundPosition: p.pos,
                     willChange: 'transform',
                     animation: i === current ? `kenBurns ${DURATION + 2000}ms ease-out forwards` : 'none',
-                    filter: p.lightBg ? 'invert(1) brightness(0.88)' : 'none',
                   }}
                 />
-                {/* Per-slide gradient overlay */}
-                {p.lightBg ? (
-                  /* Floor plan slide: dark only on left — plan visible on right */
-                  <div style={{
-                    position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-                    background: 'linear-gradient(to right, rgba(4,8,16,0.94) 0%, rgba(4,8,16,0.90) 38%, rgba(4,8,16,0.30) 62%, rgba(4,8,16,0.06) 100%)',
-                  }} />
-                ) : (
-                  <>
-                    <div style={{
-                      position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-                      background: 'linear-gradient(110deg, rgba(4,8,16,0.86) 0%, rgba(4,8,16,0.58) 55%, rgba(4,8,16,0.18) 100%)',
-                    }} />
-                    <div style={{
-                      position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-                      background: 'linear-gradient(to top, rgba(4,8,16,0.82) 0%, rgba(4,8,16,0) 42%)',
-                    }} />
-                  </>
-                )}
+                <div style={{
+                  position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
+                  background: 'linear-gradient(110deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.60) 55%, rgba(0,0,0,0.18) 100%)',
+                }} />
+                <div style={{
+                  position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 42%)',
+                }} />
               </>
             )}
           </div>
@@ -124,7 +102,7 @@ export default function HeroBanner({ onStartProject }) {
             marginBottom: '1.8rem',
           }}
         >
-          <span style={{ display: 'inline-block', width: '26px', height: '1.5px', backgroundColor: '#C1440E', flexShrink: 0 }} />
+          <span style={{ display: 'inline-block', width: '26px', height: '1.5px', backgroundColor: 'rgba(255,255,255,0.25)', flexShrink: 0 }} />
           Structural Engineers · Warangal, Telangana
         </motion.p>
 
@@ -135,10 +113,10 @@ export default function HeroBanner({ onStartProject }) {
             animate={{ y: '0%' }}
             transition={{ duration: 0.95, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              fontFamily: 'Cormorant Garant, Georgia, serif',
+              fontFamily: 'Inter, sans-serif',
               fontSize: 'clamp(2rem, 8vw, 6.8rem)',
-              fontWeight: 700, lineHeight: 0.92,
-              letterSpacing: '-0.035em', color: '#ffffff', margin: 0,
+              fontWeight: 700, lineHeight: 1.02,
+              letterSpacing: '-0.01em', color: '#ffffff', margin: 0,
             }}
           >
             Built by the people
@@ -152,10 +130,10 @@ export default function HeroBanner({ onStartProject }) {
             animate={{ y: '0%' }}
             transition={{ duration: 0.95, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              fontFamily: 'Cormorant Garant, Georgia, serif',
+              fontFamily: 'Inter, sans-serif',
               fontSize: 'clamp(2rem, 8vw, 6.8rem)',
-              fontWeight: 700, lineHeight: 0.92,
-              letterSpacing: '-0.035em', color: '#ffffff', margin: 0,
+              fontWeight: 700, lineHeight: 1.02,
+              letterSpacing: '-0.01em', color: '#ffffff', margin: 0,
             }}
           >
             who designed it.
@@ -167,7 +145,7 @@ export default function HeroBanner({ onStartProject }) {
           initial={{ width: 0 }}
           animate={{ width: '48px' }}
           transition={{ duration: 0.5, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          style={{ height: '2px', backgroundColor: '#C1440E', marginBottom: '1.6rem' }}
+          style={{ height: '2px', backgroundColor: 'rgba(255,255,255,0.25)', marginBottom: '1.6rem' }}
         />
 
         {/* Sub */}
@@ -184,7 +162,7 @@ export default function HeroBanner({ onStartProject }) {
           From the first drawing to the final finish — design, approvals, interiors, and execution under one roof.
         </motion.p>
 
-        {/* CTAs */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -209,7 +187,7 @@ export default function HeroBanner({ onStartProject }) {
         </motion.div>
       </div>
 
-      {/* ── Photo progress dots — bottom right ── */}
+      {/* ── Progress dots ── */}
       <div style={{
         position: 'absolute',
         bottom: 'clamp(2rem, 4vh, 3.5rem)',
@@ -221,14 +199,12 @@ export default function HeroBanner({ onStartProject }) {
           <button
             key={i}
             onClick={() => { setCurrent(i); setTick(k => k + 1); }}
-            style={{
-              background: 'none', border: 'none', cursor: 'pointer', padding: '6px 0',
-            }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '6px 0' }}
           >
             <div style={{
               width: i === current ? '32px' : '8px',
               height: '2px', borderRadius: '2px',
-              backgroundColor: i === current ? '#C1440E' : 'rgba(255,255,255,0.28)',
+              backgroundColor: i === current ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.28)',
               transition: 'width 0.4s ease, background-color 0.4s ease',
               position: 'relative', overflow: 'hidden',
             }}>
@@ -237,7 +213,7 @@ export default function HeroBanner({ onStartProject }) {
                   key={`fill-${tick}`}
                   style={{
                     position: 'absolute', left: 0, top: 0, bottom: 0,
-                    backgroundColor: '#C1440E',
+                    backgroundColor: 'rgba(255,255,255,0.9)',
                     animation: `progressFill ${DURATION}ms linear forwards`,
                   }}
                 />
@@ -247,7 +223,7 @@ export default function HeroBanner({ onStartProject }) {
         ))}
       </div>
 
-      {/* ── Scroll indicator — bottom center ── */}
+      {/* ── Scroll indicator ── */}
       <div style={{
         position: 'absolute',
         bottom: 'clamp(1.8rem, 3vh, 2.5rem)',

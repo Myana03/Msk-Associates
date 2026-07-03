@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #0F2040; /* dark navy */
-  --accent-color: #C1440E; /* terracotta */
+  --primary-color: #000000; /* dark navy */
+  --accent-color: #000000; /* terracotta */
   --light-bg: #EDEAE3;
 }
 
@@ -56,7 +56,7 @@ a {
 }
 .btn-primary:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px rgba(193, 68, 14, 0.38) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
 }
 
 .btn-outline {

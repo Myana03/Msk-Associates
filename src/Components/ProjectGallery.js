@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import PhotoGallery from './PhotoGallery';
 
 const ProjectGallery = () => (
-  <div style={{ backgroundColor: '#EDEAE3' }}>
+  <div style={{ backgroundColor: '#efefef' }}>
     <div className="max-w-7xl mx-auto px-6 lg:px-14" style={{ paddingTop: '7rem', paddingBottom: '7rem' }}>
 
       <motion.div
@@ -15,18 +15,18 @@ const ProjectGallery = () => (
       >
         <p style={{
           display: 'flex', alignItems: 'center', gap: '0.8rem',
-          fontSize: '0.58rem', color: '#C1440E', fontWeight: 700,
+          fontSize: '0.58rem', color: '#000000', fontWeight: 700,
           textTransform: 'uppercase', letterSpacing: '0.22em',
           fontFamily: 'Inter, sans-serif', marginBottom: '1.4rem',
         }}>
-          <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#C1440E' }} />
+          <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#000000' }} />
           Our Work
         </p>
         <h2 style={{
-          fontFamily: 'Cormorant Garant, Georgia, serif',
+          fontFamily: 'Inter, sans-serif',
           fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)',
-          fontWeight: 700, lineHeight: 1.0,
-          letterSpacing: '-0.025em', color: '#1a1714',
+          fontWeight: 700, lineHeight: 1.08,
+          letterSpacing: '-0.015em', color: '#000000',
           margin: '0 0 1rem',
         }}>
           A Portfolio of Precision
