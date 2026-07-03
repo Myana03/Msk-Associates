@@ -93,7 +93,7 @@ export default function Testimonials() {
             >
               <p style={{
                 fontFamily: 'Cormorant Garant, Georgia, serif',
-                fontSize: 'clamp(1.05rem, 3.5vw, 2.8rem)',
+                fontSize: 'clamp(1rem, 2vw, 1.5rem)',
                 fontStyle: 'italic',
                 lineHeight: 1.45,
                 letterSpacing: '-0.01em',
