@@ -52,7 +52,7 @@ export default function WhatWeDo() {
   const [open, setOpen] = useState('structural');
 
   return (
-    <div style={{ backgroundColor: '#FAFAF8', borderTop: '1px solid #e0dbd2' }}>
+    <div style={{ backgroundColor: '#f7f4ed', borderTop: '1px solid #eceae4' }}>
       <style>{`
         @media (max-width: 768px) {
           .wwd-panel { grid-template-columns: 1fr !important; }
@@ -75,25 +75,25 @@ export default function WhatWeDo() {
         >
           <p style={{
             display: 'flex', alignItems: 'center', gap: '0.8rem',
-            fontSize: '0.58rem', color: '#C1440E', fontWeight: 700,
+            fontSize: '0.58rem', color: '#1c1c1c', fontWeight: 600,
             textTransform: 'uppercase', letterSpacing: '0.22em',
-            fontFamily: 'Inter, sans-serif', marginBottom: '1.2rem',
+            fontFamily: 'Figtree, sans-serif', marginBottom: '1.2rem',
           }}>
-            <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#C1440E' }} />
+            <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#1c1c1c' }} />
             What We Do
           </p>
           <h2 style={{
-            fontFamily: 'Cormorant Garant, Georgia, serif',
+            fontFamily: 'Figtree, ui-sans-serif, sans-serif',
             fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)',
-            fontWeight: 700, lineHeight: 1.0,
-            letterSpacing: '-0.025em', color: '#1a1714', margin: 0,
+            fontWeight: 600, lineHeight: 1.0,
+            letterSpacing: '-0.025em', color: '#1c1c1c', margin: 0,
           }}>
             Four disciplines.<br />One team.
           </h2>
         </motion.div>
 
         {/* Accordion */}
-        <div style={{ borderTop: '1px solid #e0dbd2' }}>
+        <div style={{ borderTop: '1px solid #eceae4' }}>
           {services.map((s, idx) => {
             const isOpen = open === s.id;
             return (
@@ -103,7 +103,7 @@ export default function WhatWeDo() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                style={{ borderBottom: '1px solid #e0dbd2' }}
+                style={{ borderBottom: '1px solid #eceae4' }}
               >
                 {/* Row trigger */}
                 <button
@@ -118,9 +118,9 @@ export default function WhatWeDo() {
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(1rem, 3vw, 2.5rem)' }}>
                     <span style={{
-                      fontSize: '0.55rem', fontWeight: 700,
-                      color: isOpen ? '#C1440E' : '#b0a89e',
-                      fontFamily: 'Inter, sans-serif', letterSpacing: '0.18em',
+                      fontSize: '0.55rem', fontWeight: 600,
+                      color: isOpen ? '#1c1c1c' : 'rgba(28,28,28,0.35)',
+                      fontFamily: 'Figtree, sans-serif', letterSpacing: '0.18em',
                       transition: 'color 0.3s ease', flexShrink: 0,
                     }}>{s.num}</span>
 
@@ -128,15 +128,15 @@ export default function WhatWeDo() {
                     <span style={{
                       display: 'inline-block',
                       width: isOpen ? '28px' : '0px', height: '2px',
-                      backgroundColor: '#C1440E', flexShrink: 0,
+                      backgroundColor: '#1c1c1c', flexShrink: 0,
                       transition: 'width 0.35s ease',
                     }} />
 
                     <span className="wwd-title" style={{
-                      fontFamily: 'Cormorant Garant, Georgia, serif',
+                      fontFamily: 'Figtree, ui-sans-serif, sans-serif',
                       fontSize: 'clamp(1.5rem, 3.5vw, 2.4rem)',
-                      fontWeight: 700, letterSpacing: '-0.025em',
-                      color: isOpen ? '#1a1714' : '#6b6460',
+                      fontWeight: 600, letterSpacing: '-0.025em',
+                      color: isOpen ? '#1c1c1c' : '#5f5f5d',
                       transition: 'color 0.3s ease',
                       lineHeight: 1,
                     }}>{s.title}</span>
@@ -146,12 +146,12 @@ export default function WhatWeDo() {
                   <span style={{
                     fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
                     fontWeight: 300,
-                    color: isOpen ? '#C1440E' : '#b0a89e',
+                    color: isOpen ? '#1c1c1c' : 'rgba(28,28,28,0.35)',
                     transition: 'color 0.3s ease, transform 0.4s ease',
                     transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
                     display: 'inline-block', lineHeight: 1,
                     flexShrink: 0, marginLeft: '1rem',
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: 'Figtree, sans-serif',
                   }}>+</span>
                 </button>
 
@@ -192,9 +192,9 @@ export default function WhatWeDo() {
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.65, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
                           style={{
-                            borderRadius: '4px', overflow: 'hidden',
+                            borderRadius: '12px', overflow: 'hidden',
                             aspectRatio: '16 / 9', position: 'relative',
-                            boxShadow: '0 16px 56px rgba(26,23,20,0.1)',
+                            border: '1px solid #eceae4',
                           }}
                         >
                           <img
@@ -207,10 +207,6 @@ export default function WhatWeDo() {
                               display: 'block',
                             }}
                           />
-                          <div style={{
-                            position: 'absolute', bottom: 0, left: 0, right: 0,
-                            height: '3px', backgroundColor: '#C1440E',
-                          }} />
                         </motion.div>
 
                         {/* Text */}
@@ -224,20 +220,20 @@ export default function WhatWeDo() {
                           }}
                         >
                           <h3 style={{
-                            fontFamily: 'Cormorant Garant, Georgia, serif',
+                            fontFamily: 'Figtree, ui-sans-serif, sans-serif',
                             fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
-                            fontWeight: 700, lineHeight: 0.96,
-                            letterSpacing: '-0.03em', color: '#1a1714',
+                            fontWeight: 600, lineHeight: 0.96,
+                            letterSpacing: '-0.03em', color: '#1c1c1c',
                             margin: '0 0 1.6rem',
                             whiteSpace: 'pre-line',
                           }}>{`${s.line1}\n${s.line2}`}</h3>
 
-                          <div style={{ width: '36px', height: '2px', backgroundColor: '#C1440E', marginBottom: '1.4rem' }} />
+                          <div style={{ width: '36px', height: '2px', backgroundColor: '#1c1c1c', marginBottom: '1.4rem' }} />
 
                           <p style={{
-                            color: '#6b6460', lineHeight: 1.88,
+                            color: '#5f5f5d', lineHeight: 1.88,
                             fontSize: 'clamp(0.82rem, 1.2vw, 0.92rem)',
-                            fontFamily: 'Inter, sans-serif',
+                            fontFamily: 'Figtree, sans-serif',
                           }}>{s.body}</p>
 
                         </motion.div>

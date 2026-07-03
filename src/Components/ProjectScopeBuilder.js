@@ -87,11 +87,11 @@ function Pill({ label, selected, onClick }) {
       onClick={onClick}
       style={{
         padding: '9px 16px', borderRadius: '4px', cursor: 'pointer',
-        fontFamily: 'Inter', fontSize: '0.85rem', fontWeight: 600,
+        fontFamily: 'Figtree', fontSize: '0.85rem', fontWeight: 600,
         transition: 'all 0.15s', whiteSpace: 'nowrap',
-        border: selected ? '2px solid #C1440E' : '1px solid #d1d5db',
-        backgroundColor: selected ? 'rgba(193,68,14,0.07)' : 'white',
-        color: selected ? '#C1440E' : '#374151',
+        border: selected ? '2px solid #1c1c1c' : '1px solid #d1d5db',
+        backgroundColor: selected ? 'rgba(28,28,28,0.07)' : 'white',
+        color: selected ? '#1c1c1c' : '#374151',
       }}
     >
       {label}
@@ -107,10 +107,10 @@ function ProgressBar({ step }) {
     <div style={{ marginBottom: '2.5rem' }}>
       <div style={{ display: 'flex', gap: 0, marginBottom: '8px' }}>
         {[0, 1, 2].map(i => (
-          <div key={i} style={{ flex: 1, height: '3px', backgroundColor: i < current ? '#C1440E' : '#e5e7eb', marginRight: i < 2 ? '3px' : 0, borderRadius: '2px', transition: 'background-color 0.3s' }} />
+          <div key={i} style={{ flex: 1, height: '3px', backgroundColor: i < current ? '#1c1c1c' : '#e5e7eb', marginRight: i < 2 ? '3px' : 0, borderRadius: '2px', transition: 'background-color 0.3s' }} />
         ))}
       </div>
-      <p style={{ fontSize: '0.65rem', color: '#9ca3af', fontFamily: 'Inter', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+      <p style={{ fontSize: '0.65rem', color: '#9ca3af', fontFamily: 'Figtree', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
         {step === 'result' ? 'Your project plan' : `Step ${step} of 3 — ${steps[step - 1]}`}
       </p>
     </div>
@@ -136,8 +136,8 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
   const result = step === 'result' ? buildResult(type, contractor, timeline) : null;
 
   const labelStyle = {
-    fontSize: '0.62rem', fontWeight: 700, color: '#374151',
-    textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Inter',
+    fontSize: '0.62rem', fontWeight: 600, color: '#374151',
+    textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Figtree',
     marginBottom: '0.75rem', display: 'block',
   };
 
@@ -147,10 +147,10 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
       {/* Section heading — hidden when used inside modal */}
       {showHeading && (
         <div className="mb-12" data-aos="fade-up">
-          <p style={{ fontSize: '0.7rem', color: '#C1440E', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 700, fontFamily: 'Inter', marginBottom: '0.75rem' }}>
+          <p style={{ fontSize: '0.7rem', color: '#1c1c1c', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600, fontFamily: 'Figtree', marginBottom: '0.75rem' }}>
             Project Planner
           </p>
-          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#0F2040', lineHeight: 1.1, fontFamily: 'Cormorant Garant, Georgia, serif', fontWeight: 800, marginBottom: '0.75rem' }}>
+          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#0F2040', lineHeight: 1.1, fontFamily: 'Figtree, ui-sans-serif, sans-serif', fontWeight: 600, marginBottom: '0.75rem' }}>
             What does your project need?
           </h2>
           <p style={{ color: '#6b7280', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: '480px' }}>
@@ -175,7 +175,7 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
         {/* ── Step 1: project type ─────────────────────────────────────── */}
         {step === 1 && (
           <div>
-            <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0F2040', fontFamily: 'Inter', marginBottom: '1.5rem' }}>
+            <p style={{ fontSize: '1.1rem', fontWeight: 600, color: '#0F2040', fontFamily: 'Figtree', marginBottom: '1.5rem' }}>
               What are you planning to build?
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
@@ -185,15 +185,15 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
                   onClick={() => setType(pt.id)}
                   style={{
                     padding: '18px 16px', borderRadius: '4px', cursor: 'pointer',
-                    textAlign: 'left', fontFamily: 'Inter', transition: 'all 0.15s',
-                    border: type === pt.id ? '2px solid #C1440E' : '1px solid #e5e7eb',
-                    backgroundColor: type === pt.id ? 'rgba(193,68,14,0.05)' : '#fafafa',
+                    textAlign: 'left', fontFamily: 'Figtree', transition: 'all 0.15s',
+                    border: type === pt.id ? '2px solid #1c1c1c' : '1px solid #e5e7eb',
+                    backgroundColor: type === pt.id ? 'rgba(28,28,28,0.05)' : '#fafafa',
                   }}
                 >
-                  <span style={{ display: 'block', fontSize: '0.6rem', fontWeight: 700, color: type === pt.id ? '#C1440E' : '#d1d5db', letterSpacing: '0.12em', marginBottom: '8px', fontFamily: 'Inter' }}>
+                  <span style={{ display: 'block', fontSize: '0.6rem', fontWeight: 600, color: type === pt.id ? '#1c1c1c' : '#d1d5db', letterSpacing: '0.12em', marginBottom: '8px', fontFamily: 'Figtree' }}>
                     {pt.num}
                   </span>
-                  <span style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: type === pt.id ? '#C1440E' : '#0F2040', marginBottom: '4px' }}>
+                  <span style={{ display: 'block', fontSize: '0.92rem', fontWeight: 600, color: type === pt.id ? '#1c1c1c' : '#0F2040', marginBottom: '4px' }}>
                     {pt.label}
                   </span>
                   <span style={{ display: 'block', fontSize: '0.72rem', color: '#9ca3af' }}>
@@ -210,11 +210,11 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
           <div>
             <style>{`
               .msk-slider { -webkit-appearance: none; width: 100%; height: 4px; border-radius: 2px; background: #e5e7eb; outline: none; cursor: pointer; }
-              .msk-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #C1440E; cursor: pointer; border: 2px solid white; box-shadow: 0 1px 6px rgba(193,68,14,0.45); }
-              .msk-slider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: #C1440E; cursor: pointer; border: 2px solid white; box-shadow: 0 1px 6px rgba(193,68,14,0.45); border: none; }
+              .msk-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #1c1c1c; cursor: pointer; border: 2px solid white; box-shadow: 0 1px 6px rgba(28,28,28,0.45); }
+              .msk-slider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: #1c1c1c; cursor: pointer; border: 2px solid white; box-shadow: 0 1px 6px rgba(28,28,28,0.45); border: none; }
             `}</style>
 
-            <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0F2040', fontFamily: 'Inter', marginBottom: '1.75rem' }}>
+            <p style={{ fontSize: '1.1rem', fontWeight: 600, color: '#0F2040', fontFamily: 'Figtree', marginBottom: '1.75rem' }}>
               Tell us about the plot and height.
             </p>
 
@@ -222,13 +222,13 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
             <div style={{ marginBottom: '1.75rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '10px' }}>
                 <span style={labelStyle}>Plot width</span>
-                <span style={{ fontSize: '1rem', fontWeight: 800, color: '#C1440E', fontFamily: 'Inter' }}>{plotW} ft</span>
+                <span style={{ fontSize: '1rem', fontWeight: 600, color: '#1c1c1c', fontFamily: 'Figtree' }}>{plotW} ft</span>
               </div>
               <input type="range" className="msk-slider" min="15" max="120" step="5"
                 value={plotW} onChange={e => setPlotW(Number(e.target.value))} />
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '5px' }}>
-                <span style={{ fontSize: '0.65rem', color: '#9ca3af', fontFamily: 'Inter' }}>15 ft</span>
-                <span style={{ fontSize: '0.65rem', color: '#9ca3af', fontFamily: 'Inter' }}>120 ft</span>
+                <span style={{ fontSize: '0.65rem', color: '#9ca3af', fontFamily: 'Figtree' }}>15 ft</span>
+                <span style={{ fontSize: '0.65rem', color: '#9ca3af', fontFamily: 'Figtree' }}>120 ft</span>
               </div>
             </div>
 
@@ -236,34 +236,34 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
             <div style={{ marginBottom: '1.75rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '10px' }}>
                 <span style={labelStyle}>Plot depth</span>
-                <span style={{ fontSize: '1rem', fontWeight: 800, color: '#C1440E', fontFamily: 'Inter' }}>{plotD} ft</span>
+                <span style={{ fontSize: '1rem', fontWeight: 600, color: '#1c1c1c', fontFamily: 'Figtree' }}>{plotD} ft</span>
               </div>
               <input type="range" className="msk-slider" min="20" max="200" step="5"
                 value={plotD} onChange={e => setPlotD(Number(e.target.value))} />
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '5px' }}>
-                <span style={{ fontSize: '0.65rem', color: '#9ca3af', fontFamily: 'Inter' }}>20 ft</span>
-                <span style={{ fontSize: '0.65rem', color: '#9ca3af', fontFamily: 'Inter' }}>200 ft</span>
+                <span style={{ fontSize: '0.65rem', color: '#9ca3af', fontFamily: 'Figtree' }}>20 ft</span>
+                <span style={{ fontSize: '0.65rem', color: '#9ca3af', fontFamily: 'Figtree' }}>200 ft</span>
               </div>
             </div>
 
             {/* Live area badge */}
-            <div style={{ backgroundColor: 'rgba(193,68,14,0.06)', border: '1px solid rgba(193,68,14,0.18)', borderRadius: '4px', padding: '8px 14px', marginBottom: '1.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#0F2040', fontFamily: 'Inter' }}>{plotW} × {plotD} ft</span>
-              <span style={{ fontSize: '0.8rem', color: '#C1440E', fontFamily: 'Inter', fontWeight: 600 }}>≈ {sqYd} sq yd</span>
+            <div style={{ backgroundColor: 'rgba(28,28,28,0.06)', border: '1px solid rgba(28,28,28,0.18)', borderRadius: '4px', padding: '8px 14px', marginBottom: '1.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#0F2040', fontFamily: 'Figtree' }}>{plotW} × {plotD} ft</span>
+              <span style={{ fontSize: '0.8rem', color: '#1c1c1c', fontFamily: 'Figtree', fontWeight: 600 }}>≈ {sqYd} sq yd</span>
             </div>
 
             {/* Floors — advisory callout */}
             <div style={{
               backgroundColor: '#FFF8F5',
               border: '1px solid #f0d5c8',
-              borderLeft: '3px solid #C1440E',
+              borderLeft: '3px solid #1c1c1c',
               borderRadius: '6px',
               padding: '1rem 1.2rem',
             }}>
-              <p style={{ fontSize: '0.78rem', fontWeight: 700, color: '#C1440E', fontFamily: 'Inter', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              <p style={{ fontSize: '0.78rem', fontWeight: 600, color: '#1c1c1c', fontFamily: 'Figtree', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 How many floors?
               </p>
-              <p style={{ fontSize: '0.88rem', color: '#4b5563', fontFamily: 'Inter', lineHeight: 1.65, margin: 0 }}>
+              <p style={{ fontSize: '0.88rem', color: '#4b5563', fontFamily: 'Figtree', lineHeight: 1.65, margin: 0 }}>
                 Not sure how many floors your plot can carry? You've come to the right place — MSK and the team will assess your plot, soil conditions, and requirements and tell you exactly what's possible.
               </p>
             </div>
@@ -273,7 +273,7 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
         {/* ── Step 3: situation ────────────────────────────────────────── */}
         {step === 3 && (
           <div>
-            <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0F2040', fontFamily: 'Inter', marginBottom: '1.75rem' }}>
+            <p style={{ fontSize: '1.1rem', fontWeight: 600, color: '#0F2040', fontFamily: 'Figtree', marginBottom: '1.75rem' }}>
               A couple more things.
             </p>
 
@@ -302,10 +302,10 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
         {/* ── Result ───────────────────────────────────────────────────── */}
         {step === 'result' && result && (
           <div>
-            <p style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0F2040', fontFamily: 'Inter', marginBottom: '0.4rem' }}>
+            <p style={{ fontSize: '1.05rem', fontWeight: 600, color: '#0F2040', fontFamily: 'Figtree', marginBottom: '0.4rem' }}>
               For your {TYPE_LABEL[type]}, here's what you need:
             </p>
-            <p style={{ fontSize: '0.8rem', color: '#9ca3af', fontFamily: 'Inter', marginBottom: '1.75rem' }}>
+            <p style={{ fontSize: '0.8rem', color: '#9ca3af', fontFamily: 'Figtree', marginBottom: '1.75rem' }}>
               {plotW} × {plotD} ft &nbsp;·&nbsp; {sqYd} sq yd &nbsp;·&nbsp; Warangal district
             </p>
 
@@ -313,12 +313,12 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
             <div style={{ marginBottom: '1.5rem' }}>
               {result.items.map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: '12px', marginBottom: '1rem', paddingBottom: '1rem', borderBottom: i < result.items.length - 1 ? '1px solid #f3f4f6' : 'none' }}>
-                  <div style={{ width: '22px', height: '22px', borderRadius: '50%', backgroundColor: '#C1440E', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                  <div style={{ width: '22px', height: '22px', borderRadius: '50%', backgroundColor: '#1c1c1c', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
                     <HiCheck style={{ color: 'white', fontSize: '12px' }} />
                   </div>
                   <div>
-                    <p style={{ fontWeight: 700, color: '#0F2040', fontSize: '0.88rem', fontFamily: 'Inter', marginBottom: '2px' }}>{item.text}</p>
-                    <p style={{ color: '#6b7280', fontSize: '0.78rem', fontFamily: 'Inter', lineHeight: 1.6 }}>{item.note}</p>
+                    <p style={{ fontWeight: 600, color: '#0F2040', fontSize: '0.88rem', fontFamily: 'Figtree', marginBottom: '2px' }}>{item.text}</p>
+                    <p style={{ color: '#6b7280', fontSize: '0.78rem', fontFamily: 'Figtree', lineHeight: 1.6 }}>{item.note}</p>
                   </div>
                 </div>
               ))}
@@ -326,30 +326,30 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
 
             {/* Contractor soft note */}
             {result.contractorNote && (
-              <div style={{ backgroundColor: 'rgba(193,68,14,0.05)', border: '1px solid rgba(193,68,14,0.15)', borderRadius: '4px', padding: '10px 14px', marginBottom: '1.5rem' }}>
-                <p style={{ fontSize: '0.78rem', color: '#C1440E', fontFamily: 'Inter', lineHeight: 1.6 }}>
+              <div style={{ backgroundColor: 'rgba(28,28,28,0.05)', border: '1px solid rgba(28,28,28,0.15)', borderRadius: '4px', padding: '10px 14px', marginBottom: '1.5rem' }}>
+                <p style={{ fontSize: '0.78rem', color: '#1c1c1c', fontFamily: 'Figtree', lineHeight: 1.6 }}>
                   {result.contractorNote}
                 </p>
               </div>
             )}
 
             {/* Timeline card */}
-            <div style={{ backgroundColor: '#f9fafb', borderRadius: '4px', padding: '1rem 1.25rem', marginBottom: '1.5rem', borderLeft: '3px solid #C1440E', display: 'flex', gap: '1.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+            <div style={{ backgroundColor: '#f9fafb', borderRadius: '4px', padding: '1rem 1.25rem', marginBottom: '1.5rem', borderLeft: '3px solid #1c1c1c', display: 'flex', gap: '1.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
               <div>
-                <p style={{ fontSize: '0.6rem', fontWeight: 700, color: '#9ca3af', fontFamily: 'Inter', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '3px' }}>
+                <p style={{ fontSize: '0.6rem', fontWeight: 600, color: '#9ca3af', fontFamily: 'Figtree', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '3px' }}>
                   Drawings ready in
                 </p>
-                <p style={{ fontSize: '1.3rem', fontWeight: 800, color: '#0F2040', fontFamily: 'Inter', lineHeight: 1 }}>
+                <p style={{ fontSize: '1.3rem', fontWeight: 600, color: '#0F2040', fontFamily: 'Figtree', lineHeight: 1 }}>
                   {result.drawingTime}
                 </p>
               </div>
-              <p style={{ fontSize: '0.8rem', color: '#6b7280', fontFamily: 'Inter', lineHeight: 1.6, flex: 1, minWidth: '180px' }}>
+              <p style={{ fontSize: '0.8rem', color: '#6b7280', fontFamily: 'Figtree', lineHeight: 1.6, flex: 1, minWidth: '180px' }}>
                 {result.startNote}
               </p>
             </div>
 
             {/* Trust line */}
-            <p style={{ fontSize: '0.8rem', color: '#9ca3af', fontFamily: 'Inter', marginBottom: '1.5rem', lineHeight: 1.7 }}>
+            <p style={{ fontSize: '0.8rem', color: '#9ca3af', fontFamily: 'Figtree', marginBottom: '1.5rem', lineHeight: 1.7 }}>
               MSK has completed hundreds of projects across Telangana. Every drawing stamped, every site supervised.
             </p>
 
@@ -377,7 +377,7 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
                       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
                       backgroundColor: '#25D366', color: '#fff',
                       padding: '0.9rem', borderRadius: '4px',
-                      fontSize: '0.95rem', fontWeight: 700, fontFamily: 'Inter',
+                      fontSize: '0.95rem', fontWeight: 600, fontFamily: 'Figtree',
                       textDecoration: 'none', marginBottom: '10px',
                       boxShadow: '0 4px 14px rgba(37,211,102,0.3)',
                     }}
@@ -392,7 +392,7 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
                       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
                       padding: '0.7rem', borderRadius: '4px',
                       border: '1px solid #e5e7eb',
-                      fontSize: '0.85rem', fontWeight: 600, fontFamily: 'Inter',
+                      fontSize: '0.85rem', fontWeight: 600, fontFamily: 'Figtree',
                       color: '#6b7280', textDecoration: 'none',
                     }}
                   >
@@ -401,7 +401,7 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
 
                   <button
                     onClick={() => { setStep(1); setType(null); setContractor(null); setTimeline(null); }}
-                    style={{ fontSize: '0.75rem', color: '#9ca3af', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'Inter', padding: '12px 0 0', display: 'block', margin: '0 auto' }}
+                    style={{ fontSize: '0.75rem', color: '#9ca3af', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'Figtree', padding: '12px 0 0', display: 'block', margin: '0 auto' }}
                   >
                     ← Start over
                   </button>
@@ -417,7 +417,7 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
             {step > 1 ? (
               <button
                 onClick={() => setStep(s => s - 1)}
-                style={{ fontSize: '0.82rem', color: '#9ca3af', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'Inter', padding: 0 }}
+                style={{ fontSize: '0.82rem', color: '#9ca3af', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'Figtree', padding: 0 }}
               >
                 ← Back
               </button>
@@ -428,10 +428,10 @@ export default function ProjectScopeBuilder({ showHeading = true, onComplete }) 
               disabled={!canNext}
               style={{
                 padding: '0.7rem 1.75rem', borderRadius: '4px',
-                fontSize: '0.88rem', fontWeight: 700, fontFamily: 'Inter',
+                fontSize: '0.88rem', fontWeight: 600, fontFamily: 'Figtree',
                 cursor: canNext ? 'pointer' : 'not-allowed',
                 border: 'none', transition: 'all 0.15s',
-                backgroundColor: canNext ? '#C1440E' : '#e5e7eb',
+                backgroundColor: canNext ? '#1c1c1c' : '#e5e7eb',
                 color: canNext ? '#fff' : '#9ca3af',
               }}
             >

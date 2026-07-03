@@ -92,7 +92,7 @@ export default function PhotoGallery() {
       <style>{`
         .gallery-img { transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
         .gallery-cell:hover .gallery-img { transform: scale(1.06); }
-        .gallery-overlay { opacity: 0; transition: opacity 0.3s ease; background: rgba(26,23,20,0.38); }
+        .gallery-overlay { opacity: 0; transition: opacity 0.3s ease; background: rgba(28,28,28,0.38); }
         .gallery-cell:hover .gallery-overlay { opacity: 1; }
       `}</style>
 
@@ -114,7 +114,7 @@ export default function PhotoGallery() {
               overflow: 'hidden',
               cursor: 'pointer',
               position: 'relative',
-              backgroundColor: '#e0dbd2',
+              backgroundColor: '#eceae4',
             }}
           >
             <img
@@ -130,9 +130,9 @@ export default function PhotoGallery() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
               <span style={{
-                fontSize: '0.6rem', fontWeight: 700,
+                fontSize: '0.6rem', fontWeight: 600,
                 color: 'rgba(255,255,255,0.9)', letterSpacing: '0.2em',
-                textTransform: 'uppercase', fontFamily: 'Inter, sans-serif',
+                textTransform: 'uppercase', fontFamily: 'Figtree, sans-serif',
               }}>View</span>
             </div>
           </div>
@@ -144,20 +144,20 @@ export default function PhotoGallery() {
         <button
           onClick={() => openLightbox(0)}
           style={{
-            background: 'none', border: '1px solid #c8c4bc',
+            background: 'none', border: '1px solid #eceae4',
             borderRadius: '3px', padding: '11px 28px',
-            fontSize: '0.68rem', fontWeight: 700,
-            fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em',
+            fontSize: '0.68rem', fontWeight: 600,
+            fontFamily: 'Figtree, sans-serif', letterSpacing: '0.1em',
             textTransform: 'uppercase', cursor: 'pointer',
-            color: '#1a1714',
+            color: '#1c1c1c',
             transition: 'border-color 0.2s ease, color 0.2s ease',
           }}
-          onMouseEnter={e => { e.currentTarget.style.borderColor = '#C1440E'; e.currentTarget.style.color = '#C1440E'; }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor = '#c8c4bc'; e.currentTarget.style.color = '#1a1714'; }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = '#1c1c1c'; e.currentTarget.style.color = '#1c1c1c'; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = '#eceae4'; e.currentTarget.style.color = '#1c1c1c'; }}
         >
           Browse Projects
         </button>
-        <span style={{ fontSize: '0.75rem', color: '#9ca3af', fontFamily: 'Inter, sans-serif' }}>
+        <span style={{ fontSize: '0.75rem', color: '#9ca3af', fontFamily: 'Figtree, sans-serif' }}>
           Click any photo to open full view
         </span>
       </div>
@@ -199,7 +199,7 @@ export default function PhotoGallery() {
             <div style={{
               position: 'absolute', top: '1.5rem', left: '1.5rem',
               fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)',
-              fontFamily: 'Inter, sans-serif', letterSpacing: '0.12em',
+              fontFamily: 'Figtree, sans-serif', letterSpacing: '0.12em',
               fontWeight: 600, textTransform: 'uppercase',
             }}>
               {lightboxIndex + 1} / {allImages.length}

@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 
 const DURATION = 5500;
 
-// General company photos cycling in background — headline stays fixed
+const INSET_SHADOW = 'rgba(255,255,255,0.2) 0px 0.5px 0px 0px inset, rgba(0,0,0,0.2) 0px 0px 0px 0.5px inset, rgba(0,0,0,0.05) 0px 1px 2px 0px';
+
 const bgPhotos = [
   { src: 'https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=1920&q=90&auto=format&fit=crop', pos: 'center 50%' },
   { src: 'https://images.unsplash.com/photo-1653312571624-62757bb625f5?w=1920&q=90&auto=format&fit=crop', pos: 'center 40%' },
@@ -12,7 +13,7 @@ const bgPhotos = [
 
 export default function HeroBanner({ onStartProject }) {
   const [current, setCurrent] = useState(0);
-  const [tick, setTick]       = useState(0);
+  const [tick, setTick] = useState(0);
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -24,161 +25,72 @@ export default function HeroBanner({ onStartProject }) {
   }, [current, tick]);
 
   return (
-    <div style={{ position: 'relative', height: '100svh', minHeight: '620px', overflow: 'hidden', backgroundColor: '#060a10' }}>
+    <div style={{ position: 'relative', backgroundColor: '#f7f4ed', overflow: 'hidden' }}>
 
       <style>{`
-        @keyframes kenBurns {
-          from { transform: scale(1.0); }
-          to   { transform: scale(1.07); }
-        }
         @keyframes progressFill {
           from { width: 0%; }
           to   { width: 100%; }
         }
-        @keyframes scrollLine {
-          0%   { top: -45%; }
-          100% { top: 110%; }
-        }
-        .hero-btn-primary {
-          transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
-        }
-        .hero-btn-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 14px 40px rgba(193,68,14,0.45);
-          background-color: #a8390b;
-        }
-        .hero-link { transition: color 0.22s ease; }
-        .hero-link:hover { color: #fff !important; }
-        .hero-link:hover .hero-link-line { width: 42px !important; }
-        .hero-link-line { transition: width 0.3s ease; }
+        .hero-btn-dark { transition: opacity 0.2s ease; }
+        .hero-btn-dark:hover { opacity: 0.8; }
+        .hero-btn-ghost { transition: background-color 0.2s ease; }
+        .hero-btn-ghost:hover { background-color: rgba(28,28,28,0.04); }
       `}</style>
 
-      {/* ── Background photos — crossfade, gradients per-slide ── */}
-      {bgPhotos.map((p, i) => {
-        const next = (current + 1) % bgPhotos.length;
-        const shouldLoad = i === current || i === next;
-        return (
-          <div key={i} style={{
-            position: 'absolute', inset: 0,
-            opacity: i === current ? 1 : 0,
-            transition: 'opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1)',
-            zIndex: 0,
-          }}>
-            {shouldLoad && (
-              <>
-                {/* Photo layer */}
-                <div
-                  key={i === current ? `kb-${tick}` : `idle-${i}`}
-                  style={{
-                    position: 'absolute', inset: 0,
-                    backgroundImage: `url('${p.src}')`,
-                    backgroundSize: 'cover', backgroundPosition: p.pos,
-                    willChange: 'transform',
-                    animation: i === current ? `kenBurns ${DURATION + 2000}ms ease-out forwards` : 'none',
-                    filter: p.lightBg ? 'invert(1) brightness(0.88)' : 'none',
-                  }}
-                />
-                {/* Per-slide gradient overlay */}
-                {p.lightBg ? (
-                  /* Floor plan slide: dark only on left — plan visible on right */
-                  <div style={{
-                    position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-                    background: 'linear-gradient(to right, rgba(4,8,16,0.94) 0%, rgba(4,8,16,0.90) 38%, rgba(4,8,16,0.30) 62%, rgba(4,8,16,0.06) 100%)',
-                  }} />
-                ) : (
-                  <>
-                    <div style={{
-                      position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-                      background: 'linear-gradient(110deg, rgba(4,8,16,0.86) 0%, rgba(4,8,16,0.58) 55%, rgba(4,8,16,0.18) 100%)',
-                    }} />
-                    <div style={{
-                      position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-                      background: 'linear-gradient(to top, rgba(4,8,16,0.82) 0%, rgba(4,8,16,0) 42%)',
-                    }} />
-                  </>
-                )}
-              </>
-            )}
-          </div>
-        );
-      })}
-
-      {/* ── Content ── */}
+      {/* Soft warm gradient wash behind hero content */}
       <div style={{
-        position: 'absolute', inset: 0, zIndex: 2,
-        display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-        padding: 'clamp(1.5rem, 5vw, 5rem)',
-        paddingBottom: 'clamp(5rem, 10vh, 7rem)',
+        position: 'absolute', top: 0, left: 0, right: 0, height: '70%',
+        background: 'radial-gradient(ellipse 80% 55% at 30% 20%, rgba(244,164,96,0.10) 0%, rgba(244,164,96,0) 60%), radial-gradient(ellipse 70% 50% at 75% 30%, rgba(147,168,220,0.10) 0%, rgba(147,168,220,0) 60%), radial-gradient(ellipse 60% 45% at 55% 10%, rgba(232,140,160,0.08) 0%, rgba(232,140,160,0) 55%)',
+        pointerEvents: 'none',
+      }} />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-14" style={{
+        position: 'relative',
+        paddingTop: 'clamp(9rem, 16vh, 12rem)',
+        paddingBottom: 'clamp(4rem, 7vw, 6rem)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
       }}>
 
         {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            display: 'flex', alignItems: 'center', gap: '0.9rem', flexWrap: 'wrap',
-            fontSize: '0.58rem', color: 'rgba(255,255,255,0.45)',
-            textTransform: 'uppercase', letterSpacing: '0.18em',
-            fontFamily: 'Inter, sans-serif', fontWeight: 600,
-            marginBottom: '1.8rem',
+            fontSize: '0.88rem', color: '#5f5f5d',
+            fontFamily: 'Figtree, sans-serif', fontWeight: 400,
+            marginBottom: '1.6rem',
           }}
         >
-          <span style={{ display: 'inline-block', width: '26px', height: '1.5px', backgroundColor: '#C1440E', flexShrink: 0 }} />
           Structural Engineers · Warangal, Telangana
         </motion.p>
 
-        {/* Headline — line 1 */}
-        <div style={{ overflow: 'hidden' }}>
-          <motion.h1
-            initial={{ y: '110%' }}
-            animate={{ y: '0%' }}
-            transition={{ duration: 0.95, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              fontFamily: 'Cormorant Garant, Georgia, serif',
-              fontSize: 'clamp(2rem, 8vw, 6.8rem)',
-              fontWeight: 700, lineHeight: 0.92,
-              letterSpacing: '-0.035em', color: '#ffffff', margin: 0,
-            }}
-          >
-            Built by the people
-          </motion.h1>
-        </div>
-
-        {/* Headline — line 2 */}
-        <div style={{ overflow: 'hidden', marginBottom: '2rem' }}>
-          <motion.h1
-            initial={{ y: '110%' }}
-            animate={{ y: '0%' }}
-            transition={{ duration: 0.95, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              fontFamily: 'Cormorant Garant, Georgia, serif',
-              fontSize: 'clamp(2rem, 8vw, 6.8rem)',
-              fontWeight: 700, lineHeight: 0.92,
-              letterSpacing: '-0.035em', color: '#ffffff', margin: 0,
-            }}
-          >
-            who designed it.
-          </motion.h1>
-        </div>
-
-        {/* Rule */}
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: '48px' }}
-          transition={{ duration: 0.5, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          style={{ height: '2px', backgroundColor: '#C1440E', marginBottom: '1.6rem' }}
-        />
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontFamily: 'Figtree, ui-sans-serif, sans-serif',
+            fontSize: 'clamp(2.25rem, 6vw, 3.75rem)',
+            fontWeight: 600, lineHeight: 1.05,
+            letterSpacing: '-1.5px', color: '#1c1c1c',
+            margin: '0 0 1.5rem', maxWidth: '820px',
+          }}
+        >
+          Built by the people<br />who designed it.
+        </motion.h1>
 
         {/* Sub */}
         <motion.p
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            color: 'rgba(255,255,255,0.38)', fontSize: '0.9rem',
-            fontFamily: 'Inter, sans-serif', lineHeight: 1.75,
-            maxWidth: '440px', marginBottom: '2.8rem',
+            color: '#5f5f5d', fontSize: '1.13rem',
+            fontFamily: 'Figtree, sans-serif', lineHeight: 1.38,
+            maxWidth: '520px', marginBottom: '2.5rem',
           }}
         >
           From the first drawing to the final finish — design, approvals, interiors, and execution under one roof.
@@ -186,93 +98,111 @@ export default function HeroBanner({ onStartProject }) {
 
         {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          style={{ display: 'flex', alignItems: 'center', gap: '2.2rem', flexWrap: 'wrap' }}
+          transition={{ duration: 0.6, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 'clamp(3.5rem, 7vw, 5.5rem)' }}
         >
-          <a href="#services" className="hero-link"
+          <button
+            className="hero-btn-dark"
+            onClick={onStartProject}
             style={{
-              color: 'rgba(255,255,255,0.5)', fontSize: '0.72rem',
-              fontFamily: 'Inter, sans-serif', fontWeight: 600,
-              letterSpacing: '0.08em', textDecoration: 'none',
-              display: 'flex', alignItems: 'center', gap: '0.8rem',
-              textTransform: 'uppercase',
+              backgroundColor: '#1c1c1c', color: '#fcfbf8',
+              border: 'none', borderRadius: '6px',
+              padding: '12px 24px',
+              fontSize: '1rem', fontWeight: 400,
+              fontFamily: 'Figtree, sans-serif',
+              cursor: 'pointer',
+              boxShadow: INSET_SHADOW,
+            }}
+          >
+            Start a Project
+          </button>
+          <a
+            className="hero-btn-ghost"
+            href="#services"
+            style={{
+              backgroundColor: 'transparent', color: '#1c1c1c',
+              border: '1px solid rgba(28,28,28,0.4)', borderRadius: '6px',
+              padding: '12px 24px',
+              fontSize: '1rem', fontWeight: 400,
+              fontFamily: 'Figtree, sans-serif',
+              textDecoration: 'none',
             }}
           >
             What We Do
-            <span className="hero-link-line" style={{
-              display: 'inline-block', width: '28px',
-              height: '1px', backgroundColor: 'currentColor',
-            }} />
           </a>
         </motion.div>
-      </div>
 
-      {/* ── Photo progress dots — bottom right ── */}
-      <div style={{
-        position: 'absolute',
-        bottom: 'clamp(2rem, 4vh, 3.5rem)',
-        right: 'clamp(1.5rem, 5vw, 5rem)',
-        zIndex: 3,
-        display: 'flex', gap: '0.7rem', alignItems: 'center',
-      }}>
-        {bgPhotos.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => { setCurrent(i); setTick(k => k + 1); }}
-            style={{
-              background: 'none', border: 'none', cursor: 'pointer', padding: '6px 0',
-            }}
-          >
-            <div style={{
-              width: i === current ? '32px' : '8px',
-              height: '2px', borderRadius: '2px',
-              backgroundColor: i === current ? '#C1440E' : 'rgba(255,255,255,0.28)',
-              transition: 'width 0.4s ease, background-color 0.4s ease',
-              position: 'relative', overflow: 'hidden',
-            }}>
-              {i === current && (
-                <div
-                  key={`fill-${tick}`}
-                  style={{
-                    position: 'absolute', left: 0, top: 0, bottom: 0,
-                    backgroundColor: '#C1440E',
-                    animation: `progressFill ${DURATION}ms linear forwards`,
-                  }}
-                />
-              )}
-            </div>
-          </button>
-        ))}
-      </div>
+        {/* Photo showcase card */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            position: 'relative', width: '100%',
+            borderRadius: '16px', overflow: 'hidden',
+            border: '1px solid #eceae4',
+            aspectRatio: '16 / 8',
+            minHeight: '280px',
+            backgroundColor: '#eceae4',
+          }}
+        >
+          {bgPhotos.map((p, i) => {
+            const next = (current + 1) % bgPhotos.length;
+            const shouldLoad = i === current || i === next;
+            return (
+              <div key={i} style={{
+                position: 'absolute', inset: 0,
+                opacity: i === current ? 1 : 0,
+                transition: 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
+              }}>
+                {shouldLoad && (
+                  <div style={{
+                    position: 'absolute', inset: 0,
+                    backgroundImage: `url('${p.src}')`,
+                    backgroundSize: 'cover', backgroundPosition: p.pos,
+                  }} />
+                )}
+              </div>
+            );
+          })}
 
-      {/* ── Scroll indicator — bottom center ── */}
-      <div style={{
-        position: 'absolute',
-        bottom: 'clamp(1.8rem, 3vh, 2.5rem)',
-        left: '50%', transform: 'translateX(-50%)',
-        zIndex: 3,
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem',
-      }}>
-        <div style={{
-          width: '1px', height: '42px',
-          backgroundColor: 'rgba(255,255,255,0.1)',
-          position: 'relative', overflow: 'hidden',
-        }}>
+          {/* Progress dots */}
           <div style={{
-            position: 'absolute', width: '100%', height: '45%',
-            backgroundColor: 'rgba(255,255,255,0.45)',
-            animation: 'scrollLine 1.7s ease-in-out infinite',
-          }} />
-        </div>
-        <span style={{
-          fontSize: '0.4rem', color: 'rgba(255,255,255,0.2)',
-          fontFamily: 'Inter, sans-serif', letterSpacing: '0.2em',
-          textTransform: 'uppercase',
-        }}>Scroll</span>
-      </div>
+            position: 'absolute', bottom: '1.25rem', right: '1.5rem',
+            display: 'flex', gap: '0.7rem', alignItems: 'center',
+          }}>
+            {bgPhotos.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => { setCurrent(i); setTick(k => k + 1); }}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '6px 0' }}
+              >
+                <div style={{
+                  width: i === current ? '32px' : '8px',
+                  height: '2px', borderRadius: '2px',
+                  backgroundColor: i === current ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.4)',
+                  transition: 'width 0.4s ease, background-color 0.4s ease',
+                  position: 'relative', overflow: 'hidden',
+                }}>
+                  {i === current && (
+                    <div
+                      key={`fill-${tick}`}
+                      style={{
+                        position: 'absolute', left: 0, top: 0, bottom: 0,
+                        backgroundColor: '#ffffff',
+                        animation: `progressFill ${DURATION}ms linear forwards`,
+                      }}
+                    />
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
+        </motion.div>
 
+      </div>
     </div>
   );
 }

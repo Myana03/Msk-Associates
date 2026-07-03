@@ -12,7 +12,7 @@ const items = [
 ];
 
 const MarqueeStrip = () => (
-  <div style={{ backgroundColor: '#EDEAE3', overflow: 'hidden', padding: '14px 0', borderBottom: '1px solid #d8d4cc' }}>
+  <div style={{ backgroundColor: '#f7f4ed', overflow: 'hidden', padding: '14px 0', borderBottom: '1px solid #eceae4' }}>
     <style>{`
       @keyframes mskMarquee {
         0%   { transform: translateX(0); }
@@ -34,12 +34,12 @@ const MarqueeStrip = () => (
                 fontSize: '0.63rem', fontWeight: 600,
                 color: '#8a8278',
                 textTransform: 'uppercase', letterSpacing: '0.18em',
-                fontFamily: 'Inter, sans-serif',
+                fontFamily: 'Figtree, sans-serif',
                 padding: '0 2rem', whiteSpace: 'nowrap',
               }}>
                 {item}
               </span>
-              <span style={{ color: '#C1440E', fontSize: '0.38rem', opacity: 0.7 }}>◆</span>
+              <span style={{ color: '#1c1c1c', fontSize: '0.38rem', opacity: 0.25 }}>◆</span>
             </span>
           ))}
         </div>

@@ -19,17 +19,17 @@ const INFO = [
 const inputStyle = {
   display: 'block', width: '100%',
   padding: '12px 0', background: 'transparent',
-  border: 'none', borderBottom: '1.5px solid #c8c4bc',
-  fontSize: '0.95rem', color: '#1a1714',
-  fontFamily: 'Inter, sans-serif', outline: 'none',
+  border: 'none', borderBottom: '1.5px solid #eceae4',
+  fontSize: '0.95rem', color: '#1c1c1c',
+  fontFamily: 'Figtree, sans-serif', outline: 'none',
   boxSizing: 'border-box', transition: 'border-color 0.2s',
 };
 
 const labelStyle = {
   display: 'block', marginBottom: '6px',
-  fontSize: '0.6rem', fontWeight: 700,
+  fontSize: '0.6rem', fontWeight: 600,
   color: '#9ca3af', textTransform: 'uppercase',
-  letterSpacing: '0.13em', fontFamily: 'Inter, sans-serif',
+  letterSpacing: '0.13em', fontFamily: 'Figtree, sans-serif',
 };
 
 export default function Contact() {
@@ -100,21 +100,21 @@ export default function Contact() {
       `}</style>
 
       {/* ── Left panel — dark navy ─────────────────────────────── */}
-      <div className="contact-left" style={{ backgroundColor: '#1a1714', padding: 'clamp(3rem, 6vw, 5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div className="contact-left" style={{ backgroundColor: '#f7f4ed', borderRight: '1px solid #eceae4', padding: 'clamp(3rem, 6vw, 5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <div>
-          <p style={{ fontSize: '0.58rem', fontWeight: 700, color: '#C1440E', textTransform: 'uppercase', letterSpacing: '0.18em', fontFamily: 'Inter, sans-serif', marginBottom: '2rem' }}>
+          <p style={{ fontSize: '0.58rem', fontWeight: 600, color: '#1c1c1c', textTransform: 'uppercase', letterSpacing: '0.18em', fontFamily: 'Figtree, sans-serif', marginBottom: '2rem' }}>
             Based in Warangal, Telangana
           </p>
-          <h2 style={{ fontSize: 'clamp(2.6rem, 4.5vw, 3.8rem)', fontWeight: 800, color: '#fff', lineHeight: 1.0, fontFamily: 'Cormorant Garant, Georgia, serif', marginBottom: '2rem', letterSpacing: '-0.01em' }}>
+          <h2 style={{ fontSize: 'clamp(2.6rem, 4.5vw, 3.8rem)', fontWeight: 600, color: '#1c1c1c', lineHeight: 1.1, fontFamily: 'Figtree, ui-sans-serif, sans-serif', marginBottom: '2rem', letterSpacing: '-0.01em' }}>
             Let's talk<br />about your<br />project.
           </h2>
-          <p style={{ color: '#6b7280', fontSize: '0.88rem', lineHeight: 1.85, fontFamily: 'Inter, sans-serif', marginBottom: '3.5rem', maxWidth: '300px' }}>
+          <p style={{ color: '#5f5f5d', fontSize: '0.88rem', lineHeight: 1.85, fontFamily: 'Figtree, sans-serif', marginBottom: '3.5rem', maxWidth: '300px' }}>
             Tell us what you're building. We respond within one business day — usually the same afternoon.
           </p>
 
           {/* Trust line */}
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '1.75rem', marginBottom: '2.5rem' }}>
-            <p style={{ fontSize: '0.78rem', color: '#9ca3af', fontFamily: 'Inter, sans-serif', lineHeight: 1.7 }}>
+          <div style={{ borderTop: '1px solid #eceae4', paddingTop: '1.75rem', marginBottom: '2.5rem' }}>
+            <p style={{ fontSize: '0.78rem', color: '#5f5f5d', fontFamily: 'Figtree, sans-serif', lineHeight: 1.7 }}>
               Hundreds of projects delivered across Telangana.<br />Every drawing stamped. Every site supervised.
             </p>
           </div>
@@ -126,7 +126,7 @@ export default function Contact() {
               { v: 'designs@mskassociates.com' },
               { v: 'Mon – Fri, 9 AM – 6 PM' },
             ].map(item => (
-              <p key={item.v} style={{ fontSize: '0.82rem', color: '#d1d5db', fontFamily: 'Inter, sans-serif' }}>
+              <p key={item.v} style={{ fontSize: '0.82rem', color: '#1c1c1c', fontFamily: 'Figtree, sans-serif' }}>
                 {item.v}
               </p>
             ))}
@@ -134,59 +134,59 @@ export default function Contact() {
         </div>
 
         {/* Bottom address — small, understated */}
-        <p style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.28)', fontFamily: 'Inter, sans-serif', lineHeight: 1.6, marginTop: '3rem' }}>
+        <p style={{ fontSize: '0.68rem', color: 'rgba(28,28,28,0.4)', fontFamily: 'Figtree, sans-serif', lineHeight: 1.6, marginTop: '3rem' }}>
           Pranay Marg, Waddepally,<br />Hanamakonda, Telangana 506370
         </p>
       </div>
 
       {/* ── Right panel — form ────────────────────────────────── */}
-      <div className="contact-right" style={{ backgroundColor: '#FAFAF8', padding: 'clamp(3rem, 6vw, 5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div className="contact-right" style={{ backgroundColor: '#f7f4ed', padding: 'clamp(3rem, 6vw, 5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
         {emailStatus === 'success' && (
           <div style={{ marginBottom: '1.5rem', padding: '12px 16px', backgroundColor: 'rgba(22,163,74,0.06)', borderLeft: '3px solid #16a34a', borderRadius: '2px' }}>
-            <p style={{ color: '#15803d', fontSize: '0.85rem', fontFamily: 'Inter, sans-serif' }}>Message sent — we'll be in touch shortly.</p>
+            <p style={{ color: '#15803d', fontSize: '0.85rem', fontFamily: 'Figtree, sans-serif' }}>Message sent — we'll be in touch shortly.</p>
           </div>
         )}
         {emailStatus === 'error' && (
-          <div style={{ marginBottom: '1.5rem', padding: '12px 16px', backgroundColor: 'rgba(193,68,14,0.06)', borderLeft: '3px solid #C1440E', borderRadius: '2px' }}>
-            <p style={{ color: '#C1440E', fontSize: '0.85rem', fontFamily: 'Inter, sans-serif' }}>Failed to send — please WhatsApp or call us directly.</p>
+          <div style={{ marginBottom: '1.5rem', padding: '12px 16px', backgroundColor: 'rgba(28,28,28,0.06)',  borderRadius: '2px' }}>
+            <p style={{ color: '#1c1c1c', fontSize: '0.85rem', fontFamily: 'Figtree, sans-serif' }}>Failed to send — please WhatsApp or call us directly.</p>
           </div>
         )}
 
         <form ref={formRef} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           {/* Name */}
           <div>
-            <label htmlFor="name" style={labelStyle}>Full Name <span style={{ color: '#C1440E' }}>*</span></label>
+            <label htmlFor="name" style={labelStyle}>Full Name <span style={{ color: '#1c1c1c' }}>*</span></label>
             <input id="name" name="name" type="text" required autoComplete="name" placeholder="Your full name"
               style={inputStyle}
-              onFocus={e => (e.target.style.borderBottomColor = '#C1440E')}
-              onBlur={e  => (e.target.style.borderBottomColor = '#c8c4bc')}
+              onFocus={e => (e.target.style.borderBottomColor = '#1c1c1c')}
+              onBlur={e  => (e.target.style.borderBottomColor = '#eceae4')}
             />
           </div>
 
           {/* Phone */}
           <div>
             <label htmlFor="phone" style={labelStyle}>
-              Phone Number <span style={{ color: '#C1440E' }}>*</span>
+              Phone Number <span style={{ color: '#1c1c1c' }}>*</span>
               <span style={{ color: '#9ca3af', fontWeight: 400, marginLeft: '6px' }}>— for WhatsApp</span>
             </label>
             <input id="phone" name="phone" type="tel" required autoComplete="tel" placeholder="+91 98765 43210"
               value={phone} onChange={e => setPhone(e.target.value)}
               style={inputStyle}
-              onFocus={e => (e.target.style.borderBottomColor = '#C1440E')}
-              onBlur={e  => (e.target.style.borderBottomColor = '#c8c4bc')}
+              onFocus={e => (e.target.style.borderBottomColor = '#1c1c1c')}
+              onBlur={e  => (e.target.style.borderBottomColor = '#eceae4')}
             />
           </div>
 
           {/* Message */}
           <div>
-            <label htmlFor="message" style={labelStyle}>Your Project <span style={{ color: '#C1440E' }}>*</span></label>
+            <label htmlFor="message" style={labelStyle}>Your Project <span style={{ color: '#1c1c1c' }}>*</span></label>
             <textarea id="message" name="message" rows="4" required
               placeholder="Briefly describe what you're building — plot size, floors, project type…"
               value={message} onChange={e => setMessage(e.target.value)}
               style={{ ...inputStyle, resize: 'none' }}
-              onFocus={e => (e.target.style.borderBottomColor = '#C1440E')}
-              onBlur={e  => (e.target.style.borderBottomColor = '#c8c4bc')}
+              onFocus={e => (e.target.style.borderBottomColor = '#1c1c1c')}
+              onBlur={e  => (e.target.style.borderBottomColor = '#eceae4')}
             />
           </div>
 
@@ -199,8 +199,8 @@ export default function Contact() {
             <input id="email" name="email" type="email" autoComplete="email" placeholder="you@example.com"
               value={email} onChange={e => setEmail(e.target.value)}
               style={inputStyle}
-              onFocus={e => (e.target.style.borderBottomColor = '#C1440E')}
-              onBlur={e  => (e.target.style.borderBottomColor = '#c8c4bc')}
+              onFocus={e => (e.target.style.borderBottomColor = '#1c1c1c')}
+              onBlur={e  => (e.target.style.borderBottomColor = '#eceae4')}
             />
           </div>
 
@@ -209,25 +209,25 @@ export default function Contact() {
             {/* Primary — WhatsApp */}
             <button onClick={handleWhatsApp} style={{
               width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-              gap: '10px', padding: '16px', borderRadius: '4px', border: 'none',
-              fontSize: '1rem', fontWeight: 700, fontFamily: 'Inter, sans-serif',
+              gap: '10px', padding: '14px', borderRadius: '6px', border: 'none',
+              fontSize: '1rem', fontWeight: 400, fontFamily: 'Figtree, sans-serif',
               cursor: whatsappEnabled ? 'pointer' : 'not-allowed',
-              backgroundColor: whatsappEnabled ? '#25D366' : '#e8e4dc',
-              color: whatsappEnabled ? '#fff' : '#bbb',
+              backgroundColor: whatsappEnabled ? '#1c1c1c' : '#eceae4',
+              color: whatsappEnabled ? '#fcfbf8' : '#b5b2ab',
               transition: 'opacity 0.15s',
               marginBottom: '12px',
-              boxShadow: whatsappEnabled ? '0 4px 16px rgba(37,211,102,0.3)' : 'none',
+              boxShadow: whatsappEnabled ? 'rgba(255,255,255,0.2) 0px 0.5px 0px 0px inset, rgba(0,0,0,0.2) 0px 0px 0px 0.5px inset, rgba(0,0,0,0.05) 0px 1px 2px 0px' : 'none',
             }}>
               <FaWhatsapp size={20} /> WhatsApp MSK
             </button>
-            {whatsappHint && <p style={{ fontSize: '0.7rem', color: '#C1440E', marginBottom: '8px', fontFamily: 'Inter, sans-serif' }}>{whatsappHint}</p>}
+            {whatsappHint && <p style={{ fontSize: '0.7rem', color: '#1c1c1c', marginBottom: '8px', fontFamily: 'Figtree, sans-serif' }}>{whatsappHint}</p>}
 
             {/* Secondary — text-style email link */}
             <button onClick={handleEmail} disabled={emailStatus === 'sending'} style={{
               width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
               gap: '8px', padding: '10px',
               border: 'none', background: 'none',
-              fontSize: '0.82rem', fontWeight: 600, fontFamily: 'Inter, sans-serif',
+              fontSize: '0.82rem', fontWeight: 600, fontFamily: 'Figtree, sans-serif',
               cursor: emailEnabled ? 'pointer' : 'default',
               color: emailEnabled ? '#6b7280' : '#aaa',
               textDecoration: emailEnabled ? 'underline' : 'none',
@@ -236,7 +236,7 @@ export default function Contact() {
               <HiOutlineMail size={14} />
               {emailStatus === 'sending' ? 'Sending…' : 'or send by email'}
             </button>
-            {emailHint && <p style={{ fontSize: '0.7rem', color: '#C1440E', marginTop: '4px', fontFamily: 'Inter, sans-serif' }}>{emailHint}</p>}
+            {emailHint && <p style={{ fontSize: '0.7rem', color: '#1c1c1c', marginTop: '4px', fontFamily: 'Figtree, sans-serif' }}>{emailHint}</p>}
           </div>
         </form>
       </div>
@@ -254,17 +254,17 @@ export default function Contact() {
       {/* Floating address card */}
       <div className="map-card" style={{
         position: 'absolute', bottom: '2rem', left: '2rem',
-        backgroundColor: '#FAFAF8',
+        backgroundColor: '#f7f4ed',
         padding: '1.5rem 2rem',
-        borderRadius: '4px',
-        borderLeft: '3px solid #C1440E',
-        boxShadow: '0 8px 32px rgba(26,23,20,0.14)',
+        borderRadius: '12px',
+        
+        border: '1px solid #eceae4', boxShadow: 'rgba(0,0,0,0.1) 0px 4px 12px',
         maxWidth: '300px',
       }}>
-        <p style={{ fontSize: '0.58rem', fontWeight: 700, color: '#C1440E', textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'Inter, sans-serif', marginBottom: '0.6rem' }}>
+        <p style={{ fontSize: '0.58rem', fontWeight: 600, color: '#1c1c1c', textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'Figtree, sans-serif', marginBottom: '0.6rem' }}>
           Our Office
         </p>
-        <p style={{ fontSize: '0.88rem', color: '#6b6460', fontFamily: 'Inter, sans-serif', lineHeight: 1.7, marginBottom: '1.25rem' }}>
+        <p style={{ fontSize: '0.88rem', color: '#5f5f5d', fontFamily: 'Figtree, sans-serif', lineHeight: 1.7, marginBottom: '1.25rem' }}>
           Pranay Marg, Waddepally,<br />
           Hanamakonda, Telangana 506370
         </p>
@@ -274,8 +274,8 @@ export default function Contact() {
           rel="noopener noreferrer"
           style={{
             display: 'inline-flex', alignItems: 'center', gap: '6px',
-            fontSize: '0.8rem', fontWeight: 700, color: '#C1440E',
-            fontFamily: 'Inter, sans-serif', textDecoration: 'none',
+            fontSize: '0.8rem', fontWeight: 600, color: '#1c1c1c',
+            fontFamily: 'Figtree, sans-serif', textDecoration: 'none',
             letterSpacing: '0.02em',
           }}
         >
