@@ -218,7 +218,7 @@ export default function Contact() {
               marginBottom: '12px',
               boxShadow: whatsappEnabled ? '0 4px 16px rgba(37,211,102,0.3)' : 'none',
             }}>
-              <FaWhatsapp size={20} /> WhatsApp MSK
+              <FaWhatsapp size={20} /> WhatsApp
             </button>
             {whatsappHint && <p style={{ fontSize: '0.7rem', color: '#B33A2E', marginBottom: '8px', fontFamily: 'Inter, sans-serif' }}>{whatsappHint}</p>}
 

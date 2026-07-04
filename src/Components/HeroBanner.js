@@ -20,41 +20,6 @@ const bgPhotos = [
   { src: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=90&auto=format&fit=crop', pos: 'center 40%' },
 ];
 
-// The signature: an approval stamp, like the one MSK presses onto every
-// structural drawing it certifies for construction. Real regulatory function
-// of this business, not a decorative badge — the one bold risk in the design.
-function ApprovalStamp() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 1.5, rotate: 4 }}
-      animate={{ opacity: 0.92, scale: 1, rotate: -9 }}
-      transition={{ duration: 0.5, delay: 1.15, ease: [0.34, 1.56, 0.64, 1] }}
-      style={{
-        position: 'absolute', top: '18%', right: 'clamp(1.5rem, 7vw, 7rem)',
-        zIndex: 3, width: 'clamp(96px, 11vw, 148px)', height: 'clamp(96px, 11vw, 148px)',
-        pointerEvents: 'none', mixBlendMode: 'screen',
-      }}
-    >
-      <svg viewBox="0 0 200 200" style={{ width: '100%', height: '100%' }}>
-        <defs>
-          <path id="stampRingTop" d="M 100,100 m -78,0 a 78,78 0 1,1 156,0" fill="none" />
-          <path id="stampRingBottom" d="M 100,100 m -78,0 a 78,78 0 1,0 156,0" fill="none" />
-        </defs>
-        <circle cx="100" cy="100" r="92" fill="none" stroke="#B33A2E" strokeWidth="2" opacity="0.8" />
-        <circle cx="100" cy="100" r="78" fill="none" stroke="#B33A2E" strokeWidth="1.5" opacity="0.8" />
-        <text fill="#B33A2E" fontFamily="'IBM Plex Mono', monospace" fontSize="11.5" letterSpacing="3.5" opacity="0.85">
-          <textPath href="#stampRingTop" startOffset="50%" textAnchor="middle">STRUCTURALLY CERTIFIED</textPath>
-        </text>
-        <text fill="#B33A2E" fontFamily="'IBM Plex Mono', monospace" fontSize="11.5" letterSpacing="3.5" opacity="0.85">
-          <textPath href="#stampRingBottom" startOffset="50%" textAnchor="middle">WARANGAL · TELANGANA</textPath>
-        </text>
-        <text x="100" y="94" fill="#B33A2E" fontFamily="'Space Grotesk', sans-serif" fontWeight="700" fontSize="30" textAnchor="middle" opacity="0.9">MSK</text>
-        <text x="100" y="120" fill="#B33A2E" fontFamily="'IBM Plex Mono', monospace" fontSize="9" letterSpacing="2" textAnchor="middle" opacity="0.8">APPROVED FOR SITE</text>
-      </svg>
-    </motion.div>
-  );
-}
-
 export default function HeroBanner({ onStartProject }) {
   const [current, setCurrent] = useState(0);
   const [tick, setTick]       = useState(0);
@@ -159,9 +124,6 @@ export default function HeroBanner({ onStartProject }) {
           </div>
         );
       })}
-
-      {/* ── Signature: certification stamp, desktop only (needs the negative space) ── */}
-      {!isMobile && <ApprovalStamp />}
 
       {/* ── Content ── */}
       <div style={{
