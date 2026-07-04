@@ -124,3 +124,15 @@ textarea:-webkit-autofill {
   -webkit-text-fill-color: #111827 !important;
   caret-color: #111827;
 }
+
+/* Respect reduced-motion preference: stop continuous/decorative animation
+   (hero Ken Burns zoom, marquee ticker, scroll indicators) without touching
+   one-shot entrance transitions that convey no vestibular risk. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
