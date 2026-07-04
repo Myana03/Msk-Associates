@@ -212,11 +212,11 @@ export default function Contact() {
               gap: '10px', padding: '14px', borderRadius: '8px', border: 'none',
               fontSize: '1rem', fontWeight: 500, fontFamily: 'Inter, sans-serif',
               cursor: whatsappEnabled ? 'pointer' : 'not-allowed',
-              backgroundColor: whatsappEnabled ? '#cc785c' : '#e6dfd8',
+              backgroundColor: whatsappEnabled ? '#25D366' : '#e6dfd8',
               color: whatsappEnabled ? '#ffffff' : '#6c6a64',
               transition: 'opacity 0.15s',
               marginBottom: '12px',
-              boxShadow: 'none',
+              boxShadow: whatsappEnabled ? '0 4px 16px rgba(37,211,102,0.3)' : 'none',
             }}>
               <FaWhatsapp size={20} /> WhatsApp MSK
             </button>

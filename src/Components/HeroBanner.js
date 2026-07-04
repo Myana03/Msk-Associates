@@ -3,8 +3,18 @@ import { motion } from 'framer-motion';
 
 const DURATION = 5500;
 
-// General company photos cycling in background — headline stays fixed
+// Cycling background — MSK "design → built" showcases lead, then site photos.
+// Same presentation on every screen size, matching the laptop/desktop hero
+// exactly: the photo fills the entire viewport edge-to-edge and the text
+// sits directly on top of it. Both showcase photos are composed as a
+// center-split (construction/blueprint on the left, finished build on the
+// right, seam at ~50% width) — a "safe area" composition. `mobilePos` keeps
+// that seam centered on narrow portrait screens, where "cover" crops most of
+// the width away, so both halves of the before/after story stay in frame
+// instead of the crop drifting entirely into one side.
 const bgPhotos = [
+  { src: '/Images/hero/design-to-reality.jpg',        pos: '55% 45%', mobilePos: '49% 42%' },
+  { src: '/Images/hero/construction-to-interior.jpg', pos: '55% 50%', mobilePos: '50% 48%' },
   { src: 'https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=1920&q=90&auto=format&fit=crop', pos: 'center 50%' },
   { src: 'https://images.unsplash.com/photo-1653312571624-62757bb625f5?w=1920&q=90&auto=format&fit=crop', pos: 'center 40%' },
   { src: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=90&auto=format&fit=crop', pos: 'center 40%' },
@@ -13,15 +23,26 @@ const bgPhotos = [
 export default function HeroBanner({ onStartProject }) {
   const [current, setCurrent] = useState(0);
   const [tick, setTick]       = useState(0);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+  );
 
   useEffect(() => {
-    const t = setTimeout(() => {
-      const next = (current + 1) % bgPhotos.length;
-      setCurrent(next);
+    const mq = window.matchMedia('(max-width: 768px)');
+    const onChange = e => setIsMobile(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
+  useEffect(() => {
+    // A single stable interval (not a chain of timeouts re-armed on every
+    // state change) — avoids drift/races when React re-mounts effects.
+    const id = setInterval(() => {
+      setCurrent(c => (c + 1) % bgPhotos.length);
       setTick(k => k + 1);
     }, DURATION);
-    return () => clearTimeout(t);
-  }, [current, tick]);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <div style={{ position: 'relative', height: '100svh', minHeight: '620px', overflow: 'hidden', backgroundColor: '#181715' }}>
@@ -66,36 +87,31 @@ export default function HeroBanner({ onStartProject }) {
           }}>
             {shouldLoad && (
               <>
-                {/* Photo layer */}
+                {/* Photo layer — fills the viewport edge-to-edge on every screen
+                    size, exactly like the desktop/laptop hero. */}
                 <div
                   key={i === current ? `kb-${tick}` : `idle-${i}`}
                   style={{
                     position: 'absolute', inset: 0,
                     backgroundImage: `url('${p.src}')`,
-                    backgroundSize: 'cover', backgroundPosition: p.pos,
+                    backgroundSize: 'cover',
+                    backgroundPosition: isMobile && p.mobilePos ? p.mobilePos : p.pos,
                     willChange: 'transform',
                     animation: i === current ? `kenBurns ${DURATION + 2000}ms ease-out forwards` : 'none',
-                    filter: p.lightBg ? 'invert(1) brightness(0.88)' : 'none',
                   }}
                 />
-                {/* Per-slide gradient overlay */}
-                {p.lightBg ? (
-                  /* Floor plan slide: dark only on left — plan visible on right */
+                {/* Per-slide gradient overlay — text legibility, matches on every size */}
+                <div style={{
+                  position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
+                  background: isMobile
+                    ? 'linear-gradient(180deg, rgba(24,23,21,0.5) 0%, rgba(24,23,21,0.15) 30%, rgba(24,23,21,0.55) 60%, rgba(24,23,21,0.9) 100%)'
+                    : 'linear-gradient(110deg, rgba(24,23,21,0.86) 0%, rgba(24,23,21,0.58) 55%, rgba(24,23,21,0.18) 100%)',
+                }} />
+                {!isMobile && (
                   <div style={{
                     position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-                    background: 'linear-gradient(to right, rgba(24,23,21,0.94) 0%, rgba(24,23,21,0.90) 38%, rgba(24,23,21,0.30) 62%, rgba(24,23,21,0.06) 100%)',
+                    background: 'linear-gradient(to top, rgba(24,23,21,0.82) 0%, rgba(24,23,21,0) 42%)',
                   }} />
-                ) : (
-                  <>
-                    <div style={{
-                      position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-                      background: 'linear-gradient(110deg, rgba(24,23,21,0.86) 0%, rgba(24,23,21,0.58) 55%, rgba(24,23,21,0.18) 100%)',
-                    }} />
-                    <div style={{
-                      position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-                      background: 'linear-gradient(to top, rgba(24,23,21,0.82) 0%, rgba(24,23,21,0) 42%)',
-                    }} />
-                  </>
                 )}
               </>
             )}
@@ -176,7 +192,7 @@ export default function HeroBanner({ onStartProject }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            color: 'rgba(255,255,255,0.38)', fontSize: '0.9rem',
+            color: 'rgba(255,255,255,0.45)', fontSize: '0.9rem',
             fontFamily: 'Inter, sans-serif', lineHeight: 1.75,
             maxWidth: '440px', marginBottom: '2.8rem',
           }}
@@ -189,8 +205,23 @@ export default function HeroBanner({ onStartProject }) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          style={{ display: 'flex', alignItems: 'center', gap: '2.2rem', flexWrap: 'wrap' }}
+          style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '1.5rem' : '2.2rem', flexWrap: 'wrap' }}
         >
+          {isMobile && (
+            <button
+              onClick={onStartProject}
+              className="hero-btn-primary"
+              style={{
+                backgroundColor: '#cc785c', color: '#fff', border: 'none',
+                borderRadius: '8px', padding: '13px 26px',
+                fontSize: '0.72rem', fontWeight: 700,
+                fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em',
+                textTransform: 'uppercase', cursor: 'pointer',
+              }}
+            >
+              Start a Project
+            </button>
+          )}
           <a href="#services" className="hero-link"
             style={{
               color: 'rgba(255,255,255,0.5)', fontSize: '0.72rem',

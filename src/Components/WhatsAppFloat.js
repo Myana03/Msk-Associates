@@ -46,16 +46,16 @@ const WhatsAppFloat = () => {
         style={{
           position: 'relative',
           width: '52px', height: '52px',
-          backgroundColor: '#141413',
+          backgroundColor: '#25D366',
           borderRadius: '50%',
           border: 'none', cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 8px 28px rgba(20,20,19,0.32)',
+          boxShadow: '0 8px 28px rgba(37,211,102,0.4)',
           color: '#fff',
           transition: 'transform 0.22s ease, box-shadow 0.22s ease',
         }}
-        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.boxShadow = '0 12px 36px rgba(20,20,19,0.42)'; }}
-        onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 8px 28px rgba(20,20,19,0.32)'; }}
+        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.boxShadow = '0 12px 36px rgba(37,211,102,0.5)'; }}
+        onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 8px 28px rgba(37,211,102,0.4)'; }}
       >
         <FaWhatsapp size={22} />
       </button>

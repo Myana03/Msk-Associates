@@ -117,19 +117,51 @@ function WizardModal({ onClose, onOpen }) {
   );
 }
 
+const INTRO_SESSION_KEY = 'mskIntroPlayed';
+
 function App() {
-  const [loading,    setLoading]    = useState(true);
+  // Demo/testing hook: /?splashhold always shows the intro and loops it
+  const splashHold = typeof window !== 'undefined' && window.location.search.includes('splashhold');
+
+  // The intro is a first-impression moment, not a tax on every reload — it
+  // plays once per browser session (sessionStorage), never again on refresh
+  // or when navigating back within the same tab.
+  const alreadySeenIntro = typeof window !== 'undefined' && sessionStorage.getItem(INTRO_SESSION_KEY) === '1';
+  const [loading, setLoading] = useState(splashHold || !alreadySeenIntro);
   const [wizardOpen, setWizardOpen] = useState(false);
 
-  useEffect(() => {
+  const dismissIntro = () => {
+    sessionStorage.setItem(INTRO_SESSION_KEY, '1');
     setLoading(false);
-  }, []);
+  };
+
+  useEffect(() => {
+    if (splashHold || !loading) return;
+    // Fallback: never hold the site longer than 5s even if the video stalls
+    const t = setTimeout(dismissIntro, 5000);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [splashHold, loading]);
 
   if (loading) {
     return (
-      <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-50">
-        <img src="/Images/logos/logo-light.png" alt="MSK Associates" style={{ height: '80px', width: 'auto', marginBottom: '1.5rem' }} />
-        <div className="w-8 h-8 border-4 rounded-full animate-spin" style={{borderColor:'#cc785c', borderTopColor:'transparent'}} />
+      <div
+        className="fixed inset-0 flex flex-col items-center justify-center z-50"
+        style={{ backgroundColor: '#faf9f5', cursor: 'pointer' }}
+        onClick={dismissIntro}
+        title="Click to skip"
+      >
+        {/* 3D logo intro — plays once per session (~4s), then the site appears */}
+        <video
+          src="/Images/logos/msk-3d-branded.mp4"
+          autoPlay
+          muted
+          playsInline
+          loop={splashHold}
+          onEnded={() => { if (!splashHold) dismissIntro(); }}
+          onError={dismissIntro}
+          style={{ width: 'min(72vw, 480px)', display: 'block' }}
+        />
       </div>
     );
   }
