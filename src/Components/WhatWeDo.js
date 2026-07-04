@@ -52,7 +52,7 @@ export default function WhatWeDo() {
   const [open, setOpen] = useState('structural');
 
   return (
-    <div style={{ backgroundColor: '#faf9f5', borderTop: '1px solid #e6dfd8' }}>
+    <div style={{ backgroundColor: '#E9EAE1', borderTop: '1px solid rgba(32,36,31,0.12)' }}>
       <style>{`
         @media (max-width: 768px) {
           .wwd-panel { grid-template-columns: 1fr !important; }
@@ -75,25 +75,25 @@ export default function WhatWeDo() {
         >
           <p style={{
             display: 'flex', alignItems: 'center', gap: '0.8rem',
-            fontSize: '0.8125rem', color: '#cc785c', fontWeight: 500,
+            fontSize: '0.8125rem', color: '#B33A2E', fontWeight: 500,
             textTransform: 'uppercase', letterSpacing: '0.125em',
             fontFamily: 'Inter, sans-serif', marginBottom: '1.2rem',
           }}>
-            <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#cc785c' }} />
+            <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#B33A2E' }} />
             What We Do
           </p>
           <h2 style={{
-            fontFamily: 'Cormorant Garamond, Georgia, serif',
+            fontFamily: 'Space Grotesk, sans-serif',
             fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)',
             fontWeight: 500, lineHeight: 1.0,
-            letterSpacing: '-0.025em', color: '#141413', margin: 0,
+            letterSpacing: '-0.025em', color: '#20241F', margin: 0,
           }}>
             Four disciplines.<br />One team.
           </h2>
         </motion.div>
 
         {/* Accordion */}
-        <div style={{ borderTop: '1px solid #e6dfd8' }}>
+        <div style={{ borderTop: '1px solid rgba(32,36,31,0.12)' }}>
           {services.map((s, idx) => {
             const isOpen = open === s.id;
             return (
@@ -103,7 +103,7 @@ export default function WhatWeDo() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                style={{ borderBottom: '1px solid #e6dfd8' }}
+                style={{ borderBottom: '1px solid rgba(32,36,31,0.12)' }}
               >
                 {/* Row trigger */}
                 <button
@@ -119,7 +119,7 @@ export default function WhatWeDo() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(1rem, 3vw, 2.5rem)' }}>
                     <span style={{
                       fontSize: '0.55rem', fontWeight: 500,
-                      color: isOpen ? '#cc785c' : '#8e8b82',
+                      color: isOpen ? '#B33A2E' : '#565D53',
                       fontFamily: 'Inter, sans-serif', letterSpacing: '0.18em',
                       transition: 'color 0.3s ease', flexShrink: 0,
                     }}>{s.num}</span>
@@ -128,15 +128,15 @@ export default function WhatWeDo() {
                     <span style={{
                       display: 'inline-block',
                       width: isOpen ? '28px' : '0px', height: '2px',
-                      backgroundColor: '#cc785c', flexShrink: 0,
+                      backgroundColor: '#B33A2E', flexShrink: 0,
                       transition: 'width 0.35s ease',
                     }} />
 
                     <span className="wwd-title" style={{
-                      fontFamily: 'Cormorant Garamond, Georgia, serif',
+                      fontFamily: 'Space Grotesk, sans-serif',
                       fontSize: 'clamp(1.5rem, 3.5vw, 2.4rem)',
                       fontWeight: 500, letterSpacing: '-0.025em',
-                      color: isOpen ? '#141413' : '#3d3d3a',
+                      color: isOpen ? '#20241F' : '#565D53',
                       transition: 'color 0.3s ease',
                       lineHeight: 1,
                     }}>{s.title}</span>
@@ -146,7 +146,7 @@ export default function WhatWeDo() {
                   <span style={{
                     fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
                     fontWeight: 300,
-                    color: isOpen ? '#cc785c' : '#8e8b82',
+                    color: isOpen ? '#B33A2E' : '#565D53',
                     transition: 'color 0.3s ease, transform 0.4s ease',
                     transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
                     display: 'inline-block', lineHeight: 1,
@@ -194,7 +194,7 @@ export default function WhatWeDo() {
                           style={{
                             borderRadius: '12px', overflow: 'hidden',
                             aspectRatio: '16 / 9', position: 'relative',
-                            boxShadow: '0 16px 56px rgba(20,20,19,0.1)',
+                            boxShadow: '0 16px 56px rgba(32,36,31,0.1)',
                           }}
                         >
                           <img
@@ -209,7 +209,7 @@ export default function WhatWeDo() {
                           />
                           <div style={{
                             position: 'absolute', bottom: 0, left: 0, right: 0,
-                            height: '3px', backgroundColor: '#cc785c',
+                            height: '3px', backgroundColor: '#B33A2E',
                           }} />
                         </motion.div>
 
@@ -224,18 +224,18 @@ export default function WhatWeDo() {
                           }}
                         >
                           <h3 style={{
-                            fontFamily: 'Cormorant Garamond, Georgia, serif',
+                            fontFamily: 'Space Grotesk, sans-serif',
                             fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
                             fontWeight: 500, lineHeight: 0.96,
-                            letterSpacing: '-0.03em', color: '#141413',
+                            letterSpacing: '-0.03em', color: '#20241F',
                             margin: '0 0 1.6rem',
                             whiteSpace: 'pre-line',
                           }}>{`${s.line1}\n${s.line2}`}</h3>
 
-                          <div style={{ width: '36px', height: '2px', backgroundColor: '#cc785c', marginBottom: '1.4rem' }} />
+                          <div style={{ width: '36px', height: '2px', backgroundColor: '#B33A2E', marginBottom: '1.4rem' }} />
 
                           <p style={{
-                            color: '#3d3d3a', lineHeight: 1.88,
+                            color: '#565D53', lineHeight: 1.88,
                             fontSize: 'clamp(0.82rem, 1.2vw, 0.92rem)',
                             fontFamily: 'Inter, sans-serif',
                           }}>{s.body}</p>

@@ -59,7 +59,7 @@ export default function Testimonials() {
   const t = testimonials[active];
 
   return (
-    <div style={{ backgroundColor: '#faf9f5', borderTop: '1px solid #e6dfd8' }}>
+    <div style={{ backgroundColor: '#E9EAE1', borderTop: '1px solid rgba(32,36,31,0.12)' }}>
       <div
         className="max-w-7xl mx-auto px-6 lg:px-14"
         style={{ paddingTop: 'clamp(4rem, 8vw, 7rem)', paddingBottom: 'clamp(4rem, 8vw, 7rem)' }}
@@ -72,12 +72,12 @@ export default function Testimonials() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           style={{
             display: 'flex', alignItems: 'center', gap: '0.8rem',
-            fontSize: '0.8125rem', color: '#cc785c', fontWeight: 500,
+            fontSize: '0.8125rem', color: '#B33A2E', fontWeight: 500,
             textTransform: 'uppercase', letterSpacing: '0.125em',
             fontFamily: 'Inter, sans-serif', marginBottom: 'clamp(3rem, 6vw, 5rem)',
           }}
         >
-          <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#cc785c' }} />
+          <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#B33A2E' }} />
           Client Feedback
         </motion.p>
 
@@ -92,12 +92,13 @@ export default function Testimonials() {
               transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
             >
               <p style={{
-                fontFamily: 'Cormorant Garamond, Georgia, serif',
+                fontFamily: 'Inter, sans-serif',
                 fontSize: 'clamp(1rem, 2vw, 1.5rem)',
+                fontWeight: 400,
                 fontStyle: 'italic',
                 lineHeight: 1.45,
                 letterSpacing: '-0.01em',
-                color: '#141413',
+                color: '#20241F',
                 maxWidth: '860px',
                 marginBottom: 'clamp(2rem, 4vw, 3rem)',
               }}>
@@ -105,14 +106,14 @@ export default function Testimonials() {
               </p>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ width: '28px', height: '2px', backgroundColor: '#cc785c', flexShrink: 0 }} />
+                <div style={{ width: '28px', height: '2px', backgroundColor: '#B33A2E', flexShrink: 0 }} />
                 <div>
                   <p style={{
-                    fontWeight: 500, color: '#141413',
+                    fontWeight: 500, color: '#20241F',
                     fontSize: '0.88rem', fontFamily: 'Inter, sans-serif',
                   }}>{t.name}</p>
                   <p style={{
-                    color: '#9ca3af', fontSize: '0.72rem',
+                    color: '#7C8277', fontSize: '0.72rem',
                     marginTop: '3px', fontFamily: 'Inter, sans-serif',
                   }}>{t.detail}</p>
                 </div>
@@ -140,7 +141,7 @@ export default function Testimonials() {
                 height: '2px',
                 width: i === active ? '36px' : '16px',
                 borderRadius: '2px',
-                backgroundColor: i === active ? '#cc785c' : '#e6dfd8',
+                backgroundColor: i === active ? '#B33A2E' : 'rgba(32,36,31,0.12)',
                 transition: 'width 0.4s ease, background-color 0.3s ease',
               }} />
             </button>

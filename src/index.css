@@ -1,7 +1,18 @@
 :root {
-  --primary-color: #141413; /* warm ink */
-  --accent-color: #cc785c; /* Anthropic coral */
-  --light-bg: #f5f0e8;
+  /* Structural-engineering palette — drafting paper, graphite ink, red-ink
+     revision mark. Deliberately not the cream+serif+terracotta AI default. */
+  --ink: #20241F;              /* graphite, cool green-gray cast — not warm black */
+  --paper: #E9EAE1;             /* drafting/vellum paper — not warm cream */
+  --paper-card: #DFE1D6;        /* deeper sage-paper for card contrast */
+  --revision: #B33A2E;          /* engineering red-ink correction mark */
+  --revision-active: #8F2E24;   /* pressed/hover state */
+  --blueprint: #3B4A55;         /* technical drawing blue-gray — secondary accent */
+  --rule: #9CA39A;              /* muted steel-sage hairline */
+  --ink-soft: #565D53;          /* secondary text on paper */
+
+  --primary-color: var(--ink);
+  --accent-color: var(--revision);
+  --light-bg: var(--paper-card);
 }
 
 * {
@@ -20,15 +31,15 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #faf9f5;
-  color: #141413;
+  background-color: var(--paper);
+  color: var(--ink);
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
   color: var(--primary-color);
 }
 
@@ -56,7 +67,7 @@ a {
 }
 .btn-primary:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px rgba(204, 120, 92, 0.38) !important;
+  box-shadow: 0 8px 24px rgba(179, 58, 46, 0.35) !important;
 }
 
 .btn-outline {
@@ -120,7 +131,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #faf9f5 inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px #E9EAE1 inset !important;
   -webkit-text-fill-color: #111827 !important;
   caret-color: #111827;
 }

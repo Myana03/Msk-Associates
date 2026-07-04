@@ -32,13 +32,15 @@ function Header({ onStartProject }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Grid-reference letters — the same A/B/C convention MSK's own structural
+  // drawings use for column lines. Real navigational device, not decoration.
   const navLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'services', label: 'Services' },
-    { id: 'about', label: 'About' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'testimonials', label: 'Testimonials' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'home', label: 'Home', grid: 'A' },
+    { id: 'services', label: 'Services', grid: 'B' },
+    { id: 'about', label: 'About', grid: 'C' },
+    { id: 'projects', label: 'Projects', grid: 'D' },
+    { id: 'testimonials', label: 'Testimonials', grid: 'E' },
+    { id: 'contact', label: 'Contact', grid: 'F' },
   ];
 
   const onDark = !scrolled;
@@ -46,21 +48,20 @@ function Header({ onStartProject }) {
   return (
     <>
       <style>{`
-        .msk-nav-link .msk-underline { transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94); }
-        .msk-nav-link:hover .msk-underline { transform: scaleX(1); }
-        .msk-nav-link.active .msk-underline { transform: scaleX(1); }
+        .msk-nav-link .msk-tick { opacity: 0; transform: translateY(-2px); transition: opacity 0.25s ease, transform 0.25s ease; }
+        .msk-nav-link:hover .msk-tick, .msk-nav-link.active .msk-tick { opacity: 1; transform: translateY(0); }
       `}</style>
 
       <header
         className="fixed top-0 left-0 right-0 z-50"
         style={{
-          backgroundColor: scrolled ? 'rgba(255,255,255,0.97)' : 'transparent',
+          backgroundColor: scrolled ? 'rgba(233,234,225,0.96)' : 'transparent',
           backdropFilter: scrolled ? 'blur(20px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
           borderBottom: scrolled
-            ? '1px solid rgba(0,0,0,0.06)'
+            ? '1px solid rgba(32,36,31,0.1)'
             : '1px solid rgba(255,255,255,0.08)',
-          boxShadow: scrolled ? '0 1px 24px rgba(0,0,0,0.07)' : 'none',
+          boxShadow: scrolled ? '0 1px 24px rgba(32,36,31,0.06)' : 'none',
           transition: 'background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease',
         }}
       >
@@ -73,22 +74,22 @@ function Header({ onStartProject }) {
               alt="MSK Associates"
               style={{ height: '60px', width: 'auto', display: 'block', transition: 'opacity 0.4s ease' }}
             />
-            <div className="hidden sm:flex flex-col justify-center" style={{ borderLeft: '2px solid #cc785c', paddingLeft: '1rem' }}>
+            <div className="hidden sm:flex flex-col justify-center" style={{ borderLeft: '2px solid #B33A2E', paddingLeft: '1rem' }}>
               <span style={{
-                fontFamily: 'Inter, sans-serif', fontSize: '1.2rem', fontWeight: 900,
-                letterSpacing: '0.2em', lineHeight: 1,
-                color: onDark ? '#ffffff' : '#141413',
+                fontFamily: "'Space Grotesk', sans-serif", fontSize: '1.15rem', fontWeight: 700,
+                letterSpacing: '0.14em', lineHeight: 1,
+                color: onDark ? '#ffffff' : '#20241F',
                 transition: 'color 0.5s ease',
               }}>
                 MSKASSOCIATES
               </span>
               <span style={{
-                fontFamily: 'Inter, sans-serif', fontSize: '0.6rem', letterSpacing: '0.06em', lineHeight: 1,
-                color: onDark ? 'rgba(255,255,255,0.45)' : '#6c6a64',
-                marginTop: '4px',
+                fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.58rem', letterSpacing: '0.04em', lineHeight: 1,
+                color: onDark ? 'rgba(255,255,255,0.45)' : '#565D53',
+                marginTop: '5px',
                 transition: 'color 0.5s ease',
               }}>
-                Structural Engineers <span style={{ color: '#cc785c' }}>·</span> Planners <span style={{ color: '#cc785c' }}>·</span> Builders
+                Structural Engineers <span style={{ color: '#B33A2E' }}>·</span> Planners <span style={{ color: '#B33A2E' }}>·</span> Builders
               </span>
             </div>
           </a>
@@ -102,19 +103,20 @@ function Header({ onStartProject }) {
                 className={`msk-nav-link relative px-3 py-2 text-sm${activeLink === link.id ? ' active' : ''}`}
                 style={{
                   color: activeLink === link.id
-                    ? '#cc785c'
-                    : onDark ? 'rgba(255,255,255,0.7)' : '#6b7280',
-                  fontWeight: activeLink === link.id ? 700 : 500,
+                    ? '#B33A2E'
+                    : onDark ? 'rgba(255,255,255,0.7)' : '#565D53',
+                  fontWeight: activeLink === link.id ? 600 : 500,
                   textDecoration: 'none',
                   transition: 'color 0.3s ease',
                   fontFamily: 'Inter, sans-serif',
+                  display: 'flex', alignItems: 'baseline', gap: '5px',
                 }}
               >
+                <span className="msk-tick" style={{
+                  fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.62rem',
+                  color: '#B33A2E',
+                }}>{link.grid}</span>
                 {link.label}
-                <span className="msk-underline" style={{
-                  position: 'absolute', bottom: '4px', left: '12px', right: '12px',
-                  height: '1.5px', backgroundColor: '#cc785c', display: 'block',
-                }} />
               </a>
             ))}
           </nav>
@@ -124,16 +126,16 @@ function Header({ onStartProject }) {
             onClick={onStartProject}
             className="hidden md:inline-flex items-center"
             style={{
-              backgroundColor: '#cc785c', color: '#fff',
-              border: 'none', borderRadius: '8px',
+              backgroundColor: '#B33A2E', color: '#fff',
+              border: 'none', borderRadius: '4px',
               padding: '9px 22px',
-              fontSize: '0.65rem', fontWeight: 500,
+              fontSize: '0.65rem', fontWeight: 600,
               fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em',
               textTransform: 'uppercase', cursor: 'pointer',
               transition: 'background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
             }}
-            onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#a9583e'; e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(204,120,92,0.35)'; }}
-            onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#cc785c'; e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}
+            onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#8F2E24'; e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(179,58,46,0.35)'; }}
+            onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#B33A2E'; e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}
           >
             Start a Project
           </button>
@@ -143,10 +145,10 @@ function Header({ onStartProject }) {
             <button
               onClick={onStartProject}
               style={{
-                backgroundColor: '#cc785c', color: '#fff',
-                border: 'none', borderRadius: '8px',
+                backgroundColor: '#B33A2E', color: '#fff',
+                border: 'none', borderRadius: '4px',
                 padding: '8px 14px',
-                fontSize: '0.58rem', fontWeight: 500,
+                fontSize: '0.58rem', fontWeight: 600,
                 fontFamily: 'Inter, sans-serif', letterSpacing: '0.09em',
                 textTransform: 'uppercase', cursor: 'pointer',
                 whiteSpace: 'nowrap',
@@ -173,7 +175,7 @@ function Header({ onStartProject }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.18, ease: 'easeOut' }}
-              style={{ backgroundColor: 'rgba(255,255,255,0.98)', borderTop: '1px solid rgba(0,0,0,0.05)' }}
+              style={{ backgroundColor: 'rgba(233,234,225,0.98)', borderTop: '1px solid rgba(32,36,31,0.08)' }}
               className="md:hidden px-6 pb-4"
             >
               {navLinks.map((link, i) => (
@@ -184,15 +186,16 @@ function Header({ onStartProject }) {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.04, duration: 0.18 }}
-                  className="block py-3 text-sm font-medium"
+                  className="flex items-center gap-2 py-3 text-sm font-medium"
                   style={{
-                    color: activeLink === link.id ? '#cc785c' : '#374151',
-                    fontWeight: activeLink === link.id ? 700 : 500,
-                    borderBottom: '1px solid rgba(0,0,0,0.05)',
+                    color: activeLink === link.id ? '#B33A2E' : '#374151',
+                    fontWeight: activeLink === link.id ? 600 : 500,
+                    borderBottom: '1px solid rgba(32,36,31,0.08)',
                     textDecoration: 'none',
                     fontFamily: 'Inter, sans-serif',
                   }}
                 >
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.62rem', color: '#B33A2E' }}>{link.grid}</span>
                   {link.label}
                 </motion.a>
               ))}
@@ -205,9 +208,9 @@ function Header({ onStartProject }) {
                 <button
                   onClick={() => { setMenuOpen(false); if (onStartProject) onStartProject(); }}
                   style={{
-                    width: '100%', backgroundColor: '#cc785c', color: '#fff',
-                    border: 'none', borderRadius: '8px', padding: '13px',
-                    fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.1em',
+                    width: '100%', backgroundColor: '#B33A2E', color: '#fff',
+                    border: 'none', borderRadius: '4px', padding: '13px',
+                    fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.1em',
                     textTransform: 'uppercase', cursor: 'pointer',
                     fontFamily: 'Inter, sans-serif',
                   }}
