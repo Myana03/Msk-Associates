@@ -5,7 +5,13 @@ import { HiMenu, HiX } from 'react-icons/hi';
 function Header({ onStartProject }) {
   const [activeLink, setActiveLink] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  // Read the real scroll position on first render (not a hardcoded false) —
+  // otherwise, if the browser restores a scrolled position on reload/remount,
+  // the header renders in the "at top" style until the first scroll event
+  // corrects it, producing a visible flash/snap on that first scroll.
+  const [scrolled, setScrolled] = useState(
+    () => typeof window !== 'undefined' && window.scrollY > 60
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +27,7 @@ function Header({ onStartProject }) {
       }
       setActiveLink(current);
     };
+    handleScroll(); // sync state to actual scroll position immediately, don't wait for a scroll event
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);

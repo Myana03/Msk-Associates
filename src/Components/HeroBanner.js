@@ -205,23 +205,8 @@ export default function HeroBanner({ onStartProject }) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '1.5rem' : '2.2rem', flexWrap: 'wrap' }}
+          style={{ display: 'flex', alignItems: 'center', gap: '2.2rem', flexWrap: 'wrap' }}
         >
-          {isMobile && (
-            <button
-              onClick={onStartProject}
-              className="hero-btn-primary"
-              style={{
-                backgroundColor: '#cc785c', color: '#fff', border: 'none',
-                borderRadius: '8px', padding: '13px 26px',
-                fontSize: '0.72rem', fontWeight: 700,
-                fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em',
-                textTransform: 'uppercase', cursor: 'pointer',
-              }}
-            >
-              Start a Project
-            </button>
-          )}
           <a href="#services" className="hero-link"
             style={{
               color: 'rgba(255,255,255,0.5)', fontSize: '0.72rem',
