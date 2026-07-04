@@ -114,7 +114,7 @@ export default function PhotoGallery() {
               overflow: 'hidden',
               cursor: 'pointer',
               position: 'relative',
-              backgroundColor: '#e6dfd8',
+              backgroundColor: 'rgba(32,36,31,0.12)',
             }}
           >
             <img
@@ -144,16 +144,16 @@ export default function PhotoGallery() {
         <button
           onClick={() => openLightbox(0)}
           style={{
-            background: 'none', border: '1px solid #e6dfd8',
+            background: 'none', border: '1px solid rgba(32,36,31,0.12)',
             borderRadius: '3px', padding: '11px 28px',
             fontSize: '0.68rem', fontWeight: 500,
             fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em',
             textTransform: 'uppercase', cursor: 'pointer',
-            color: '#141413',
+            color: '#20241F',
             transition: 'border-color 0.2s ease, color 0.2s ease',
           }}
-          onMouseEnter={e => { e.currentTarget.style.borderColor = '#cc785c'; e.currentTarget.style.color = '#cc785c'; }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor = '#e6dfd8'; e.currentTarget.style.color = '#141413'; }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = '#B33A2E'; e.currentTarget.style.color = '#B33A2E'; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(32,36,31,0.12)'; e.currentTarget.style.color = '#20241F'; }}
         >
           Browse Projects
         </button>
