@@ -15,8 +15,8 @@ const ProjectGallery = () => (
       >
         <p style={{
           display: 'flex', alignItems: 'center', gap: '0.8rem',
-          fontSize: '0.58rem', color: '#cc785c', fontWeight: 500,
-          textTransform: 'uppercase', letterSpacing: '0.22em',
+          fontSize: '0.8125rem', color: '#cc785c', fontWeight: 500,
+          textTransform: 'uppercase', letterSpacing: '0.125em',
           fontFamily: 'Inter, sans-serif', marginBottom: '1.4rem',
         }}>
           <span style={{ display: 'inline-block', width: '24px', height: '2px', backgroundColor: '#cc785c' }} />

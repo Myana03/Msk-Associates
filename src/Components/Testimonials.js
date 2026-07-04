@@ -72,8 +72,8 @@ export default function Testimonials() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           style={{
             display: 'flex', alignItems: 'center', gap: '0.8rem',
-            fontSize: '0.58rem', color: '#cc785c', fontWeight: 500,
-            textTransform: 'uppercase', letterSpacing: '0.22em',
+            fontSize: '0.8125rem', color: '#cc785c', fontWeight: 500,
+            textTransform: 'uppercase', letterSpacing: '0.125em',
             fontFamily: 'Inter, sans-serif', marginBottom: 'clamp(3rem, 6vw, 5rem)',
           }}
         >
