@@ -130,9 +130,10 @@ export default function Testimonials() {
             <button
               key={i}
               onClick={() => go(i)}
+              aria-label={`Show testimonial ${i + 1}`}
               style={{
                 background: 'none', border: 'none', cursor: 'pointer',
-                padding: '6px 0',
+                padding: '14px 8px',
               }}
             >
               <div style={{

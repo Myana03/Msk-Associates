@@ -237,8 +237,9 @@ export default function HeroBanner({ onStartProject }) {
           <button
             key={i}
             onClick={() => { setCurrent(i); setTick(k => k + 1); }}
+            aria-label={`Show slide ${i + 1}`}
             style={{
-              background: 'none', border: 'none', cursor: 'pointer', padding: '6px 0',
+              background: 'none', border: 'none', cursor: 'pointer', padding: '14px 8px',
             }}
           >
             <div style={{
