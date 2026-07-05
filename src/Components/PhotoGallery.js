@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiArrowLeft, FiArrowRight, FiX } from 'react-icons/fi';
+import Button from './ui/Button';
 
 const allImages = [
   '/Images/realimages/IMG_20250615_090253.jpg',
@@ -90,9 +91,13 @@ export default function PhotoGallery() {
   return (
     <>
       <style>{`
-        .gallery-img { transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
-        .gallery-cell:hover .gallery-img { transform: scale(1.06); }
-        .gallery-overlay { opacity: 0; transition: opacity 0.3s ease; background: rgba(20,20,19,0.38); }
+        .gallery-img { transition: transform var(--duration-slow) var(--ease-premium); }
+        .gallery-cell {
+          transition: transform var(--duration-base) var(--ease-premium), box-shadow var(--duration-base) var(--ease-premium);
+        }
+        .gallery-cell:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); z-index: 1; }
+        .gallery-cell:hover .gallery-img { transform: scale(1.08); }
+        .gallery-overlay { opacity: 0; transition: opacity 0.3s ease; background: rgba(32,36,31,0.4); }
         .gallery-cell:hover .gallery-overlay { opacity: 1; }
       `}</style>
 
@@ -100,9 +105,7 @@ export default function PhotoGallery() {
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '6px',
-        borderRadius: '6px',
-        overflow: 'hidden',
+        gap: '10px',
       }}>
         {allImages.slice(0, GRID_COUNT).map((src, i) => (
           <div
@@ -114,7 +117,8 @@ export default function PhotoGallery() {
               overflow: 'hidden',
               cursor: 'pointer',
               position: 'relative',
-              backgroundColor: 'rgba(32,36,31,0.12)',
+              backgroundColor: 'var(--color-surface-alt)',
+              borderRadius: 'var(--radius-sm)',
             }}
           >
             <img
@@ -132,7 +136,7 @@ export default function PhotoGallery() {
               <span style={{
                 fontSize: '0.6rem', fontWeight: 500,
                 color: 'rgba(255,255,255,0.9)', letterSpacing: '0.2em',
-                textTransform: 'uppercase', fontFamily: 'Inter, sans-serif',
+                textTransform: 'uppercase', fontFamily: 'var(--font-body)',
               }}>View</span>
             </div>
           </div>
@@ -141,23 +145,10 @@ export default function PhotoGallery() {
 
       {/* View all */}
       <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        <button
-          onClick={() => openLightbox(0)}
-          style={{
-            background: 'none', border: '1px solid rgba(32,36,31,0.12)',
-            borderRadius: '3px', padding: '11px 28px',
-            fontSize: '0.68rem', fontWeight: 500,
-            fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em',
-            textTransform: 'uppercase', cursor: 'pointer',
-            color: '#20241F',
-            transition: 'border-color 0.2s ease, color 0.2s ease',
-          }}
-          onMouseEnter={e => { e.currentTarget.style.borderColor = '#B33A2E'; e.currentTarget.style.color = '#B33A2E'; }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(32,36,31,0.12)'; e.currentTarget.style.color = '#20241F'; }}
-        >
+        <Button variant="outline" onClick={() => openLightbox(0)}>
           Browse Projects
-        </button>
-        <span style={{ fontSize: '0.75rem', color: '#9ca3af', fontFamily: 'Inter, sans-serif' }}>
+        </Button>
+        <span style={{ fontSize: '0.75rem', color: 'var(--color-neutral-500)', fontFamily: 'var(--font-body)' }}>
           Click any photo to open full view
         </span>
       </div>
@@ -236,7 +227,7 @@ export default function PhotoGallery() {
                 style={{
                   maxWidth: '88vw', maxHeight: '88vh',
                   objectFit: 'contain',
-                  borderRadius: '4px',
+                  borderRadius: 'var(--radius-sm)',
                   boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
                 }}
               />
