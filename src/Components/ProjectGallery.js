@@ -3,12 +3,27 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { FiArrowLeft, FiArrowRight, FiX, FiArrowUpRight, FiClock } from 'react-icons/fi';
 import { projects, activeCategories, comingSoon } from '../data/projects';
+import { blurMap } from '../data/projectBlur';
 import SectionHeading from './ui/SectionHeading';
 
 const catLabel = (id) => (activeCategories.find((c) => c.id === id) || {}).label || id;
 
 // Featured projects lead the grid as large cards; the rest follow.
 const order = (list) => [...list].sort((a, b) => (b.featured === true) - (a.featured === true));
+
+// Responsive cover sources: 480 / 800 / 1200-wide variants sit beside cover.jpg.
+// `sizes` tells the browser the card's rendered width so it fetches the
+// smallest file that still looks sharp (big win on phones + regular cards).
+const coverSrcSet = (cover) => {
+  const b = cover.replace('/cover.jpg', '');
+  return `${b}/cover-480.jpg 480w, ${b}/cover-800.jpg 800w, ${cover} 1200w`;
+};
+const SIZES_FEATURED = '(max-width: 900px) 100vw, 640px';
+const SIZES_REGULAR = '(max-width: 600px) 100vw, (max-width: 900px) 50vw, 320px';
+
+// Reveal the sharp image once it has decoded (covers cached images too, which
+// don't re-fire onLoad — the ref checks `complete` on mount).
+const markLoaded = (img) => { if (img && img.complete && img.naturalWidth > 0) img.classList.add('is-loaded'); };
 
 // Scroll-triggered reveal (self-contained, token-driven — matches the motion
 // language used across the rest of the site).
@@ -97,11 +112,16 @@ export default function ProjectGallery() {
         .pcard:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
         .pcard--featured { grid-column: span 6; grid-row: span 2; }
         .pcard--regular  { grid-column: span 3; grid-row: span 2; }
-        .pcard__img {
+        .pcard__blur {
           position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
-          transition: transform 0.9s var(--ease-premium);
+          transform: scale(1.1); filter: blur(14px); z-index: 0;
         }
-        .pcard:hover .pcard__img { transform: scale(1.06); }
+        .pcard__img {
+          position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 1;
+          opacity: 0; transition: opacity 0.5s ease, transform 0.9s var(--ease-premium);
+        }
+        .pcard__img.is-loaded { opacity: 1; }
+        .pcard:hover .pcard__img.is-loaded { transform: scale(1.06); }
         .pcard__scrim {
           position: absolute; inset: 0;
           background: linear-gradient(180deg, rgba(20,23,19,0) 30%, rgba(20,23,19,0.5) 66%, rgba(20,23,19,0.88) 100%);
@@ -239,7 +259,17 @@ export default function ProjectGallery() {
                   onClick={() => openBox(p, 0)}
                   aria-label={`${p.title}, ${catLabel(p.category)} project in ${p.location}. View gallery.`}
                 >
-                  <img className="pcard__img" src={p.coverImage} alt={`${p.title} — ${catLabel(p.category)} project, ${p.location}`} loading="lazy" decoding="async" />
+                  <img className="pcard__blur" src={blurMap[p.id]} alt="" aria-hidden="true" />
+                  <img
+                    className="pcard__img"
+                    src={p.coverImage}
+                    srcSet={coverSrcSet(p.coverImage)}
+                    sizes={p.featured ? SIZES_FEATURED : SIZES_REGULAR}
+                    alt={`${p.title} — ${catLabel(p.category)} project, ${p.location}`}
+                    loading="lazy" decoding="async"
+                    ref={markLoaded}
+                    onLoad={(e) => markLoaded(e.currentTarget)}
+                  />
                   <span className="pcard__scrim" aria-hidden="true" />
                   <span className="pcard__cat">{catLabel(p.category)}</span>
                   <span className="pcard__meta">
