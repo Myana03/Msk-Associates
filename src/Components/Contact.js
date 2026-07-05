@@ -3,33 +3,17 @@ import emailjs from '@emailjs/browser';
 import { FaWhatsapp } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { getContactPhone } from '../config/contact';
+import Button from './ui/Button';
 
 const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
 const EMAILJS_PUBLIC_KEY  = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
-const INFO = [
-  { label: 'Office',    value: 'Pranay Marg, Waddepally, Hanamakonda, Telangana 506370' },
-  { label: 'Phone',     value: '+91 99890 90978' },
-  { label: 'Email',     value: 'designs@mskassociates.com' },
-  { label: 'Hours',     value: 'Mon – Fri, 9 AM – 6 PM' },
-  { label: 'Response',  value: 'Within 1 business day' },
-];
-
-const inputStyle = {
-  display: 'block', width: '100%',
-  padding: '12px 0', background: 'transparent',
-  border: 'none', borderBottom: '1.5px solid rgba(32,36,31,0.12)',
-  fontSize: '0.95rem', color: '#20241F',
-  fontFamily: 'Inter, sans-serif', outline: 'none',
-  boxSizing: 'border-box', transition: 'border-color 0.2s',
-};
-
 const labelStyle = {
   display: 'block', marginBottom: '6px',
   fontSize: '0.6rem', fontWeight: 500,
-  color: '#565D53', textTransform: 'uppercase',
-  letterSpacing: '0.13em', fontFamily: 'Inter, sans-serif',
+  color: 'var(--color-neutral-600)', textTransform: 'uppercase',
+  letterSpacing: '0.13em', fontFamily: 'var(--font-body)',
 };
 
 export default function Contact() {
@@ -99,22 +83,22 @@ export default function Contact() {
         }
       `}</style>
 
-      {/* ── Left panel — dark navy ─────────────────────────────── */}
-      <div className="contact-left" style={{ backgroundColor: '#20241F', padding: 'clamp(3rem, 6vw, 5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      {/* ── Left panel — dark ─────────────────────────────── */}
+      <div className="contact-left" style={{ backgroundColor: 'var(--color-primary)', padding: 'clamp(3rem, 6vw, 5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <div>
-          <p style={{ fontSize: '0.58rem', fontWeight: 500, color: '#B33A2E', textTransform: 'uppercase', letterSpacing: '0.18em', fontFamily: 'Inter, sans-serif', marginBottom: '2rem' }}>
+          <p style={{ fontSize: '0.58rem', fontWeight: 500, color: 'var(--color-accent-on-dark)', textTransform: 'uppercase', letterSpacing: '0.18em', fontFamily: 'var(--font-mono)', marginBottom: '2rem' }}>
             Based in Warangal, Telangana
           </p>
-          <h2 style={{ fontSize: 'clamp(2.6rem, 4.5vw, 3.8rem)', fontWeight: 500, color: '#fff', lineHeight: 1.0, fontFamily: 'Space Grotesk, sans-serif', marginBottom: '2rem', letterSpacing: '-0.01em' }}>
+          <h2 style={{ fontSize: 'var(--text-hero)', fontWeight: 500, color: '#fff', lineHeight: 'var(--leading-tight)', fontFamily: 'var(--font-display)', marginBottom: '2rem', letterSpacing: '-0.01em' }}>
             Let's talk<br />about your<br />project.
           </h2>
-          <p style={{ color: '#a09d96', fontSize: '0.88rem', lineHeight: 1.85, fontFamily: 'Inter, sans-serif', marginBottom: '3.5rem', maxWidth: '300px' }}>
+          <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.88rem', lineHeight: 'var(--leading-relaxed)', fontFamily: 'var(--font-body)', marginBottom: '3.5rem', maxWidth: '300px' }}>
             Tell us what you're building. We respond within one business day — usually the same afternoon.
           </p>
 
           {/* Trust line */}
           <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '1.75rem', marginBottom: '2.5rem' }}>
-            <p style={{ fontSize: '0.78rem', color: '#a09d96', fontFamily: 'Inter, sans-serif', lineHeight: 1.7 }}>
+            <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.55)', fontFamily: 'var(--font-body)', lineHeight: 1.7 }}>
               Hundreds of projects delivered across Telangana.<br />Every drawing stamped. Every site supervised.
             </p>
           </div>
@@ -126,7 +110,7 @@ export default function Contact() {
               { v: 'designs@mskassociates.com' },
               { v: 'Mon – Fri, 9 AM – 6 PM' },
             ].map(item => (
-              <p key={item.v} style={{ fontSize: '0.82rem', color: '#E9EAE1', fontFamily: 'Inter, sans-serif' }}>
+              <p key={item.v} style={{ fontSize: '0.82rem', color: 'var(--color-background)', fontFamily: 'var(--font-body)' }}>
                 {item.v}
               </p>
             ))}
@@ -134,59 +118,54 @@ export default function Contact() {
         </div>
 
         {/* Bottom address — small, understated */}
-        <p style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.28)', fontFamily: 'Inter, sans-serif', lineHeight: 1.6, marginTop: '3rem' }}>
+        <p style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.28)', fontFamily: 'var(--font-body)', lineHeight: 1.6, marginTop: '3rem' }}>
           Pranay Marg, Waddepally,<br />Hanamakonda, Telangana 506370
         </p>
       </div>
 
       {/* ── Right panel — form ────────────────────────────────── */}
-      <div className="contact-right" style={{ backgroundColor: '#E9EAE1', padding: 'clamp(3rem, 6vw, 5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div className="contact-right" style={{ backgroundColor: 'var(--color-background)', padding: 'clamp(3rem, 6vw, 5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
         {emailStatus === 'success' && (
-          <div style={{ marginBottom: '1.5rem', padding: '12px 16px', backgroundColor: 'rgba(22,163,74,0.06)', borderLeft: '3px solid #16a34a', borderRadius: '2px' }}>
-            <p style={{ color: '#15803d', fontSize: '0.85rem', fontFamily: 'Inter, sans-serif' }}>Message sent — we'll be in touch shortly.</p>
+          <div style={{ marginBottom: '1.5rem', padding: '12px 16px', backgroundColor: 'var(--color-success-bg)', borderLeft: '3px solid var(--color-success)', borderRadius: 'var(--radius-sm)' }}>
+            <p style={{ color: 'var(--color-success)', fontSize: '0.85rem', fontFamily: 'var(--font-body)' }}>Message sent — we'll be in touch shortly.</p>
           </div>
         )}
         {emailStatus === 'error' && (
-          <div style={{ marginBottom: '1.5rem', padding: '12px 16px', backgroundColor: 'rgba(179,58,46,0.06)', borderLeft: '3px solid #B33A2E', borderRadius: '2px' }}>
-            <p style={{ color: '#B33A2E', fontSize: '0.85rem', fontFamily: 'Inter, sans-serif' }}>Failed to send — please WhatsApp or call us directly.</p>
+          <div style={{ marginBottom: '1.5rem', padding: '12px 16px', backgroundColor: 'rgba(179,58,46,0.06)', borderLeft: '3px solid var(--color-accent)', borderRadius: 'var(--radius-sm)' }}>
+            <p style={{ color: 'var(--color-accent)', fontSize: '0.85rem', fontFamily: 'var(--font-body)' }}>Failed to send — please WhatsApp or call us directly.</p>
           </div>
         )}
 
         <form ref={formRef} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           {/* Name */}
           <div>
-            <label htmlFor="name" style={labelStyle}>Full Name <span style={{ color: '#B33A2E' }}>*</span></label>
+            <label htmlFor="name" style={labelStyle}>Full Name <span style={{ color: 'var(--color-accent)' }}>*</span></label>
             <input id="name" name="name" type="text" required autoComplete="name" placeholder="Your full name"
-              style={inputStyle}
-              onFocus={e => (e.target.style.borderBottomColor = '#B33A2E')}
-              onBlur={e  => (e.target.style.borderBottomColor = 'rgba(32,36,31,0.12)')}
+              className="form-field"
             />
           </div>
 
           {/* Phone */}
           <div>
             <label htmlFor="phone" style={labelStyle}>
-              Phone Number <span style={{ color: '#B33A2E' }}>*</span>
-              <span style={{ color: '#7C8277', fontWeight: 400, marginLeft: '6px' }}>— for WhatsApp</span>
+              Phone Number <span style={{ color: 'var(--color-accent)' }}>*</span>
+              <span style={{ color: 'var(--color-neutral-500)', fontWeight: 400, marginLeft: '6px' }}>— for WhatsApp</span>
             </label>
             <input id="phone" name="phone" type="tel" required autoComplete="tel" placeholder="+91 98765 43210"
               value={phone} onChange={e => setPhone(e.target.value)}
-              style={inputStyle}
-              onFocus={e => (e.target.style.borderBottomColor = '#B33A2E')}
-              onBlur={e  => (e.target.style.borderBottomColor = 'rgba(32,36,31,0.12)')}
+              className="form-field"
             />
           </div>
 
           {/* Message */}
           <div>
-            <label htmlFor="message" style={labelStyle}>Your Project <span style={{ color: '#B33A2E' }}>*</span></label>
+            <label htmlFor="message" style={labelStyle}>Your Project <span style={{ color: 'var(--color-accent)' }}>*</span></label>
             <textarea id="message" name="message" rows="4" required
               placeholder="Briefly describe what you're building — plot size, floors, project type…"
               value={message} onChange={e => setMessage(e.target.value)}
-              style={{ ...inputStyle, resize: 'none' }}
-              onFocus={e => (e.target.style.borderBottomColor = '#B33A2E')}
-              onBlur={e  => (e.target.style.borderBottomColor = 'rgba(32,36,31,0.12)')}
+              className="form-field"
+              style={{ resize: 'none' }}
             />
           </div>
 
@@ -194,49 +173,42 @@ export default function Contact() {
           <div>
             <label htmlFor="email" style={labelStyle}>
               Email Address
-              <span style={{ color: '#7C8277', fontWeight: 400, marginLeft: '6px' }}>— optional, for Send Email</span>
+              <span style={{ color: 'var(--color-neutral-500)', fontWeight: 400, marginLeft: '6px' }}>— optional, for Send Email</span>
             </label>
             <input id="email" name="email" type="email" autoComplete="email" placeholder="you@example.com"
               value={email} onChange={e => setEmail(e.target.value)}
-              style={inputStyle}
-              onFocus={e => (e.target.style.borderBottomColor = '#B33A2E')}
-              onBlur={e  => (e.target.style.borderBottomColor = 'rgba(32,36,31,0.12)')}
+              className="form-field"
             />
           </div>
 
           {/* Actions */}
           <div style={{ paddingTop: '0.5rem' }}>
-            {/* Primary — WhatsApp */}
-            <button onClick={handleWhatsApp} style={{
+            {/* Primary — WhatsApp (brand green kept intentionally, not a design-token color) */}
+            <button onClick={handleWhatsApp} disabled={!whatsappEnabled} className="whatsapp-cta" style={{
               width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-              gap: '10px', padding: '14px', borderRadius: '8px', border: 'none',
-              fontSize: '1rem', fontWeight: 500, fontFamily: 'Inter, sans-serif',
+              gap: '10px', padding: '14px', borderRadius: 'var(--radius-sm)', border: 'none',
+              fontSize: '1rem', fontWeight: 500, fontFamily: 'var(--font-body)',
               cursor: whatsappEnabled ? 'pointer' : 'not-allowed',
-              backgroundColor: whatsappEnabled ? '#25D366' : 'rgba(32,36,31,0.12)',
-              color: whatsappEnabled ? '#ffffff' : '#565D53',
-              transition: 'opacity 0.15s',
+              backgroundColor: whatsappEnabled ? '#25D366' : 'var(--color-border)',
+              color: whatsappEnabled ? '#ffffff' : 'var(--color-neutral-600)',
               marginBottom: '12px',
               boxShadow: whatsappEnabled ? '0 4px 16px rgba(37,211,102,0.3)' : 'none',
             }}>
               <FaWhatsapp size={20} /> WhatsApp
             </button>
-            {whatsappHint && <p style={{ fontSize: '0.7rem', color: '#B33A2E', marginBottom: '8px', fontFamily: 'Inter, sans-serif' }}>{whatsappHint}</p>}
+            {whatsappHint && <p style={{ fontSize: '0.7rem', color: 'var(--color-warning)', marginBottom: '8px', fontFamily: 'var(--font-body)' }}>{whatsappHint}</p>}
 
             {/* Secondary — text-style email link */}
-            <button onClick={handleEmail} disabled={emailStatus === 'sending'} style={{
-              width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-              gap: '8px', padding: '10px',
-              border: 'none', background: 'none',
-              fontSize: '0.82rem', fontWeight: 600, fontFamily: 'Inter, sans-serif',
-              cursor: emailEnabled ? 'pointer' : 'default',
-              color: emailEnabled ? '#6b7280' : '#aaa',
-              textDecoration: emailEnabled ? 'underline' : 'none',
-              textUnderlineOffset: '3px',
-            }}>
+            <Button
+              variant="text"
+              onClick={handleEmail}
+              disabled={emailStatus === 'sending'}
+              style={{ width: '100%', justifyContent: 'center', color: emailEnabled ? 'var(--color-neutral-600)' : 'var(--color-neutral-400)' }}
+            >
               <HiOutlineMail size={14} />
               {emailStatus === 'sending' ? 'Sending…' : 'or send by email'}
-            </button>
-            {emailHint && <p style={{ fontSize: '0.7rem', color: '#B33A2E', marginTop: '4px', fontFamily: 'Inter, sans-serif' }}>{emailHint}</p>}
+            </Button>
+            {emailHint && <p style={{ fontSize: '0.7rem', color: 'var(--color-warning)', marginTop: '4px', fontFamily: 'var(--font-body)' }}>{emailHint}</p>}
           </div>
         </form>
       </div>
@@ -254,17 +226,17 @@ export default function Contact() {
       {/* Floating address card */}
       <div className="map-card" style={{
         position: 'absolute', bottom: '2rem', left: '2rem',
-        backgroundColor: '#E9EAE1',
+        backgroundColor: 'var(--color-surface)',
         padding: '1.5rem 2rem',
-        borderRadius: '12px',
-        borderLeft: '3px solid #B33A2E',
-        boxShadow: '0 8px 32px rgba(32,36,31,0.14)',
+        borderRadius: 'var(--radius-lg)',
+        borderLeft: '3px solid var(--color-accent)',
+        boxShadow: 'var(--shadow-lg)',
         maxWidth: '300px',
       }}>
-        <p style={{ fontSize: '0.58rem', fontWeight: 500, color: '#B33A2E', textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'Inter, sans-serif', marginBottom: '0.6rem' }}>
+        <p style={{ fontSize: '0.58rem', fontWeight: 500, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'var(--font-mono)', marginBottom: '0.6rem' }}>
           Our Office
         </p>
-        <p style={{ fontSize: '0.88rem', color: '#565D53', fontFamily: 'Inter, sans-serif', lineHeight: 1.7, marginBottom: '1.25rem' }}>
+        <p style={{ fontSize: '0.88rem', color: 'var(--color-neutral-600)', fontFamily: 'var(--font-body)', lineHeight: 'var(--leading-relaxed)', marginBottom: '1.25rem' }}>
           Pranay Marg, Waddepally,<br />
           Hanamakonda, Telangana 506370
         </p>
@@ -274,8 +246,8 @@ export default function Contact() {
           rel="noopener noreferrer"
           style={{
             display: 'inline-flex', alignItems: 'center', gap: '6px',
-            fontSize: '0.8rem', fontWeight: 500, color: '#B33A2E',
-            fontFamily: 'Inter, sans-serif', textDecoration: 'none',
+            fontSize: '0.8rem', fontWeight: 500, color: 'var(--color-accent)',
+            fontFamily: 'var(--font-body)', textDecoration: 'none',
             letterSpacing: '0.02em',
           }}
         >

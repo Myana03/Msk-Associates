@@ -15,6 +15,7 @@ import WhatsAppFloat from './Components/WhatsAppFloat';
 import BackToTop from './Components/BackToTop';
 import CookieNotice from './Components/CookieNotice';
 import MarqueeStrip from './Components/MarqueeStrip';
+import StatsBar from './Components/StatsBar';
 
 import ProjectScopeBuilder from './Components/ProjectScopeBuilder';
 import WhatWeDo from './Components/WhatWeDo';
@@ -67,26 +68,27 @@ function WizardModal({ onClose, onOpen }) {
       >
         <div
           style={{
-            backgroundColor: 'white', borderRadius: '8px',
+            backgroundColor: 'var(--color-surface)', borderRadius: 'var(--radius-lg)',
             width: '100%', maxWidth: '680px',
             maxHeight: '92vh', overflowY: 'auto',
             pointerEvents: 'all',
             animation: 'modalSlideUp 0.25s ease',
             position: 'relative',
+            boxShadow: 'var(--shadow-lg)',
           }}
         >
           {/* Modal header */}
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
             padding: '20px 24px 16px',
-            borderBottom: '1px solid #f3f4f6',
-            position: 'sticky', top: 0, backgroundColor: 'white', zIndex: 1,
+            borderBottom: '1px solid var(--color-border)',
+            position: 'sticky', top: 0, backgroundColor: 'var(--color-surface)', zIndex: 1,
           }}>
             <div>
-              <p style={{ fontSize: '0.6rem', color: '#B33A2E', fontFamily: 'Inter', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '3px' }}>
+              <p style={{ fontSize: '0.6rem', color: 'var(--color-accent)', fontFamily: 'var(--font-mono)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '3px' }}>
                 Project Planner
               </p>
-              <p style={{ fontSize: '1.05rem', fontWeight: 500, color: '#20241F', fontFamily: 'Inter', lineHeight: 1.2 }}>
+              <p style={{ fontSize: '1.05rem', fontWeight: 500, color: 'var(--color-primary)', fontFamily: 'var(--font-body)', lineHeight: 1.2 }}>
                 What does your project need?
               </p>
             </div>
@@ -94,14 +96,14 @@ function WizardModal({ onClose, onOpen }) {
               onClick={onClose}
               aria-label="Close"
               style={{
-                background: 'none', border: '1px solid #e5e7eb', cursor: 'pointer',
-                borderRadius: '50%', width: '36px', height: '36px',
+                background: 'none', border: '1px solid var(--color-border-strong)', cursor: 'pointer',
+                borderRadius: 'var(--radius-full)', width: '36px', height: '36px',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: '#9ca3af', fontSize: '1rem', flexShrink: 0,
+                color: 'var(--color-neutral-500)', fontSize: '1rem', flexShrink: 0,
                 transition: 'border-color 0.15s, color 0.15s',
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = '#B33A2E'; e.currentTarget.style.color = '#B33A2E'; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.color = '#9ca3af'; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--color-accent)'; e.currentTarget.style.color = 'var(--color-accent)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--color-border-strong)'; e.currentTarget.style.color = 'var(--color-neutral-500)'; }}
             >
               ✕
             </button>
@@ -174,6 +176,8 @@ function App() {
           <HeroBanner onStartProject={() => setWizardOpen(true)} />
           <MarqueeStrip />
         </section>
+
+        <StatsBar />
 
         <div className="relative z-10">
           <section id="services">

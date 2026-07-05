@@ -44,6 +44,18 @@ export default function HeroBanner({ onStartProject }) {
     return () => clearInterval(id);
   }, []);
 
+  // Subtle parallax on the photo layer only — the text/UI chrome stays put,
+  // so scroll speed never fights with reading. Skipped entirely under
+  // prefers-reduced-motion since scroll-linked movement is a vestibular
+  // trigger the media query is meant to suppress.
+  const [parallaxY, setParallaxY] = useState(0);
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const onScroll = () => setParallaxY(window.scrollY * 0.12);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <div style={{ position: 'relative', height: '100svh', minHeight: '620px', overflow: 'hidden', backgroundColor: '#20241F' }}>
 
@@ -74,7 +86,11 @@ export default function HeroBanner({ onStartProject }) {
         .hero-link-line { transition: width 0.3s ease; }
       `}</style>
 
-      {/* ── Background photos — crossfade, gradients per-slide ── */}
+      {/* ── Background photos — crossfade, gradients per-slide ──
+           Oversized + translated as one block for the parallax drift;
+           the outer hero's overflow:hidden clips the extra 8% top/bottom
+           so no gap is ever revealed. */}
+      <div style={{ position: 'absolute', top: '-8%', left: 0, right: 0, height: '116%', transform: `translateY(${parallaxY}px)`, willChange: 'transform' }}>
       {bgPhotos.map((p, i) => {
         const next = (current + 1) % bgPhotos.length;
         const prev = (current - 1 + bgPhotos.length) % bgPhotos.length;
@@ -124,6 +140,7 @@ export default function HeroBanner({ onStartProject }) {
           </div>
         );
       })}
+      </div>
 
       {/* ── Content ── */}
       <div style={{
@@ -150,13 +167,18 @@ export default function HeroBanner({ onStartProject }) {
           STRUCTURAL ENGINEERS — WARANGAL, TELANGANA
         </motion.p>
 
-        {/* Headline — line 1 */}
-        <div style={{ overflow: 'hidden' }}>
-          <motion.h1
+        {/* Headline — one semantic <h1>, two animated lines.
+            (span with display:block keeps this valid phrasing content
+            inside <h1>, unlike a nested <div>, while still giving each
+            line its own overflow-hidden reveal mask.) */}
+        <h1 style={{ margin: 0 }}>
+        <span style={{ display: 'block', overflow: 'hidden' }}>
+          <motion.span
             initial={{ y: '110%' }}
             animate={{ y: '0%' }}
             transition={{ duration: 0.95, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             style={{
+              display: 'block',
               fontFamily: "'Space Grotesk', sans-serif",
               fontSize: 'clamp(2rem, 7.4vw, 6.2rem)',
               fontWeight: 600, lineHeight: 0.98,
@@ -164,16 +186,16 @@ export default function HeroBanner({ onStartProject }) {
             }}
           >
             Built by the people
-          </motion.h1>
-        </div>
+          </motion.span>
+        </span>
 
-        {/* Headline — line 2 */}
-        <div style={{ overflow: 'hidden', marginBottom: '2rem' }}>
-          <motion.h1
+        <span style={{ display: 'block', overflow: 'hidden', marginBottom: '2rem' }}>
+          <motion.span
             initial={{ y: '110%' }}
             animate={{ y: '0%' }}
             transition={{ duration: 0.95, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
             style={{
+              display: 'block',
               fontFamily: "'Space Grotesk', sans-serif",
               fontSize: 'clamp(2rem, 7.4vw, 6.2rem)',
               fontWeight: 600, lineHeight: 0.98,
@@ -181,8 +203,9 @@ export default function HeroBanner({ onStartProject }) {
             }}
           >
             who designed it.
-          </motion.h1>
-        </div>
+          </motion.span>
+        </span>
+        </h1>
 
         {/* Rule */}
         <motion.div
